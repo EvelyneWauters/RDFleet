@@ -1,7 +1,12 @@
 package com.realdolmen.rdfleet.entities;
 
+import com.realdolmen.rdfleet.entities.car.Car;
+
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Employee extends User{
@@ -12,12 +17,12 @@ public class Employee extends User{
     private String lastName;
     @OneToOne
     private Car currentCar;
+
+    @ManyToMany
+    private Set<Car> carList = new HashSet<>();
     private int functionalLevel;
     private Double monthlyCost;
     private Double fines;
-
-
-
 
 
     /**

@@ -1,6 +1,6 @@
 package com.realdolmen.rdfleet;
 
-import com.realdolmen.rdfleet.entities.Car;
+import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.repositories.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

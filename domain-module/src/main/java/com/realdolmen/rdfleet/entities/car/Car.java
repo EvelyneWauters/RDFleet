@@ -1,4 +1,6 @@
-package com.realdolmen.rdfleet.entities;
+package com.realdolmen.rdfleet.entities.car;
+
+import com.realdolmen.rdfleet.entities.AbstractEntity;
 
 import javax.persistence.Entity;
 import java.time.LocalDate;
@@ -6,19 +8,43 @@ import java.time.LocalDate;
 
 @Entity
 public class Car extends AbstractEntity{
+    /**
+     * Class fields
+     */
 
+    private CarType carType;
+
+    //vinNumber is unique for each car
     private String vinNumber;
     private LocalDate startLeasing;
+    //default value = 4 years (set in data.sql)
     private int leasingDurationYears;
 
+    //default value = 0 (set in data.sql)
     private double mileage;
+    //default value = 0 (set in data.sql)
     private int amountOfRefuels;
 
-    private boolean inThePool;
     private boolean noLongerInUse;
+
+
+
+    /**
+     * Constructor
+     */
 
     public Car() {
     }
+
+
+    /**
+     * Bussiness Methods
+     */
+
+
+    /**
+     * Getters & Setters
+     */
 
     public String getVinNumber() {
         return vinNumber;
@@ -58,14 +84,6 @@ public class Car extends AbstractEntity{
 
     public void setAmountOfRefuels(int amountOfRefuels) {
         this.amountOfRefuels = amountOfRefuels;
-    }
-
-    public boolean isInThePool() {
-        return inThePool;
-    }
-
-    public void setInThePool(boolean inThePool) {
-        this.inThePool = inThePool;
     }
 
     public boolean isNoLongerInUse() {
