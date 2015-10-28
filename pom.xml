@@ -26,7 +26,21 @@
 		<module>domain-module</module>
 		<module>web-module</module>
 		<module>repository-module</module>
+		<module>service-module</module>
+		<module>security-module</module>
 	</modules>
+
+<dependencyManagement>
+	<dependencies>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>security-module</artifactId>
+			<version>${project.version}</version>
+			<type>jar</type>
+		</dependency>
+	</dependencies>
+</dependencyManagement>
+
 
 
 	<dependencies>

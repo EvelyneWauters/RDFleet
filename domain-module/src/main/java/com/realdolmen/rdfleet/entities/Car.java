@@ -14,7 +14,7 @@ public class Car extends AbstractEntity{
     private double mileage;
     private int amountOfRefuels;
 
-    private boolean inthePool;
+    private boolean inThePool;
     private boolean noLongerInUse;
 
     public Car() {
@@ -60,12 +60,12 @@ public class Car extends AbstractEntity{
         this.amountOfRefuels = amountOfRefuels;
     }
 
-    public boolean isInthePool() {
-        return inthePool;
+    public boolean isInThePool() {
+        return inThePool;
     }
 
-    public void setInthePool(boolean inthePool) {
-        this.inthePool = inthePool;
+    public void setInThePool(boolean inThePool) {
+        this.inThePool = inThePool;
     }
 
     public boolean isNoLongerInUse() {

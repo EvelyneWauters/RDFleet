@@ -28,7 +28,7 @@ public class ApplicationConfiguration {
         Employee employee = new Employee("foobar", "password");
         employee.setCurrentCar(carr);
         employee.setFirstName("foo");
-        employee.setLastName("bar");
+        employee.setLastName("barrr");
         employeeRepository.save(employee);
     }
 }
