@@ -17,7 +17,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
-			<artifactId>ejb-module</artifactId>
+			<artifactId>repository-module</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

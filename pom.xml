@@ -23,17 +23,11 @@
 
 	<modules>
 		<module>ear-module</module>
-		<module>ejb-module</module>
+		<module>domain-module</module>
 		<module>web-module</module>
+		<module>repository-module</module>
 	</modules>
 
-	<repositories>
-		<repository>
-			<id>repository.jboss.org</id>
-			<name>JBoss Repository</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
-		</repository>
-	</repositories>
 
 	<dependencies>
 		<dependency>

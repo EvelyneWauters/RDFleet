@@ -19,9 +19,15 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ejb-module</artifactId>
+            <artifactId>domain-module</artifactId>
             <version>${project.version}</version>
-            <type>ejb</type>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>repository-module</artifactId>
+            <version>${project.version}</version>
+            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
