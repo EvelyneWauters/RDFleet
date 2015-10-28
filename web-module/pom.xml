@@ -19,10 +19,6 @@
 			<groupId>${project.groupId}</groupId>
 			<artifactId>ejb-module</artifactId>
 			<version>${project.version}</version>
-			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-
-
-
 </project>
