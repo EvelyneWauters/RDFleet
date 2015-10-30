@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -29,9 +30,17 @@ public class CarTypeController {
 
 
     //return all available cars (sorted on category)
-    @RequestMapping(value="/all", method = RequestMethod.GET)
-    public String carTypeList(Model model)  {
-        model.addAttribute(carTypeService.findAllAvailableCars());
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public String carTypeList(Model model) {
+
+        List<CarType> catalog = carTypeService.findAllCarTypes();
+        for (Iterator<CarType> it = catalog.listIterator(); it.hasNext(); ) {
+            CarType carType = it.next();
+            if (carType.getIsAvailable() == false) {
+                it.remove();
+            }
+        }
+        model.addAttribute(catalog);
         return "cartypelist";
     }
 
@@ -45,9 +54,9 @@ public class CarTypeController {
 
 
     //GET-method of the create-page
-    @RequestMapping(value="/form", method = RequestMethod.GET)
-    public String carTypeForm(Map<String, Object> model, @RequestParam(value = "id",required = false) Long carTypeId)    {
-        if(carTypeId!=null)    {
+    @RequestMapping(value = "/form", method = RequestMethod.GET)
+    public String carTypeForm(Map<String, Object> model, @RequestParam(value = "id", required = false) Long carTypeId) {
+        if (carTypeId != null) {
             model.put("cartype", carTypeService.findById(carTypeId));
         } else {
             model.put("cartype", new CarType());
@@ -56,10 +65,9 @@ public class CarTypeController {
     }
 
 
-
     //POST-method of the create-page
-    @RequestMapping(value= "/create", method = RequestMethod.POST)
-    public String createCarType(@Valid CarType carType, BindingResult bindingResult)  {
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createCarType(@Valid CarType carType, BindingResult bindingResult) {
 //        if(bindingResult.hasErrors())   {
 //            return "carform";
 //        }
@@ -69,21 +77,19 @@ public class CarTypeController {
 
 
     //delete carType
-    @RequestMapping(value="/delete/id/{id}")
-    public String removeCarType(@PathVariable("id") Long carTypeId)    {
+    @RequestMapping(value = "/delete/id/{id}")
+    public String removeCarType(@PathVariable("id") Long carTypeId) {
         carTypeService.removeCarTypeFromList(carTypeId);
         return "redirect:/cartype/all";
     }
 
 
-
-
     //put fuelType-enum values in a list so we can use it for the dropdown menu
     @ModelAttribute(value = "fueltypes")
-    public List<FuelType> genders(){
+    public List<FuelType> genders() {
 
         List<FuelType> fuelTypes = new ArrayList<>();
-        for (FuelType g: FuelType.values()){
+        for (FuelType g : FuelType.values()) {
             fuelTypes.add(g);
         }
         return fuelTypes;

@@ -155,4 +155,5 @@ public class CarType extends AbstractEntity {
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
+
 }

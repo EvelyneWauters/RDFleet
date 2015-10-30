@@ -17,13 +17,8 @@ public class CarTypeService {
     private CarTypeRepository carTypeRepository;
 
 
-    public List<CarType> findAllAvailableCars()  {
+    public List<CarType> findAllCarTypes()  {
         List<CarType> catalog = carTypeRepository.findAll(new Sort(new Sort.Order(Sort.Direction.ASC, "category")));
-        for (CarType carType : catalog) {
-            if(carType.getIsAvailable() == false)  {
-                catalog.remove(carType);
-            }
-        }
         return catalog;
     }
 

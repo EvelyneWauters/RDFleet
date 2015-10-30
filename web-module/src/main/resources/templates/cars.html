@@ -18,9 +18,13 @@
     <div class="row">
         <div class="col-lg-12">
             <h4>Fleet List</h4>
+
+            <div  th:if="!${#lists.isEmpty(carList)}">
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
+                    <th>Brand</th>
+                    <th>Model</th>
                     <th>amountofRefuels</th>
                     <th>mileage</th>
                     <th>leasingdurationinyears</th>
@@ -28,20 +32,25 @@
                 </tr>
                 </thead>
 
-                <tbody><!-- TODO loop over all the authors -->
+                <tbody>
 
-                <tr th:each="car : ${carList}">
+                <tr th:each="car : ${carList}" >
+                    <td th:text="${car.carType.brand.name}"></td>
+                    <td th:text="${car.carType.carModel.modelName}"></td>
                     <td th:text="${car.amountOfRefuels}"></td>
                     <td th:text="${car.mileage}"></td>
                     <td th:text="${car.leasingDurationYears}"></td>
 
-                    <!-- TODO print author data in cells -->
                     <td class="text-right"><a class="btn btn-danger btn-xs" th:href="${#mvc.url('CC#removeCar').arg(0, car.id).build()}">Remove</a></td>
                 </tr>
 
                 </tbody>
 
             </table>
+            </div>
+            <div th:if="${#lists.isEmpty(carList)}">
+                You don't have any skills
+            </div>
 
         </div>
     </div>
