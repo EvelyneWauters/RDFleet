@@ -17,7 +17,7 @@ public class Employee extends User{
 
     @ManyToMany
     private Set<Car> carList = new HashSet<>();
-    @Column(name="functionLevel")
+    @Column(name="functionalLevel")
     private int functionalLevel = 1;
     private Double monthlyCost;
     private Double fines;

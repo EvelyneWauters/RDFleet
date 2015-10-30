@@ -15,26 +15,28 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
  * Created by EWTAX45 on 28/10/2015.
  */
 @Controller
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/public/car")
 public class CarController {
     @Autowired
     private CarService carService;
 
 
-    @RequestMapping(value="/cars", method = RequestMethod.GET)
+    @RequestMapping(value="/all", method = RequestMethod.GET)
     public String carList(Model model)  {
         model.addAttribute(carService.findAll());
         return "cars";
     }
 
 
-    @RequestMapping(value = "/cars/remove/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/remove/{id}", method = RequestMethod.GET)
     public String removeCar(@PathVariable Long id)    {
         carService.removeCar(id);
         return "redirect:" + fromMappingName("CC#carList").build();
     }
 
-    @RequestMapping(value="/car/newcar", method=RequestMethod.POST)
+
+
+    @RequestMapping(value="/newcar", method=RequestMethod.POST)
     public String createCar(@PathVariable Car car)  {
         carService.createCar(car);
         return "cars";

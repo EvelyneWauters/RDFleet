@@ -2,6 +2,7 @@ package com.realdolmen.rdfleet.entities.car;
 
 import com.realdolmen.rdfleet.entities.AbstractEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
@@ -36,8 +37,8 @@ public class CarType extends AbstractEntity {
     private Double amountUpgradeInclVat;
     private Double amountDowngradeInclVat;
 
-
-    private boolean isAvailable;
+    @Column(name="isAvailable")
+    private boolean isAvailable = true;
 
 
     public CarType() {

@@ -3,6 +3,7 @@ package com.realdolmen.rdfleet.entities.car;
 import com.realdolmen.rdfleet.entities.AbstractEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 
