@@ -37,6 +37,9 @@ public class CarType extends AbstractEntity {
     private Double amountDowngradeInclVat;
 
 
+    private boolean isAvailable;
+
+
     public CarType() {
     }
 
@@ -143,5 +146,13 @@ public class CarType extends AbstractEntity {
 
     public void setAmountDowngradeInclVat(Double amountDowngradeInclVat) {
         this.amountDowngradeInclVat = amountDowngradeInclVat;
+    }
+
+    public boolean getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
     }
 }

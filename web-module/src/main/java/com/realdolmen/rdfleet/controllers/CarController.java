@@ -1,6 +1,7 @@
 package com.realdolmen.rdfleet.controllers;
 
 import com.realdolmen.rdfleet.CarService;
+import com.realdolmen.rdfleet.entities.car.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,12 @@ public class CarController {
     public String removeCar(@PathVariable Long id)    {
         carService.removeCar(id);
         return "redirect:" + fromMappingName("CC#carList").build();
+    }
+
+    @RequestMapping(value="/car/newcar", method=RequestMethod.POST)
+    public String createCar(@PathVariable Car car)  {
+        carService.createCar(car);
+        return "cars";
     }
 
 }
