@@ -11,16 +11,17 @@ public class CarModel {
     private String modelDesignation;
     private String horsePower;
     private String versionName;
+    private String imageUrl;
 
 
     public CarModel() {
     }
 
-    public String getName() {
+    public String getModelName() {
         return modelName;
     }
 
-    public void setName(String name) {
+    public void setModelName(String name) {
         this.modelName = name;
     }
 
@@ -46,6 +47,14 @@ public class CarModel {
 
     public void setVersionName(String versionName) {
         this.versionName = versionName;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

@@ -13,7 +13,8 @@ public class AbstractEntity implements Serializable{
     private LocalDateTime lastModified;
 
     @Version
-    private Long versionNumber;
+    @Column(columnDefinition="Integer default '0'")
+    private long versionNumber;
 
 
     public AbstractEntity() {
