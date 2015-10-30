@@ -15,9 +15,10 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
  * Created by EWTAX45 on 28/10/2015.
  */
 @Controller
+@RequestMapping(value = "/users")
 public class CarController {
     @Autowired
-    CarService carService;
+    private CarService carService;
 
 
     @RequestMapping(value="/cars", method = RequestMethod.GET)

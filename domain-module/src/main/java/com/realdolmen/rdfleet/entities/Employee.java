@@ -1,10 +1,9 @@
 package com.realdolmen.rdfleet.entities;
 
+import com.realdolmen.rdfleet.Role;
 import com.realdolmen.rdfleet.entities.car.Car;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,14 +12,13 @@ public class Employee extends User{
     /**
      * Class fields
      */
-    private String firstName;
-    private String lastName;
     @OneToOne
     private Car currentCar;
 
     @ManyToMany
     private Set<Car> carList = new HashSet<>();
-    private int functionalLevel;
+    @Column(name="functionLevel")
+    private int functionalLevel = 1;
     private Double monthlyCost;
     private Double fines;
 
@@ -29,14 +27,14 @@ public class Employee extends User{
      * Constructor
      */
 
-    public Employee(String username, String password) {
-        super(username, password);
-    }
-
     public Employee() {
-        super("","");
+
     }
 
+    public Employee(String firstName, String lastName, String email, String passwordHash)
+    {
+        super(firstName, lastName, email, passwordHash, Role.EMPLOYEE);
+    }
 
     /**
      * Bussiness Methods
@@ -46,23 +44,6 @@ public class Employee extends User{
     /**
      * Getters & Setters
      */
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public Car getCurrentCar() {
         return currentCar;
     }

@@ -1,58 +1,80 @@
 package com.realdolmen.rdfleet.entities;
 
-import javax.persistence.MappedSuperclass;
+import com.realdolmen.rdfleet.Role;
+
+import javax.persistence.*;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 @MappedSuperclass
-public abstract class User extends AbstractEntity {
-    private String username;
-    private byte[] hashedPassword;
+public class User extends AbstractEntity {
 
-    public User(String username, String password)
-    {
-        this.username = username;
-        this.hashedPassword = this.hashPassword(password);
+    @Column(name = "email", nullable = false, unique = true)
+    private String email;
+
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+
+    @Column(name = "role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    private String firstName;
+    private String lastName;
+
+    public User() {
+        //Used by Hibernate
     }
 
-    public byte[] hashPassword(String password) {
-
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            md.update(password.getBytes("UTF-8")); // Change this to "UTF-16" if needed
-            return md.digest();
-        } catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
-            e.printStackTrace();
-            return null;
-        }
+    public User(String firstName, String lastName, String email, String passwordHash, Role role) {
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
-    public boolean checkPasswordIsValid(String password)
-    {
-        return getHashedPasswordAsString().equals(new String(this.hashPassword(password)));
+    public String getEmail() {
+        return email;
     }
 
-    public byte[] getHashedPassword() {
-        return hashedPassword;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getHashedPasswordAsString() {
-        return new String(hashedPassword);
+    public String getPasswordHash() {
+        return passwordHash;
     }
 
-    public String getUsername() {
-        return username;
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public Role getRole() {
+        return role;
     }
 
-    public void setHashedPassword(byte[] hashedPassword) {
-        this.hashedPassword = hashedPassword;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }
+
+
+

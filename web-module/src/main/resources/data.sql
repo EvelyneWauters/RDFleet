@@ -15,12 +15,12 @@ insert into carType (id, category, name, modelName, listPriceInclRealVat, co2,is
 
 
 
-insert into car (id, mileage, carType_id) values (1, '10', 1);
-insert into car (id, mileage, carType_id) values (2, '300', 1);
-insert into car (id, mileage, carType_id) values (3, '200', 2);
-insert into car (id, mileage, carType_id) values (4, '150', 2);
-insert into car (id, mileage, carType_id) values (5, '110000', 2);
+insert into car (mileage) values ('10');
+insert into car (mileage) values ('300');
+insert into car (mileage) values ('200');
+insert into car (mileage) values ('150');
+insert into car (mileage) values ('110000');
 
 
-
+insert into employee(email, password_hash, role, functionalLevel) values('gek@rd.com', 'gek', 'EMPLOYEE', 1)
 
