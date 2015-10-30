@@ -4,12 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Employee extends User{
+public class Employee extends Person{
     /**
      * Class fields
      */
-    private String firstName;
-    private String lastName;
     @OneToOne
     private Car currentCar;
     private int functionalLevel;
@@ -24,8 +22,8 @@ public class Employee extends User{
      * Constructor
      */
 
-    public Employee(String username, String password) {
-        super(username, password);
+    public Employee(String firstName, String lastName) {
+        super(firstName, lastName);
     }
 
     public Employee() {
@@ -41,23 +39,6 @@ public class Employee extends User{
     /**
      * Getters & Setters
      */
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public Car getCurrentCar() {
         return currentCar;
     }

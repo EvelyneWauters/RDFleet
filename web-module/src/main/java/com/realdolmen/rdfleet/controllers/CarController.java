@@ -16,7 +16,7 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 @Controller
 public class CarController {
     @Autowired
-    CarService carService;
+    private CarService carService;
 
 
     @RequestMapping(value="/cars", method = RequestMethod.GET)
