@@ -1,7 +1,8 @@
-package com.realdolmen.rdfleet;
+package com.realdolmen.rdfleet.services.implementations;
 
-import com.realdolmen.rdfleet.entities.Employee;
-import com.realdolmen.rdfleet.entities.User;
+import com.realdolmen.rdfleet.entities.employee.CurrentUser;
+import com.realdolmen.rdfleet.entities.employee.Employee;
+import com.realdolmen.rdfleet.services.definitions.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

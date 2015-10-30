@@ -1,9 +1,9 @@
 package com.realdolmen.rdfleet.controllers;
 
-import com.realdolmen.rdfleet.CarService;
-import com.realdolmen.rdfleet.CarTypeService;
+import com.realdolmen.rdfleet.services.implementations.CarServiceImpl;
+import com.realdolmen.rdfleet.services.implementations.CarTypeServiceImpl;
 import com.realdolmen.rdfleet.entities.car.CarType;
-import com.realdolmen.rdfleet.entities.car.FuelType;
+import com.realdolmen.rdfleet.entities.car.enums.FuelType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,16 +22,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping("/cartype")
 public class CarTypeController {
     @Autowired
-    CarTypeService carTypeService;
+    CarTypeServiceImpl carTypeServiceImpl;
 
     @Autowired
-    CarService carService;
+    CarServiceImpl carServiceImpl;
 
 
     //return all available cars (sorted on category)
     @RequestMapping(value="/all", method = RequestMethod.GET)
     public String carTypeList(Model model)  {
-        model.addAttribute(carTypeService.findAllAvailableCars());
+        model.addAttribute(carTypeServiceImpl.findAllAvailableCars());
         return "cartypelist";
     }
 
@@ -39,7 +39,7 @@ public class CarTypeController {
     //find carType by id and show details
     @RequestMapping(value = "/id/{id}", method = GET)
     public String carTypeById(Map<String, Object> model, @PathVariable("id") Long carTypeId) {
-        model.put("carType", carTypeService.findById(carTypeId));
+        model.put("carType", carTypeServiceImpl.findById(carTypeId));
         return "cartypedetail";
     }
 
@@ -48,7 +48,7 @@ public class CarTypeController {
     @RequestMapping(value="/form", method = RequestMethod.GET)
     public String carTypeForm(Map<String, Object> model, @RequestParam(value = "id",required = false) Long carTypeId)    {
         if(carTypeId!=null)    {
-            model.put("cartype", carTypeService.findById(carTypeId));
+            model.put("cartype", carTypeServiceImpl.findById(carTypeId));
         } else {
             model.put("cartype", new CarType());
         }
@@ -63,7 +63,7 @@ public class CarTypeController {
 //        if(bindingResult.hasErrors())   {
 //            return "carform";
 //        }
-        carTypeService.createOrUpdateCarType(carType);
+        carTypeServiceImpl.createOrUpdateCarType(carType);
         return "redirect:/cartype/all";
     }
 
@@ -71,7 +71,7 @@ public class CarTypeController {
     //delete carType
     @RequestMapping(value="/delete/id/{id}")
     public String removeCarType(@PathVariable("id") Long carTypeId)    {
-        carTypeService.removeCarTypeFromList(carTypeId);
+        carTypeServiceImpl.removeCarTypeFromList(carTypeId);
         return "redirect:/cartype/all";
     }
 

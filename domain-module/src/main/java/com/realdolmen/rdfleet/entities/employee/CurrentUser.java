@@ -1,7 +1,6 @@
-package com.realdolmen.rdfleet;
+package com.realdolmen.rdfleet.entities.employee;
 
-import com.realdolmen.rdfleet.entities.Employee;
-import com.realdolmen.rdfleet.entities.User;
+import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import org.springframework.security.core.authority.AuthorityUtils;
 
 /**

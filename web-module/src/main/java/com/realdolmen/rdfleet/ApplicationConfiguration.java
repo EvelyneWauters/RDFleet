@@ -1,7 +1,8 @@
 package com.realdolmen.rdfleet;
 
 import com.realdolmen.rdfleet.entities.car.Car;
-import com.realdolmen.rdfleet.entities.Employee;
+import com.realdolmen.rdfleet.entities.employee.Employee;
+import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet;
+package com.realdolmen.rdfleet.entities.employee.enums;
 
 /**
  * Created by JDOAX80 on 28/10/2015.

@@ -1,6 +1,6 @@
 package com.realdolmen.rdfleet.controllers;
 
-import com.realdolmen.rdfleet.CarService;
+import com.realdolmen.rdfleet.services.implementations.CarServiceImpl;
 import com.realdolmen.rdfleet.entities.car.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,25 +18,25 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 @RequestMapping(value = "/users")
 public class CarController {
     @Autowired
-    private CarService carService;
+    private CarServiceImpl carServiceImpl;
 
 
     @RequestMapping(value="/cars", method = RequestMethod.GET)
     public String carList(Model model)  {
-        model.addAttribute(carService.findAll());
+        model.addAttribute(carServiceImpl.findAll());
         return "cars";
     }
 
 
     @RequestMapping(value = "/cars/remove/{id}", method = RequestMethod.GET)
     public String removeCar(@PathVariable Long id)    {
-        carService.removeCar(id);
+        carServiceImpl.removeCar(id);
         return "redirect:" + fromMappingName("CC#carList").build();
     }
 
     @RequestMapping(value="/car/newcar", method=RequestMethod.POST)
     public String createCar(@PathVariable Car car)  {
-        carService.createCar(car);
+        carServiceImpl.createCar(car);
         return "cars";
     }
 

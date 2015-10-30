@@ -1,7 +1,10 @@
 package com.realdolmen.rdfleet.entities.car;
 
+import com.realdolmen.rdfleet.converter.LocalDatePersistenceConverter;
 import com.realdolmen.rdfleet.entities.AbstractEntity;
 
+import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
@@ -13,21 +16,20 @@ public class Car extends AbstractEntity{
      * Class fields
      */
     @ManyToOne
+    @Column(nullable = false)
     private CarType carType;
-
-    //vinNumber is unique for each car
+    @Column(name = "vinNumber", unique = true)
     private String vinNumber;
+    @Convert(converter= LocalDatePersistenceConverter.class)
     private LocalDate startLeasing;
-    //default value = 4 years (set in data.sql)
-    private int leasingDurationYears;
-
-    //default value = 0 (set in data.sql)
-    private double mileage;
-    //default value = 0 (set in data.sql)
-    private int amountOfRefuels;
-
-    private boolean noLongerInUse;
-
+    @Column(name = "leasingDurationYears")
+    private int leasingDurationYears = 4;
+    @Column(name = "mileage")
+    private double mileage = 0;
+    @Column(name = "amountOfRefuels")
+    private int amountOfRefuels = 0;
+    @Column(name = "noLongerInUse")
+    private boolean noLongerInUse = false;
 
 
     /**
@@ -36,12 +38,6 @@ public class Car extends AbstractEntity{
 
     public Car() {
     }
-
-
-    /**
-     * Bussiness Methods
-     */
-
 
     /**
      * Getters & Setters
@@ -68,7 +64,7 @@ public class Car extends AbstractEntity{
     }
 
     public void setLeasingDurationYears(int leasingDurationYears) {
-        this.leasingDurationYears = leasingDurationYears;
+        this.leasingDurationYears = Math.abs(leasingDurationYears);
     }
 
     public double getMileage() {
@@ -76,7 +72,7 @@ public class Car extends AbstractEntity{
     }
 
     public void setMileage(double mileage) {
-        this.mileage = mileage;
+        this.mileage = Math.abs(mileage);
     }
 
     public int getAmountOfRefuels() {
@@ -84,7 +80,7 @@ public class Car extends AbstractEntity{
     }
 
     public void setAmountOfRefuels(int amountOfRefuels) {
-        this.amountOfRefuels = amountOfRefuels;
+        this.amountOfRefuels = Math.abs(amountOfRefuels);
     }
 
     public boolean isNoLongerInUse() {
@@ -93,5 +89,13 @@ public class Car extends AbstractEntity{
 
     public void setNoLongerInUse(boolean noLongerInUse) {
         this.noLongerInUse = noLongerInUse;
+    }
+
+    public CarType getCarType() {
+        return carType;
+    }
+
+    public void setCarType(CarType carType) {
+        this.carType = carType;
     }
 }

@@ -1,6 +1,6 @@
 package com.realdolmen.rdfleet.repositories;
 
-import com.realdolmen.rdfleet.entities.Employee;
+import com.realdolmen.rdfleet.entities.employee.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

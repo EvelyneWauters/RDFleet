@@ -1,5 +1,6 @@
-package com.realdolmen.rdfleet.entities.car;
+package com.realdolmen.rdfleet.entities.car.embedabbles;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
@@ -10,6 +11,7 @@ import javax.persistence.Entity;
 @Embeddable
 public class Brand {
 
+    @Column(nullable = false)
     private String name;
 
 

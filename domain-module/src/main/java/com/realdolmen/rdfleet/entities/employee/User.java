@@ -1,11 +1,9 @@
-package com.realdolmen.rdfleet.entities;
+package com.realdolmen.rdfleet.entities.employee;
 
-import com.realdolmen.rdfleet.Role;
+import com.realdolmen.rdfleet.entities.employee.enums.Role;
+import com.realdolmen.rdfleet.entities.AbstractEntity;
 
 import javax.persistence.*;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @MappedSuperclass
 public class User extends AbstractEntity {
@@ -16,9 +14,9 @@ public class User extends AbstractEntity {
     @Column(name = "password_hash", nullable = false)
     private String passwordHash;
 
-    @Column(name = "role", nullable = false)
+    @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role = Role.EMPLOYEE;
 
     private String firstName;
     private String lastName;
@@ -27,10 +25,9 @@ public class User extends AbstractEntity {
         //Used by Hibernate
     }
 
-    public User(String firstName, String lastName, String email, String passwordHash, Role role) {
+    public User(String firstName, String lastName, String email, String passwordHash) {
         this.email = email;
         this.passwordHash = passwordHash;
-        this.role = role;
         this.firstName = firstName;
         this.lastName = lastName;
     }

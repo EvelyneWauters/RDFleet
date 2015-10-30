@@ -1,8 +1,9 @@
-package com.realdolmen.rdfleet;
+package com.realdolmen.rdfleet.services.implementations;
 
 import com.realdolmen.rdfleet.DTO.EmployeeDTO;
-import com.realdolmen.rdfleet.entities.Employee;
+import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;
+import com.realdolmen.rdfleet.services.definitions.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

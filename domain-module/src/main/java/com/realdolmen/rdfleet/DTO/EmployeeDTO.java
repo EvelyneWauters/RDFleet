@@ -1,7 +1,6 @@
 package com.realdolmen.rdfleet.DTO;
 
-import com.realdolmen.rdfleet.Role;
-import com.realdolmen.rdfleet.entities.User;
+import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.NotNull;
