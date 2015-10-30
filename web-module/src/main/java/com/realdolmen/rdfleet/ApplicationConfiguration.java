@@ -1,6 +1,6 @@
 package com.realdolmen.rdfleet;
 
-import com.realdolmen.rdfleet.entities.Car;
+import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.Employee;
 import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;

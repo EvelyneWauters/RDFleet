@@ -1,6 +1,6 @@
 package com.realdolmen.rdfleet.repositories;
 
-import com.realdolmen.rdfleet.entities.Car;
+import com.realdolmen.rdfleet.entities.car.Car;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

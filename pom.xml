@@ -19,10 +19,10 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<start-class>com.realdolmen.rdfleet.ApplicationConfiguration</start-class>
 	</properties>
 
 	<modules>
-		<module>ear-module</module>
 		<module>domain-module</module>
 		<module>web-module</module>
 		<module>repository-module</module>
