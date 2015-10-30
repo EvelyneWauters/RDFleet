@@ -3,6 +3,7 @@ package com.realdolmen.rdfleet.entities.car;
 import com.realdolmen.rdfleet.entities.AbstractEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 
@@ -11,7 +12,7 @@ public class Car extends AbstractEntity{
     /**
      * Class fields
      */
-
+    @ManyToOne
     private CarType carType;
 
     //vinNumber is unique for each car

@@ -1,15 +1,14 @@
 package com.realdolmen.rdfleet.entities;
 
+import com.realdolmen.rdfleet.Role;
 import com.realdolmen.rdfleet.entities.car.Car;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Employee extends Person{
+public class Employee extends User{
     /**
      * Class fields
      */
@@ -18,7 +17,8 @@ public class Employee extends Person{
 
     @ManyToMany
     private Set<Car> carList = new HashSet<>();
-    private int functionalLevel;
+    @Column(name="functionLevel")
+    private int functionalLevel = 1;
     private Double monthlyCost;
     private Double fines;
 
@@ -27,14 +27,14 @@ public class Employee extends Person{
      * Constructor
      */
 
-    public Employee(String firstName, String lastName) {
-        super(firstName, lastName);
-    }
-
     public Employee() {
-        super("","");
+
     }
 
+    public Employee(String firstName, String lastName, String email, String passwordHash)
+    {
+        super(firstName, lastName, email, passwordHash, Role.EMPLOYEE);
+    }
 
     /**
      * Bussiness Methods

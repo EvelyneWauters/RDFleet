@@ -18,14 +18,14 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
  */
 @Controller
 public class LoginController {
-    @Autowired
-    private Authentication authentication;
+//    @Autowired
+//    private Authentication authentication;
 
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam Optional<String> error, Model model) {
         model.addAttribute("error", error);
-        return  "login";
+        return "login";
     }
 
 }

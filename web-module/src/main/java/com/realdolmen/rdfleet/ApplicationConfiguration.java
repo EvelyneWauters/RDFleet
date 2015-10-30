@@ -25,11 +25,12 @@ public class ApplicationConfiguration {
         carRepository.save(carr);
 
         EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
-        Employee employee = new Employee("foobar", "password");
+        Employee employee = new Employee("Foo", "Bar", "foo@bar.com", "password");
         employee.setCurrentCar(carr);
-        employee.setFirstName("foo");
-        employee.setLastName("barrr");
+        Employee fleetEmployee = new Employee("Foo", "Bar", "floo@bar.com", "password");
+        fleetEmployee.setRole(Role.FLEET_EMPLOYEE);
         employeeRepository.save(employee);
+        employeeRepository.save(fleetEmployee);
     }
 }
 

@@ -1,5 +1,6 @@
 package com.realdolmen.rdfleet;
 
+import com.realdolmen.rdfleet.entities.Employee;
 import com.realdolmen.rdfleet.entities.User;
 import org.springframework.security.core.authority.AuthorityUtils;
 
@@ -8,23 +9,23 @@ import org.springframework.security.core.authority.AuthorityUtils;
  */
 public class CurrentUser extends org.springframework.security.core.userdetails.User {
 
-    private User user;
+    private Employee employee;
 
-    public CurrentUser(User user) {
-        super(user.getEmail(), user.getPasswordHash(), AuthorityUtils.createAuthorityList(user.getRole().toString()));
-        this.user = user;
+    public CurrentUser(Employee employee) {
+        super(employee.getEmail(), employee.getPasswordHash(), AuthorityUtils.createAuthorityList(employee.getRole().toString()));
+        this.employee = employee;
     }
 
     public User getUser() {
-        return user;
+        return employee;
     }
 
     public Long getId() {
-        return user.getId();
+        return employee.getId();
     }
 
     public Role getRole() {
-        return user.getRole();
+        return employee.getRole();
     }
 
 }
