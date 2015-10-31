@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet.services.implementations;
+package com.realdolmen.rdfleet;
 
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.repositories.CarTypeRepository;
@@ -18,7 +18,7 @@ public class CarTypeServiceImpl implements CarTypeService{
     private CarTypeRepository carTypeRepository;
 
     @Override
-    public List<CarType> findAllAvailableCars()  {
+    public List<CarType> findAllCarTypes()  {
         List<CarType> catalog = carTypeRepository.findAll(new Sort(new Sort.Order(Sort.Direction.ASC, "category")));
         for (CarType carType : catalog) {
             if(carType.getIsAvailable() == false)  {

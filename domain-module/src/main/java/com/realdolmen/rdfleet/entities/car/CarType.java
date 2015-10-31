@@ -24,6 +24,8 @@ public class CarType extends AbstractEntity {
 
     //List price Incl. real VAT
     private Double listPriceInclRealVat;
+
+
     private int category;
     private int co2;
     private int fiscHp;
@@ -43,6 +45,7 @@ public class CarType extends AbstractEntity {
 
     @Column(name = "isAvailable")
     private boolean isAvailable = true;
+    
 
 
     public CarType() {

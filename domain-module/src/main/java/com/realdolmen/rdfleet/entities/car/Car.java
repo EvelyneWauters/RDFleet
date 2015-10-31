@@ -15,6 +15,7 @@ public class Car extends AbstractEntity{
     /**
      * Class fields
      */
+
     @ManyToOne
     @Column(nullable = false)
     private CarType carType;

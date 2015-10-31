@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add a new Car</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+<h2>Add a new car to the catalog</h2>
+
+<form method="post" th:object="${carType}"><!-- TODO refer to the author model object and post to /register -->
+
+
+
+    <div class="form-group" th:class="${#fields.hasErrors('brand.name')}? 'has-error'">
+        <label th:for="${#ids.next('brand.name')}">Brand name:</label>
+        <input type="text" th:field="*{brand.name}" class="form-control"/>
+        <span th:if="${#fields.hasErrors('brand.name')}" class="help-block" th:errors="*{brand.name}"></span>
+    </div>
+
+    <!--<div class="form-group" th:class="${#fields.hasErrors('lastName')}? 'has-error'">-->
+        <!--<label th:for="${#ids.next('lastName')}">Last Name:</label>-->
+        <!--<input type="text" th:field="*{lastName}" class="form-control"/>-->
+        <!--<span th:if="${#fields.hasErrors('lastName')}" class="help-block" th:errors="*{lastName}"></span>-->
+    <!--</div>-->
+
+    <!--<div class="form-group" th:class="${#fields.hasErrors('email')}? 'has-error'">-->
+        <!--<label th:for="${#ids.next('email')}">Email:</label>-->
+        <!--<input type="text" th:field="*{email}" class="form-control"/>-->
+        <!--<span th:if="${#fields.hasErrors('email')}" class="help-block" th:errors="*{email}"></span>-->
+    <!--</div>-->
+
+    <!--<div class="form-group" th:class="${#fields.hasErrors('userName')}? 'has-error'">-->
+        <!--<label th:for="${#ids.next('userName')}">User name:</label>-->
+        <!--<input type="text" th:field="*{userName}" class="form-control"/>-->
+        <!--<span th:if="${#fields.hasErrors('userName')}" class="help-block" th:errors="*{userName}"></span>-->
+    <!--</div>-->
+
+    <!--<div class="form-group" th:class="${#fields.hasErrors('password')}? 'has-error'">-->
+        <!--<label th:for="${#ids.next('password')}">Password:</label>-->
+        <!--<input type="text" th:field="*{password}" class="form-control"/>-->
+        <!--<span th:if="${#fields.hasErrors('password')}" class="help-block" th:errors="*{password}"></span>-->
+    <!--</div>-->
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+    <br/>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+
+</body>
+
+</html>

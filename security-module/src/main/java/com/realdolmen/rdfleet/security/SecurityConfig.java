@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet.security;
+package com.realdolmen.rdfleet;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
@@ -9,6 +9,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * Created by EWTAX45 on 28/10/2015.
@@ -16,7 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @Configuration
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-//@EnableWebMvcSecurity
+
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -42,6 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .rememberMe();
+        http.csrf()
+                .csrfTokenRepository(csrfTokenRepository());
     }
 
     @Override
@@ -50,5 +56,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             //.passwordEncoder(new BCryptPasswordEncoder());
     }
 
+
+    private CsrfTokenRepository csrfTokenRepository()
+    {
+        HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
+        repository.setSessionAttributeName("_csrf");
+        return repository;
+    }
 }
 

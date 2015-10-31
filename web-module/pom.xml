@@ -25,5 +25,10 @@
             <artifactId>security-module</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+            <version>2.1.2.RELEASE</version>
+        </dependency>
     </dependencies>
 </project>

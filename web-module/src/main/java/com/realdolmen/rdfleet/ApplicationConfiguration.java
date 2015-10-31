@@ -15,19 +15,25 @@ public class ApplicationConfiguration {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = new SpringApplicationBuilder(ApplicationConfiguration.class).profiles("production").run(args);
         CarRepository carRepository = context.getBean(CarRepository.class);
-        Car car = new Car();
-        car.setMileage(55000);
-        car.setAmountOfRefuels(70);
-        carRepository.save(car);
 
-        Car carr = new Car();
-        carr.setMileage(888888);
-        carr.setAmountOfRefuels(70);
-        carRepository.save(carr);
+//        CarType carType = new CarType();
+//        carType.setIsAvailable(true);
+//        Brand brand = new Brand();
+//        brand.setName("BMW");
+//        carType.setBrand(brand);
+//        CarModel carModel = new CarModel();
+//        carModel.setModelName("118");
+//
+//        Car carr = new Car();
+//        carr.setMileage(888888);
+//        carr.setAmountOfRefuels(70);
+//        carr.setCarType(carType);
+//        carRepository.save(carr);
+
 
         EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
         Employee employee = new Employee("Foo", "Bar", "foo@bar.com", "password");
-        employee.setCurrentCar(carr);
+//        employee.setCurrentCar(carr);
         Employee fleetEmployee = new Employee("Foo", "Bar", "floo@bar.com", "password");
         fleetEmployee.setRole(Role.FLEET_EMPLOYEE);
         employeeRepository.save(employee);
