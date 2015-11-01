@@ -26,27 +26,33 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> getUserById(long id) {
+    public Optional<Employee> getEmployeeById(long id) {
         return Optional.ofNullable(employeeRepository.findOne(id));
     }
 
     @Override
-    public Optional<Employee> getUserByEmail(String email) {
+    public Optional<Employee> getEmployeeByEmail(String email) {
         return employeeRepository.findOneByEmail(email);
     }
 
     @Override
-    public Collection<Employee> getAllUsers() {
+    public Collection<Employee> getAllEmployees() {
         return employeeRepository.findAll(new Sort("email"));
     }
 
     @Override
-    public Employee create(EmployeeDTO employeeDTO) {
+    public Employee createEmployee(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         employee.setEmail(employeeDTO.getEmail());
         employee.setPasswordHash(new BCryptPasswordEncoder().encode(employeeDTO.getPassword()));
         employee.setRole(employeeDTO.getRole());
         return employeeRepository.save(employee);
     }
+
+    public void createOrUpdateEmployeeToMakeItEasierOnEvelyne(Employee employee)    {
+        employeeRepository.save(employee);
+    }
+
+
 
 }

@@ -9,7 +9,9 @@ import javax.validation.constraints.NotNull;
  * Created by JDOAX80 on 28/10/2015.
  */
 public class EmployeeDTO {
-
+    /**
+     * Class fields
+     */
     @NotEmpty
     private String email = "";
 
@@ -18,6 +20,12 @@ public class EmployeeDTO {
 
     @NotNull
     private Role role = Role.EMPLOYEE;
+
+
+
+    /**
+     * Getters & Setters
+     */
 
     public String getEmail() {
         return email;

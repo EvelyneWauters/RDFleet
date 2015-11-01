@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>RealDolmen Fleet</title>
+    <link th:href="@{/css/bootstrap-3.0.3.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container">
+    <div th:include="navbar"/>
+
+
+    <div class="page-header text-center">
+        <h1><span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet</h1>
+        <p class="lead">Welcome to the <span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet!</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4>Employee List</h4>
+
+            <div  th:if="!${#lists.isEmpty(employeeList)}">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th>first name</th>
+                        <th>last name</th>
+                        <th>email</th>
+                        <th>functionalLevel</th>
+
+                        <th class="text-right">Update functional level</th>
+                        <!--<th class="text-right">Details</th>-->
+                        <!--<th class="text-right">Set as inactive</th>-->
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="employee : ${employeeList}">
+                        <td th:text="${employee.firstName}"></td>
+                        <td th:text="${employee.lastName}"></td>
+                        <td th:text="${employee.email}"></td>
+                        <td th:text="${employee.functionalLevel}"></td>
+
+                        <td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('EC#employeeForm').arg(0, employee.id).build()}">Edit</a></td>
+                        <!--<td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('CTC#carTypeById').arg(0, carType.id).build()}">Details</a></td>-->
+                        <!--<td class="text-right"><a class="btn btn-danger btn-xs" th:href="${#mvc.url('CTC#removeCarType').arg(0, carType.id).build()}">Remove</a></td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:if="${#lists.isEmpty(employeeList)}">
+                No employees found...
+            </div>
+
+        </div>
+    </div>
+
+    <hr/>
+</div>
+
+
+
+
+</body>
+</html>
