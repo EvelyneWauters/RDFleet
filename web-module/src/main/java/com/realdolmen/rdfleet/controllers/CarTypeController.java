@@ -1,19 +1,17 @@
 package com.realdolmen.rdfleet.controllers;
 
-import com.realdolmen.rdfleet.CarService;
-import com.realdolmen.rdfleet.CarTypeService;
+import com.realdolmen.rdfleet.services.definitions.CarService;
 import com.realdolmen.rdfleet.entities.car.CarType;
-import com.realdolmen.rdfleet.entities.car.FuelType;
+import com.realdolmen.rdfleet.entities.car.enums.FuelType;
+import com.realdolmen.rdfleet.services.implementations.CarTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -25,7 +23,8 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 @RequestMapping("/public/cartype")
 public class CarTypeController {
     @Autowired
-    CarTypeService carTypeService;
+    private CarTypeServiceImpl carTypeServiceImpl;
+    
 
     @Autowired
     CarService carService;
@@ -34,14 +33,7 @@ public class CarTypeController {
     //return all available cars (sorted on category)
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String carTypeList(Model model) {
-
-        List<CarType> catalog = carTypeService.findAllCarTypes();
-        for (Iterator<CarType> it = catalog.listIterator(); it.hasNext(); ) {
-            CarType carType = it.next();
-            if (carType.getIsAvailable() == false) {
-                it.remove();
-            }
-        }
+        List<CarType> catalog = carTypeServiceImpl.findAllAvailableCarTypes();
         model.addAttribute(catalog);
         return "cartypelist";
     }
@@ -53,7 +45,7 @@ public class CarTypeController {
     @RequestMapping(value = "/form", method = RequestMethod.GET)
     public String carTypeForm(@RequestParam(value = "id", required = false) Long carTypeId, Map<String, Object> model) {
         if (carTypeId != null) {
-            model.put("carType", carTypeService.findById(carTypeId));
+            model.put("carType", carTypeServiceImpl.findById(carTypeId));
         } else {
             model.put("carType", new CarType());
         }
@@ -67,7 +59,7 @@ public class CarTypeController {
         if(errors.hasErrors())   {
             return "cartypeform";
         }
-        carTypeService.createOrUpdateCarType(carType);
+        carTypeServiceImpl.createOrUpdateCarType(carType);
         return "redirect:" + fromMappingName("CTC#carTypeList").build();
 
     }
@@ -77,7 +69,7 @@ public class CarTypeController {
     //find carType by id and show details
     @RequestMapping(value = "/id/{id}", method = GET)
     public String carTypeById(@PathVariable("id") Long carTypeId, Map<String, Object> model) {
-        model.put("carType", carTypeService.findById(carTypeId));
+        model.put("carType", carTypeServiceImpl.findById(carTypeId));
         return "cartypedetail";
     }
 
@@ -85,9 +77,11 @@ public class CarTypeController {
     //delete carType
     @RequestMapping(value = "/delete/id/{id}")
     public String removeCarType(@PathVariable("id") Long carTypeId) {
-        carTypeService.removeCarTypeFromList(carTypeId);
+        carTypeServiceImpl.removeCarTypeFromList(carTypeId);
         return "redirect:" + fromMappingName("CTC#carTypeList").build();
     }
+
+
 
 
     //put fuelType-enum values in a list so we can use it for the dropdown menu

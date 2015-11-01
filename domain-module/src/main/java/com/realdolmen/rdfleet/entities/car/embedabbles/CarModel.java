@@ -1,5 +1,6 @@
-package com.realdolmen.rdfleet.entities.car;
+package com.realdolmen.rdfleet.entities.car.embedabbles;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 /**
@@ -7,6 +8,8 @@ import javax.persistence.Embeddable;
  */
 @Embeddable
 public class CarModel {
+
+    @Column(nullable = false)
     private String modelName;
     private String modelDesignation;
     private String horsePower;

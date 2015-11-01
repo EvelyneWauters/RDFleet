@@ -1,7 +1,7 @@
-package com.realdolmen.rdfleet;
+package com.realdolmen.rdfleet.services.definitions;
 
 import com.realdolmen.rdfleet.DTO.EmployeeDTO;
-import com.realdolmen.rdfleet.entities.Employee;
+import com.realdolmen.rdfleet.entities.employee.Employee;
 
 import java.util.Collection;
 import java.util.Optional;

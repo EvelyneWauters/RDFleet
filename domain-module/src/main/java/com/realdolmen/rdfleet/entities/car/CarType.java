@@ -1,10 +1,12 @@
 package com.realdolmen.rdfleet.entities.car;
 
 import com.realdolmen.rdfleet.entities.AbstractEntity;
+import com.realdolmen.rdfleet.entities.car.embedabbles.Brand;
+import com.realdolmen.rdfleet.entities.car.embedabbles.CarModel;
+import com.realdolmen.rdfleet.entities.car.enums.FuelType;
+import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  * Created by EWTAX45 on 28/10/2015.
@@ -12,9 +14,12 @@ import javax.persistence.Entity;
 
 @Entity
 public class CarType extends AbstractEntity {
+
     @Embedded
+    @Column(nullable = false)
     private Brand brand;
     @Embedded
+    @Column(nullable = false)
     private CarModel carModel;
 
     //List price Incl. real VAT
@@ -24,8 +29,9 @@ public class CarType extends AbstractEntity {
     private int category;
     private int co2;
     private int fiscHp;
+    @Enumerated(EnumType.STRING)
     private FuelType fuelType;
-
+    @Enumerated(EnumType.STRING)
     private WinterTyresRimType winterTyresRimType;
 
     //IDEAL KM according to type of car
@@ -37,8 +43,9 @@ public class CarType extends AbstractEntity {
     private Double amountUpgradeInclVat;
     private Double amountDowngradeInclVat;
 
-    @Column(name="isAvailable")
+    @Column(name = "isAvailable")
     private boolean isAvailable = true;
+    
 
 
     public CarType() {
@@ -66,7 +73,7 @@ public class CarType extends AbstractEntity {
     }
 
     public void setListPriceInclRealVat(Double listPriceInclRealVat) {
-        this.listPriceInclRealVat = listPriceInclRealVat;
+        this.listPriceInclRealVat = Math.abs(listPriceInclRealVat);
     }
 
     public int getCategory() {
@@ -74,7 +81,12 @@ public class CarType extends AbstractEntity {
     }
 
     public void setCategory(int category) {
-        this.category = category;
+        if(category > 1 || category < 7) {
+            this.category = category;
+        }
+        else {
+            throw new IllegalArgumentException("The category can not be lower than 1 or higher than 7!");
+        }
     }
 
     public int getCo2() {
@@ -82,7 +94,7 @@ public class CarType extends AbstractEntity {
     }
 
     public void setCo2(int co2) {
-        this.co2 = co2;
+        this.co2 = Math.abs(co2);
     }
 
     public int getFiscHp() {
@@ -90,7 +102,7 @@ public class CarType extends AbstractEntity {
     }
 
     public void setFiscHp(int fiscHp) {
-        this.fiscHp = fiscHp;
+        this.fiscHp = Math.abs(fiscHp);
     }
 
     public FuelType getFuelType() {
@@ -114,7 +126,7 @@ public class CarType extends AbstractEntity {
     }
 
     public void setIdealKm(int idealKm) {
-        this.idealKm = idealKm;
+        this.idealKm = Math.abs(idealKm);
     }
 
     public int getMaxKm() {
@@ -122,7 +134,7 @@ public class CarType extends AbstractEntity {
     }
 
     public void setMaxKm(int maxKm) {
-        this.maxKm = maxKm;
+        this.maxKm = Math.abs(maxKm);
     }
 
     public Double getBenefitInKindPerMonth() {
@@ -130,7 +142,7 @@ public class CarType extends AbstractEntity {
     }
 
     public void setBenefitInKindPerMonth(Double benefitInKindPerMonth) {
-        this.benefitInKindPerMonth = benefitInKindPerMonth;
+        this.benefitInKindPerMonth = Math.abs(benefitInKindPerMonth);
     }
 
     public Double getAmountUpgradeInclVat() {
@@ -138,7 +150,7 @@ public class CarType extends AbstractEntity {
     }
 
     public void setAmountUpgradeInclVat(Double amountUpgradeInclVat) {
-        this.amountUpgradeInclVat = amountUpgradeInclVat;
+        this.amountUpgradeInclVat = Math.abs(amountUpgradeInclVat);
     }
 
     public Double getAmountDowngradeInclVat() {
@@ -146,7 +158,7 @@ public class CarType extends AbstractEntity {
     }
 
     public void setAmountDowngradeInclVat(Double amountDowngradeInclVat) {
-        this.amountDowngradeInclVat = amountDowngradeInclVat;
+        this.amountDowngradeInclVat = Math.abs(amountDowngradeInclVat);
     }
 
     public boolean getIsAvailable() {
@@ -156,5 +168,4 @@ public class CarType extends AbstractEntity {
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
     }
-
 }
