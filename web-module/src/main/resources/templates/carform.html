@@ -9,6 +9,10 @@
 
 <body>
 
+<div th:include="navbar"/>
+
+<div class="container">
+
 <h2>Add a new car to the catalog</h2>
 
 <form method="post" th:object="${carType}"><!-- TODO refer to the author model object and post to /register -->
@@ -49,7 +53,7 @@
     <br/>
     <button type="submit" class="btn btn-primary">Add</button>
 </form>
-
+</div>
 </body>
 
 </html>

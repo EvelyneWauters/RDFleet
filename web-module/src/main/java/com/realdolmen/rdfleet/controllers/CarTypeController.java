@@ -47,17 +47,11 @@ public class CarTypeController {
     }
 
 
-    //find carType by id and show details
-    @RequestMapping(value = "/id/{id}", method = GET)
-    public String carTypeById(Map<String, Object> model, @PathVariable("id") Long carTypeId) {
-        model.put("carType", carTypeService.findById(carTypeId));
-        return "cartypedetail";
-    }
 
 
     //GET-method of the create-page
     @RequestMapping(value = "/form", method = RequestMethod.GET)
-    public String carTypeForm(Map<String, Object> model, @RequestParam(value = "id", required = false) Long carTypeId) {
+    public String carTypeForm(@RequestParam(value = "id", required = false) Long carTypeId, Map<String, Object> model) {
         if (carTypeId != null) {
             model.put("carType", carTypeService.findById(carTypeId));
         } else {
@@ -76,6 +70,15 @@ public class CarTypeController {
         carTypeService.createOrUpdateCarType(carType);
         return "redirect:" + fromMappingName("CTC#carTypeList").build();
 
+    }
+
+
+
+    //find carType by id and show details
+    @RequestMapping(value = "/id/{id}", method = GET)
+    public String carTypeById(@PathVariable("id") Long carTypeId, Map<String, Object> model) {
+        model.put("carType", carTypeService.findById(carTypeId));
+        return "cartypedetail";
     }
 
 

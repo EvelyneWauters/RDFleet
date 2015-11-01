@@ -25,6 +25,10 @@ public class AbstractEntity implements Serializable{
         return id;
     }
 
+    protected void setId(Long id) {
+        this.id = id;
+    }
+
     public LocalDateTime getLastModified() {
         return lastModified;
     }

@@ -60,6 +60,6 @@ public class CarModel {
     @Override
     public String toString() {
         return
-                modelName + modelDesignation + horsePower + versionName;
+                modelName + " " + modelDesignation + " "  + horsePower + " "  + versionName;
     }
 }

@@ -4,7 +4,7 @@
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <title>RealDolmen Blog</title>
+    <title>RealDolmen Fleet</title>
     <link th:href="@{/css/bootstrap-3.0.3.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
@@ -32,6 +32,8 @@
                     <th>co2</th>
                     <th>price</th>
                     <th>is available</th>
+                    <th class="text-right">Update</th>
+                    <th class="text-right">Details</th>
                     <th class="text-right">Remove</th>
                 </tr>
                 </thead>
@@ -45,6 +47,8 @@
                     <td th:text="${carType.listPriceInclRealVat}"></td>
                     <td th:text="${carType.isAvailable}"></td>
 
+                    <td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('CTC#carTypeForm').arg(0, carType.id).build()}">Edit</a></td>
+                    <td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('CTC#carTypeById').arg(0, carType.id).build()}">Details</a></td>
                     <td class="text-right"><a class="btn btn-danger btn-xs" th:href="${#mvc.url('CTC#removeCarType').arg(0, carType.id).build()}">Remove</a></td>
                 </tr>
                 </tbody>
