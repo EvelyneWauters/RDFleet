@@ -59,6 +59,9 @@ public class CarTypeController {
         if(errors.hasErrors())   {
             return "cartypeform";
         }
+        CarType byId = carTypeServiceImpl.findById(carType.getId());
+        carType.setVersionNumber(byId.getVersionNumber());
+
         carTypeServiceImpl.createOrUpdateCarType(carType);
         return "redirect:" + fromMappingName("CTC#carTypeList").build();
 
