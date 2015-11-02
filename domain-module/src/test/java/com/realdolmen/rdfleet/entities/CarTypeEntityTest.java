@@ -16,7 +16,7 @@ public class CarTypeEntityTest extends Assert {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void carTypeCategoryCantBeLowerThanSeven() {
+    public void carTypeCategoryCantBeHigherThanSeven() {
         CarType carType = new CarType();
         carType.setCategory(8);
     }

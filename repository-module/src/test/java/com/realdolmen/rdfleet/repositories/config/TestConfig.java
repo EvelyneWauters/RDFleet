@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet.config;
+package com.realdolmen.rdfleet.repositories.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -17,25 +17,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
+/**
+ * Created by JDOAX80 on 2/11/2015.
+ */
 @Configuration
 @EnableJpaRepositories(basePackages = "com.realdolmen.rdfleet.repositories")
-@ComponentScan(basePackages = "com.realdolmen.rdfleet")
 @EnableTransactionManagement
-public class DataConfig {
-
+@Profile("test")
+public class TestConfig {
     @Bean
-    @Profile("production")
-    public DataSource dataSourceProduction() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/rdfleet");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
-        return dataSource;
-    }
-
-    @Bean
-    @Profile("test")
     public DataSource dataSourceTest() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
@@ -60,7 +50,6 @@ public class DataConfig {
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
         em.setJpaProperties(additionalProperties());
-
         return em;
     }
 
@@ -71,5 +60,4 @@ public class DataConfig {
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
     }
-
 }

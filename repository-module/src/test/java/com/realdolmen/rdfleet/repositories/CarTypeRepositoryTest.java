@@ -7,13 +7,16 @@ import com.realdolmen.rdfleet.entities.car.embedabbles.CarModel;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.persistence.PersistenceException;
+import javax.validation.ConstraintViolationException;
 
 /**
  * Created by JDOAX80 on 30/10/2015.
  */
 public class CarTypeRepositoryTest extends RepositoryTest {
+
     @Autowired
     private CarTypeRepository carTypeRepository;
 
@@ -32,16 +35,18 @@ public class CarTypeRepositoryTest extends RepositoryTest {
 
     @Test
     public void carTypeCanBeCreated() {
+        carType.setBrand(brand);
+        carType.setCarModel(carModel);
         carTypeRepository.save(carType);
     }
 
-    @Test(expected = PersistenceException.class)
+    @Test(expected = ConstraintViolationException.class)
     public void carTypeCantBeCreatedWithoutBrand() {
         carType.setCarModel(carModel);
         carTypeRepository.save(carType);
     }
 
-    @Test(expected = PersistenceException.class)
+    @Test(expected = ConstraintViolationException.class)
     public void carTypeCantBeCreatedWithoutModel() {
         carType.setBrand(brand);
         carTypeRepository.save(carType);

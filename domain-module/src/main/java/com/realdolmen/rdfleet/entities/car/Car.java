@@ -2,22 +2,23 @@ package com.realdolmen.rdfleet.entities.car;
 
 import com.realdolmen.rdfleet.converter.LocalDatePersistenceConverter;
 import com.realdolmen.rdfleet.entities.AbstractEntity;
+import com.realdolmen.rdfleet.entities.car.options.CarOption;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
-public class Car extends AbstractEntity{
+public class Car extends CarComponent { //AbstractEntity{
     /**
      * Class fields
      */
 
-    @ManyToOne
-//    @Column(nullable = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @NotNull
     private CarType carType;
     @Column(name = "vinNumber", unique = true)
     private String vinNumber;
@@ -32,6 +33,8 @@ public class Car extends AbstractEntity{
     @Column(name = "noLongerInUse")
     private boolean noLongerInUse = false;
 
+
+    private List<CarOption> options = new ArrayList<>();
 
     /**
      * Constructor
@@ -97,5 +100,10 @@ public class Car extends AbstractEntity{
 
     public void setCarType(CarType carType) {
         this.carType = carType;
+    }
+
+    @Override
+    public double cost() {
+        return 0;
     }
 }

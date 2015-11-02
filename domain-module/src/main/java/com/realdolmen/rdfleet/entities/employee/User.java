@@ -4,14 +4,17 @@ import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import com.realdolmen.rdfleet.entities.AbstractEntity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public class User extends AbstractEntity {
 
-    @Column(name = "email", nullable = false, unique = true)
+    @Column(name = "email", unique = true)
+    @NotNull
     private String email;
 
-    @Column(name = "password_hash", nullable = false)
+    @Column(name = "password_hash")
+    @NotNull
     private String passwordHash;
 
     @Column(name = "role")

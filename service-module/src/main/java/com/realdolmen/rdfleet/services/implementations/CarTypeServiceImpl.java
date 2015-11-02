@@ -1,6 +1,7 @@
 package com.realdolmen.rdfleet.services.implementations;
 
 import com.realdolmen.rdfleet.entities.car.CarType;
+import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.CarTypeRepository;
 import com.realdolmen.rdfleet.services.definitions.CarTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,13 @@ import java.util.List;
  */
 @Service
 public class CarTypeServiceImpl implements CarTypeService{
+
+    private final CarTypeRepository carTypeRepository;
+
     @Autowired
-    private CarTypeRepository carTypeRepository;
+    public CarTypeServiceImpl(CarTypeRepository carTypeRepository) {
+        this.carTypeRepository = carTypeRepository;
+    }
 
     @Override
     public List<CarType> findAllCarTypes()  {

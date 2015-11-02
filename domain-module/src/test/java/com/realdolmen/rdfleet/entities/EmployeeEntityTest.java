@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
  * Created by JDOAX80 on 30/10/2015.
  */
 public class EmployeeEntityTest extends Assert {
+
     @Test(expected = IllegalArgumentException.class)
     public void employeeFunctionalLevelCantBeLowerThanOne() {
         Employee employee = new Employee();
@@ -17,7 +18,7 @@ public class EmployeeEntityTest extends Assert {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void employeeFunctionalLevelCantBeLowerThanSeven() {
+    public void employeeFunctionalLevelCantBeHigherThanSeven() {
         Employee employee = new Employee();
         employee.setFunctionalLevel(8);
     }
