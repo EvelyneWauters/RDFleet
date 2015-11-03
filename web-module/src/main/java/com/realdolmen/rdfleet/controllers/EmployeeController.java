@@ -61,7 +61,6 @@ public class EmployeeController {
         editedEmployee.setFunctionalLevel(employee.getFunctionalLevel());
         employeeService.createOrUpdateEmployeeToMakeItEasierOnEvelyne(editedEmployee);
         return "redirect:" + fromMappingName("EC#employeeList").build();
-
     }
 
 

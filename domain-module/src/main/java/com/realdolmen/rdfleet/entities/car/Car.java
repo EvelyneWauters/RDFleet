@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @Entity
-public class Car extends CarComponent { //AbstractEntity{
+public class Car extends AbstractEntity{
     /**
      * Class fields
      */
@@ -32,9 +32,9 @@ public class Car extends CarComponent { //AbstractEntity{
     private int amountOfRefuels = 0;
     @Column(name = "noLongerInUse")
     private boolean noLongerInUse = false;
+    @OneToMany
+    private List<CarOption> carOptions = new ArrayList<>();
 
-
-    private List<CarOption> options = new ArrayList<>();
 
     /**
      * Constructor
@@ -102,8 +102,11 @@ public class Car extends CarComponent { //AbstractEntity{
         this.carType = carType;
     }
 
-    @Override
-    public double cost() {
-        return 0;
+    public List<CarOption> getCarOptions() {
+        return carOptions;
+    }
+
+    public void setCarOptions(List<CarOption> carOptions) {
+        this.carOptions = carOptions;
     }
 }

@@ -2,3 +2,4 @@
 **/target/
 .idea/
 **/*.iml
+/com/realdolmen/rdfleet/entities/car/CarComponent.java
