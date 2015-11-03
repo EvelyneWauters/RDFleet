@@ -41,7 +41,7 @@ public class ApplicationConfiguration {
         CarOptionRepository carOptionRepository = context.getBean(CarOptionRepository.class);
         Employee employee = new Employee("Foo", "Bar", "foo@bar.com", "password");
 //        employee.setCurrentCar(carr);
-        Employee fleetEmployee = new Employee("Foo", "Bar", "floo@bar.com", "password");
+        Employee fleetEmployee = new Employee("Floo", "Bar", "floo@bar.com", "password");
         CarOption option1 = new CruiseControl();
         CarOption option2 = new HeatedSeats();
         CarOption option3 = new LeatherInterior(LeatherType.IMITATION);
