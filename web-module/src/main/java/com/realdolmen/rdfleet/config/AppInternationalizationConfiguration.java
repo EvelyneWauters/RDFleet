@@ -1,5 +1,6 @@
 package com.realdolmen.rdfleet.config;
 
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,6 +12,7 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.Locale;
@@ -19,40 +21,32 @@ import java.util.Locale;
  * Created by ewtax45 on 2/11/2015.
  */
 @Configuration
+@EnableAutoConfiguration
 @ComponentScan("com.realdolmen.rdfleet")
 public class AppInternationalizationConfiguration extends WebMvcConfigurerAdapter {
 
-    @Bean
-    public InternalResourceViewResolver viewResolver() {
-        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/templates/");
-        resolver.setSuffix(".html");
-        return resolver;
-    }
-
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("/i18/navbar");
-        messageSource.setDefaultEncoding("UTF-8");
-        return messageSource;
-    }
 
     @Bean
     public LocaleResolver localeResolver() {
-        CookieLocaleResolver resolver = new CookieLocaleResolver();
-        resolver.setDefaultLocale(new Locale("en"));
-        resolver.setCookieName("myLocaleCookie");
-        resolver.setCookieMaxAge(4800);
-        return resolver;
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        slr.setDefaultLocale(Locale.ENGLISH);
+        return slr;
+    }
+
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        lci.setParamName("lang");
+        return lci;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-        interceptor.setParamName("mylocale");
-        registry.addInterceptor(interceptor);
+        registry.addInterceptor(localeChangeInterceptor());
     }
+
 }
+
+
 
 

@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Value;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -30,8 +31,7 @@ public class EmployeeDTO {
     @Max(value = 7, message = "functional level must be between 1 and 7")
     private int functionalLevel = 1;
 
-
-
+    private boolean active = true;
 
     /**
      * Getters & Setters
@@ -67,5 +67,13 @@ public class EmployeeDTO {
 
     public void setFunctionalLevel(int functionalLevel) {
         this.functionalLevel = functionalLevel;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

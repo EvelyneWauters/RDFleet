@@ -64,7 +64,6 @@ public class CarTypeController {
 
         carTypeServiceImpl.createOrUpdateCarType(carType);
         return "redirect:" + fromMappingName("CTC#carTypeList").build();
-
     }
 
 

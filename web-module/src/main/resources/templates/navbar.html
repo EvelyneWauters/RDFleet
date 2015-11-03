@@ -5,22 +5,75 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>RealDolmen Fleet</title>
-    <link th:href="@{/css/bootstrap-3.0.3.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+
 </head>
 <body>
-<div class="navbar navbar-default">
-    <div class="container">
-        <a class="navbar-brand" href="http://www.realdolmen.com"><span class="rd-red">Real</span><span class="rd-blue">Dolmen</span></a>
-        <a class="navbar-brand" th:href="@{/admin/user/all}">Users</a>
-        <ul class="nav navbar-nav">
-            <li><a th:href="@{/}">Home</a></li>
-            <li><a th:href="@{/public/car/all}">Real Dolmen Car Park</a></li>
-            <li><a th:href="@{/public/cartype/all}">Catalog</a></li>
-            <li><a th:href="@{/public/cartype/form}">Add a new CarType</a></li>
-            <li><a th:href="@{/register}">Register here</a></li>
-        </ul>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" href="http://www.realdolmen.com">
+                <span class="rd-red">Real</span>
+                <span class="rd-blue">Dolmen</span>
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+
+
+
+                <li class="active"><a th:href="@{/}" th:text="#{home}"><span class="sr-only">(current)</span></a></li>
+                <li><a class="btn btn-info" href="#" th:text="#{choosenewcar}"></a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Menu <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/public/car/all}" th:text="#{realdolmencarpark}"/></li>
+                        <li><a th:href="@{/public/cartype/all}" th:text="#{catalog}"/></li>
+                        <li><a th:href="@{/public/cartype/form}" th:text="#{addnewcartype}"/></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/admin/user/all}" th:text="#{users}"/></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">One more separated link</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li class="active"><a th:href="@{/login}" th:text="#{login}"> <span class="sr-only">(current)</span></a></li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">Language <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/?lang=en">English</a></li>
+                        <li><a href="/?lang=nl_BE">Nederlands</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-</div>
+    <!-- /.container-fluid -->
+</nav>
+
+<!--</div>-->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
 </body>
 </html>

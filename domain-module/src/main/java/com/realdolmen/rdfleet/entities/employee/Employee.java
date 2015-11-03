@@ -22,6 +22,9 @@ public class Employee extends User {
     private Double monthlyCost;
     private Double fines;
 
+    @Column(name="active")
+    private boolean active = true;
+
 
     /**
      * Constructor
@@ -89,5 +92,11 @@ public class Employee extends User {
         this.carList = carList;
     }
 
+    public boolean getActive() {
+        return active;
+    }
 
+    public void setActive(boolean active) {
+        this.active = active;
+    }
 }
