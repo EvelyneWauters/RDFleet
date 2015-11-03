@@ -11,11 +11,13 @@ import java.util.Optional;
  */
 public interface EmployeeService {
 
-    Optional<Employee> getEmployeeById(long id);
+    EmployeeDTO getEmployeeById(long id);
 
-    Optional<Employee> getEmployeeByEmail(String email);
+    EmployeeDTO getEmployeeDtoByEmail(String email);
 
-    Collection<Employee> getAllEmployees();
+    Optional<Employee> getOptionalEmployeeByEmail(String email);
+
+    Collection<EmployeeDTO> getAllEmployees();
 
     Employee createEmployee(EmployeeDTO employeeDTO);
 

@@ -57,7 +57,7 @@ public class EmployeeServiceImplTest extends ServicesTest {
 
     @Test
     public void getEmployeeByEmailCanBeCalledFromService() {
-        employeeService.getEmployeeByEmail(employee.getEmail());
+        employeeService.getOptionalEmployeeByEmail(employee.getEmail());
         verify(employeeRepository).findOneByEmail(employee.getEmail());
     }
 }

@@ -4,14 +4,19 @@ import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import com.realdolmen.rdfleet.services.definitions.EmployeeService;
+import com.realdolmen.rdfleet.services.mappers.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
+
+import static com.realdolmen.rdfleet.services.mappers.EmployeeMapper.mapEmployeeToEmployeeDtoObject;
 
 /**
  * Created by JDOAX80 on 28/10/2015.
@@ -27,18 +32,39 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Optional<Employee> getEmployeeById(long id) {
-        return Optional.ofNullable(employeeRepository.findOne(id));
+    public EmployeeDTO getEmployeeById(long id) {
+        Optional<Employee> employee = Optional.ofNullable(employeeRepository.findOne(id));
+        if(employee.isPresent())    {
+            return mapEmployeeToEmployeeDtoObject(employee.get());
+        }   else    {
+            throw new IllegalArgumentException("there is no employee found with id " + id);
+        }
     }
 
     @Override
-    public Optional<Employee> getEmployeeByEmail(String email) {
+    public EmployeeDTO getEmployeeDtoByEmail(String email) {
+        Optional<Employee> employee = employeeRepository.findOneByEmail(email);
+        if(employee.isPresent())    {
+            return mapEmployeeToEmployeeDtoObject(employee.get());
+        }   else    {
+            throw new IllegalArgumentException("there is no employee found with email ' " + email + " '.");
+        }
+    }
+
+
+    @Override
+    public Optional<Employee> getOptionalEmployeeByEmail(String email) {
         return employeeRepository.findOneByEmail(email);
     }
 
     @Override
-    public Collection<Employee> getAllEmployees() {
-        return employeeRepository.findAll(new Sort("email"));
+    public Collection<EmployeeDTO> getAllEmployees() {
+        List<Employee> employeeList = employeeRepository.findAll(new Sort("email"));
+        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+        for (Employee employee : employeeList) {
+            employeeDTOList.add(mapEmployeeToEmployeeDtoObject(employee));
+        }
+        return employeeDTOList;
     }
 
     @Override
@@ -60,6 +86,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public void updateEmployee(EmployeeDTO employeeDTO)    {
         Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
         employee.setFunctionalLevel(employeeDTO.getFunctionalLevel());
+        employee.setActive(employeeDTO.getActive());
         employeeRepository.save(employee);
     }
 

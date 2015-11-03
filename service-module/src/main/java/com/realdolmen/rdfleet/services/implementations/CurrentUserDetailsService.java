@@ -23,7 +23,7 @@ public class CurrentUserDetailsService implements UserDetailsService {
 
     @Override
     public CurrentUser loadUserByUsername(String email) throws UsernameNotFoundException {
-        Employee employee = employeeService.getEmployeeByEmail(email)
+        Employee employee = employeeService.getOptionalEmployeeByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format("User with email=%s was not found", email)));
         return new CurrentUser(employee);
     }

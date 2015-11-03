@@ -17,11 +17,14 @@ public class EmployeeDTO {
     /**
      * Class fields
      */
+    private String firstName;
+    private String lastName;
+
     @NotEmpty
     @Email
     private String email = "";
 
-    @NotEmpty
+//    @NotEmpty
     private String password = "";
 
     @NotNull
@@ -33,10 +36,11 @@ public class EmployeeDTO {
 
     private boolean active = true;
 
+
+
     /**
      * Getters & Setters
      */
-
     public String getEmail() {
         return email;
     }
@@ -69,11 +73,27 @@ public class EmployeeDTO {
         this.functionalLevel = functionalLevel;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

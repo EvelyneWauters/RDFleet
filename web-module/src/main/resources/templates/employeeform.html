@@ -68,33 +68,34 @@
 <div th:include="navbar"/>
 
 <div class="container">
-    <h2>Edit employee</h2>
+    <h2 th:text="#{msgemployeeform.editemployee}">Edit employee</h2>
 
     <form role="form" method="post" th:object="${employeeDTO}">
 
 
-        <div class="form-group">
-            <!--<label th:for="${#ids.next('id')}">id:</label>-->
-            <input type="hidden" th:field="*{email}" class="form-control"/>
-        </div>
-
-
         <div class="form-group" th:class="${#fields.hasErrors('functionalLevel')}? 'has-error'">
-            <label th:for="${#ids.next('functionalLevel')}">Category:</label>
+            <label th:for="${#ids.next('functionalLevel')}" th:text="#{msgemployeeform.category}">Category:</label>
             <input type="text" th:field="*{functionalLevel}" class="form-control"/>
             <span th:if="${#fields.hasErrors('functionalLevel')}" class="help-block"
                   th:errors="*{functionalLevel}"></span>
         </div>
 
+        <div class="form-group">
 
+            <div>
+                <label th:for="${#ids.next('active')}" th:text="#{msgemployeeform.active}">Active</label>
+                <input type="checkbox" th:field="*{active}" />
+            </div>
+
+        </div>
         <!--<div class="form-group">-->
-            <!--<label th:for="${#ids.next('active')}">Set active/inactive:</label>-->
+        <!--<label th:for="${#ids.next('active')}">Set active/inactive:</label>-->
 
-            <!--<div class="onoffswitch">-->
-                <!--<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"-->
-                       <!--id="myonoffswitch" checked=""/>-->
-                <!--<label class="onoffswitch-label" for="myonoffswitch"></label>-->
-            <!--</div>-->
+        <!--<div class="onoffswitch">-->
+        <!--<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox"-->
+        <!--id="myonoffswitch" checked=""/>-->
+        <!--<label class="onoffswitch-label" for="myonoffswitch"></label>-->
+        <!--</div>-->
         <!--</div>-->
 
         <!--<div class="form-group" th:class="${#fields.hasErrors('brand.name')}? 'has-error'">-->

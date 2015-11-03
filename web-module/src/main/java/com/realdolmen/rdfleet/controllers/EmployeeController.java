@@ -22,16 +22,16 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
  * Created by EWTAX45 on 1/11/2015.
  */
 @Controller
-@RequestMapping("/admin/user")
+@RequestMapping("/admin/employee")
 public class EmployeeController {
 
     @Autowired
     EmployeeServiceImpl employeeService;
 
-    //return all users (sorted on name)
+    //return all users (sorted on email)
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public String employeeList(Model model) {
-        List<Employee> allEmployees = (List) employeeService.getAllEmployees();
+    public String employeeDTOList(Model model) {
+        List<EmployeeDTO> allEmployees = (List) employeeService.getAllEmployees();
         model.addAttribute(allEmployees);
         return "employeelist";
     }
@@ -39,11 +39,11 @@ public class EmployeeController {
 
     //GET-method of the create-page
     @RequestMapping(value = "/form", method = RequestMethod.GET)
-    public String employeeForm(@RequestParam(value = "id", required = false) Long employeeId, Map<String, Object> model) {
-        if (employeeId != null) {
-            model.put("employee", employeeService.getEmployeeById(employeeId));
+    public String employeeForm(@RequestParam(value = "email", required = false) String email, Map<String, Object> model) {
+        if (email != null) {
+            model.put("employeeDTO", employeeService.getEmployeeDtoByEmail(email));
         } else {
-            model.put("employee", new Employee());
+            model.put("employeeDTO", new EmployeeDTO());
         }
         return "employeeform";
     }
@@ -51,15 +51,15 @@ public class EmployeeController {
 
     //POST-method of the create-page
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String createCarType(@Valid EmployeeDTO employee, Errors errors) {
-        if(errors.hasErrors())   {
-            return "employeeform";
-        }
+    public String updateEmployee(@Valid EmployeeDTO employee, Errors errors) {
+//        if(errors.hasErrors())   {
+//            return "employeeform";
+//        }
 //        Optional<Employee> employeeById = employeeService.getEmployeeById(employee.getId());
 //        Employee editedEmployee = employeeById.get();
 //        editedEmployee.setFunctionalLevel(employee.getFunctionalLevel());
         employeeService.updateEmployee(employee);
-        return "redirect:" + fromMappingName("EC#employeeList").build();
+        return "redirect:" + fromMappingName("EC#employeeDTOList").build();
     }
 
 

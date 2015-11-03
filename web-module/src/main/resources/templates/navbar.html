@@ -32,6 +32,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+
+
+
                 <li class="active"><a th:href="@{/}" th:text="#{home}"><span class="sr-only">(current)</span></a></li>
                 <li><a class="btn btn-info" href="#" th:text="#{choosenewcar}"></a></li>
                 <li class="dropdown">
@@ -42,12 +45,13 @@
                         <li><a th:href="@{/public/cartype/all}" th:text="#{catalog}"/></li>
                         <li><a th:href="@{/public/cartype/form}" th:text="#{addnewcartype}"/></li>
                         <li role="separator" class="divider" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"></li>
-                        <li><a th:href="@{/admin/user/all}" th:text="#{users}" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"/></li>
+                        <li><a th:href="@{/admin/employee/all}" th:text="#{users}" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"/></li>
                         <li role="separator" class="divider" sec:authorize="hasAuthority('FLEET_EMPLOYEE')" ></li>
                         <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
             </ul>
+
             <ul class="nav navbar-nav navbar-right">
                 <li class="active" sec:authorize="!isAuthenticated()">
                 <a class="btn" th:href="@{/login}" th:text="#{login}">
