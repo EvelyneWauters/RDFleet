@@ -22,5 +22,5 @@ insert into car (id, mileage, carType_id, startLeasing) values (4, '150', 3, '20
 insert into car (id, mileage, carType_id, startLeasing) values (5, '110000', 4, '2015-01-01');
 
 
-insert into employee(email, password_hash, role, functionalLevel) values('gek@rd.com', 'gek', 'EMPLOYEE', 1)
+insert into employee(id, firstName, lastName, email, password_hash, role, functionalLevel) values(5, 'Gek', 'kie', 'gek@rd.com', 'gek', 'EMPLOYEE', 1)
 

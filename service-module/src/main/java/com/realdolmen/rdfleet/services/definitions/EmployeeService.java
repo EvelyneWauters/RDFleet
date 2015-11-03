@@ -19,4 +19,6 @@ public interface EmployeeService {
 
     Employee createEmployee(EmployeeDTO employeeDTO);
 
+    void updateEmployee(EmployeeDTO employeeDTO);
+
 }

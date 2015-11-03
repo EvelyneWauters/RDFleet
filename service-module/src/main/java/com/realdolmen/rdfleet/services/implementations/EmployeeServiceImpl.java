@@ -49,7 +49,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public void createOrUpdateEmployeeToMakeItEasierOnEvelyne(Employee employee)    {
+    public void updateEmployee(EmployeeDTO employeeDTO)    {
+        Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
+        employee.setFunctionalLevel(employeeDTO.getFunctionalLevel());
         employeeRepository.save(employee);
     }
 

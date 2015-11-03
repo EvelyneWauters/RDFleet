@@ -1,8 +1,7 @@
 package com.realdolmen.rdfleet.controllers;
 
-import com.realdolmen.rdfleet.entities.car.CarType;
+import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
-import com.realdolmen.rdfleet.entities.employee.User;
 import com.realdolmen.rdfleet.services.implementations.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -52,14 +51,14 @@ public class EmployeeController {
 
     //POST-method of the create-page
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String createCarType(@Valid Employee employee, Errors errors) {
+    public String createCarType(@Valid EmployeeDTO employee, Errors errors) {
         if(errors.hasErrors())   {
             return "employeeform";
         }
-        Optional<Employee> employeeById = employeeService.getEmployeeById(employee.getId());
-        Employee editedEmployee = employeeById.get();
-        editedEmployee.setFunctionalLevel(employee.getFunctionalLevel());
-        employeeService.createOrUpdateEmployeeToMakeItEasierOnEvelyne(editedEmployee);
+//        Optional<Employee> employeeById = employeeService.getEmployeeById(employee.getId());
+//        Employee editedEmployee = employeeById.get();
+//        editedEmployee.setFunctionalLevel(employee.getFunctionalLevel());
+        employeeService.updateEmployee(employee);
         return "redirect:" + fromMappingName("EC#employeeList").build();
     }
 
