@@ -7,6 +7,7 @@
     <title>RealDolmen Fleet</title>
     <link th:href="@{/css/bootstrap-3.0.3.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+
 </head>
 <body>
 
@@ -34,7 +35,6 @@
 
                         <th class="text-right">Update functional level</th>
                         <!--<th class="text-right">Details</th>-->
-                        <!--<th class="text-right">Set as inactive</th>-->
                     </tr>
                     </thead>
 
@@ -49,7 +49,8 @@
                                                   th:href="${#mvc.url('EC#employeeForm').arg(0, employee.id).build()}">Edit</a>
                         </td>
                         <!--<td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('CTC#carTypeById').arg(0, carType.id).build()}">Details</a></td>-->
-                        <!--<td class="text-right"><a class="btn btn-danger btn-xs" th:href="${#mvc.url('CTC#removeCarType').arg(0, carType.id).build()}">Remove</a></td>-->
+
+
                     </tr>
                     </tbody>
                 </table>
