@@ -60,7 +60,6 @@ public class EmployeeController {
 //        editedEmployee.setFunctionalLevel(employee.getFunctionalLevel());
         employeeService.updateEmployee(employee);
         return "redirect:" + fromMappingName("EC#employeeList").build();
-
     }
 
 

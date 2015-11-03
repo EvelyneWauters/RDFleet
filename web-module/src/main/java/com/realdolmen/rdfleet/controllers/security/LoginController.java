@@ -28,4 +28,9 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public String getLogoutPage(@RequestParam Optional<String> error, Model model) {
+        model.addAttribute("error", error);
+        return "logout";
+    }
 }

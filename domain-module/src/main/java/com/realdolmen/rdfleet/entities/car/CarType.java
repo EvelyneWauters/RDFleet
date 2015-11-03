@@ -7,6 +7,7 @@ import com.realdolmen.rdfleet.entities.car.enums.FuelType;
 import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by EWTAX45 on 28/10/2015.
@@ -16,10 +17,10 @@ import javax.persistence.*;
 public class CarType extends AbstractEntity {
 
     @Embedded
-    @Column(nullable = false)
+    @NotNull
     private Brand brand;
     @Embedded
-    @Column(nullable = false)
+    @NotNull
     private CarModel carModel;
 
     //List price Incl. real VAT
@@ -81,7 +82,7 @@ public class CarType extends AbstractEntity {
     }
 
     public void setCategory(int category) {
-        if(category > 1 || category < 7) {
+        if(category >= 1 && category <= 7) {
             this.category = category;
         }
         else {

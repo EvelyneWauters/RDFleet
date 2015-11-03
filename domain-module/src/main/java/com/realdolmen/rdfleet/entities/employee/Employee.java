@@ -60,7 +60,7 @@ public class Employee extends User {
     }
 
     public void setFunctionalLevel(int functionalLevel) {
-        if(functionalLevel > 1 || functionalLevel < 7) {
+        if(functionalLevel >= 1 && functionalLevel <= 7) {
             this.functionalLevel = functionalLevel;
         }
         else {

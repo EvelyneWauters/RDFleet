@@ -1,8 +1,14 @@
 package com.realdolmen.rdfleet;
 
 import com.realdolmen.rdfleet.entities.car.Car;
+import com.realdolmen.rdfleet.entities.car.options.CarOption;
+import com.realdolmen.rdfleet.entities.car.options.CruiseControl;
+import com.realdolmen.rdfleet.entities.car.options.HeatedSeats;
+import com.realdolmen.rdfleet.entities.car.options.LeatherInterior;
+import com.realdolmen.rdfleet.entities.car.options.enums.LeatherType;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.entities.employee.enums.Role;
+import com.realdolmen.rdfleet.repositories.CarOptionRepository;
 import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -32,10 +38,17 @@ public class ApplicationConfiguration {
 
 
         EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
+        CarOptionRepository carOptionRepository = context.getBean(CarOptionRepository.class);
         Employee employee = new Employee("Foo", "Bar", "foo@bar.com", "password");
 //        employee.setCurrentCar(carr);
         Employee fleetEmployee = new Employee("Foo", "Bar", "floo@bar.com", "password");
+        CarOption option1 = new CruiseControl();
+        CarOption option2 = new HeatedSeats();
+        CarOption option3 = new LeatherInterior(LeatherType.IMITATION);
         fleetEmployee.setRole(Role.FLEET_EMPLOYEE);
+        carOptionRepository.save(option1);
+        carOptionRepository.save(option2);
+        carOptionRepository.save(option3);
         employeeRepository.save(employee);
         employeeRepository.save(fleetEmployee);
     }
