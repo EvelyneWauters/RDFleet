@@ -7,6 +7,7 @@ import com.realdolmen.rdfleet.services.definitions.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -44,9 +45,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee createEmployee(EmployeeDTO employeeDTO) {
         Employee employee = new Employee();
         employee.setEmail(employeeDTO.getEmail());
-        employee.setPasswordHash(new BCryptPasswordEncoder().encode(employeeDTO.getPassword()));
+        employee.setPasswordHash(hashPassword(employeeDTO.getPassword()));
         employee.setRole(employeeDTO.getRole());
         return employeeRepository.save(employee);
+    }
+
+    @Override
+    public String hashPassword(String password) {
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String hashedPassword = passwordEncoder.encode(password);
+        return hashedPassword;
     }
 
     public void updateEmployee(EmployeeDTO employeeDTO)    {
