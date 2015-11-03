@@ -24,7 +24,6 @@
 
     <form role="form" method="post" th:object="${carType}">
             <input type="hidden" th:field="*{id}" class="form-control"/>
-            <!--<input type="hidden" th:field="*{versionNumber}" class="form-control"/>-->
 
 
         <div class="form-group" th:class="${#fields.hasErrors('category')}? 'has-error'">
@@ -42,29 +41,22 @@
 
 
         <div class="form-group" th:class="${#fields.hasErrors('carModel.modelName')}? 'has-error'">
-            <label th:for="${#ids.next('carModel.modelName')}">carModel.modelName:</label>
+            <label th:for="${#ids.next('carModel.modelName')}" th:text="#{msgcartypeform.modelname}">Modelname :</label>
             <input type="text" th:field="*{carModel.modelName}" class="form-control"/>
-            <span th:if="${#fields.hasErrors('carModel.modelName')}" class="help-block"
-                  th:errors="*{carModel.modelName}"></span>
+            <span th:if="${#fields.hasErrors('carModel.modelName')}" class="help-block" th:errors="*{carModel.modelName}"></span>
         </div>
 
-        <!--<div class="form-group" th:class="${#fields.hasErrors('email')}? 'has-error'">-->
-        <!--<label th:for="${#ids.next('email')}">Email:</label>-->
-        <!--<input type="text" th:field="*{email}" class="form-control"/>-->
-        <!--<span th:if="${#fields.hasErrors('email')}" class="help-block" th:errors="*{email}"></span>-->
-        <!--</div>-->
+        <div class="form-group" th:class="${#fields.hasErrors('carModel.modelDesignation')}? 'has-error'">
+        <label th:for="${#ids.next('carModel.modelDesignation')}" th:text="#{msgcartypeform.modeldesignation}">modelDesignation:</label>
+        <input type="text" th:field="*{carModel.modelDesignation}" class="form-control"/>
+        <span th:if="${#fields.hasErrors('carModel.modelDesignation')}" class="help-block" th:errors="*{carModel.modelDesignation}"></span>
+        </div>
 
-        <!--<div class="form-group" th:class="${#fields.hasErrors('userName')}? 'has-error'">-->
-        <!--<label th:for="${#ids.next('userName')}">User name:</label>-->
-        <!--<input type="text" th:field="*{userName}" class="form-control"/>-->
-        <!--<span th:if="${#fields.hasErrors('userName')}" class="help-block" th:errors="*{userName}"></span>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" th:class="${#fields.hasErrors('password')}? 'has-error'">-->
-        <!--<label th:for="${#ids.next('password')}">Password:</label>-->
-        <!--<input type="text" th:field="*{password}" class="form-control"/>-->
-        <!--<span th:if="${#fields.hasErrors('password')}" class="help-block" th:errors="*{password}"></span>-->
-        <!--</div>-->
+        <div class="form-group" th:class="${#fields.hasErrors('carModel.horsePower')}? 'has-error'">
+        <label th:for="${#ids.next('carModel.horsePower')}" th:text="#{msgcartypeform.horsepower}">Horsepower:</label>
+        <input type="text" th:field="*{carModel.horsePower}" class="form-control"/>
+        <span th:if="${#fields.hasErrors('carModel.horsePower')}" class="help-block" th:errors="*{carModel.horsePower}"></span>
+        </div>
 
         <br/>
 

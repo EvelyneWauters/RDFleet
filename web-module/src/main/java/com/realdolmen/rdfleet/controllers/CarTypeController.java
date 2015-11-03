@@ -59,9 +59,10 @@ public class CarTypeController {
         if(errors.hasErrors())   {
             return "cartypeform";
         }
-        CarType byId = carTypeServiceImpl.findById(carType.getId());
-        carType.setVersionNumber(byId.getVersionNumber());
-
+        if(carType.getId() != null) {
+            CarType byId = carTypeServiceImpl.findById(carType.getId());
+            carType.setVersionNumber(byId.getVersionNumber());
+        }
         carTypeServiceImpl.createOrUpdateCarType(carType);
         return "redirect:" + fromMappingName("CTC#carTypeList").build();
     }
@@ -82,8 +83,6 @@ public class CarTypeController {
         carTypeServiceImpl.removeCarTypeFromList(carTypeId);
         return "redirect:" + fromMappingName("CTC#carTypeList").build();
     }
-
-
 
 
     //put fuelType-enum values in a list so we can use it for the dropdown menu

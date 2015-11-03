@@ -14,6 +14,8 @@ import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @SpringBootApplication
@@ -43,7 +45,7 @@ public class ApplicationConfiguration {
         String hashedPassword = passwordEncoder.encode("password");
         Employee employee = new Employee("Foo", "Bar", "foo@bar.com", hashedPassword);
 //        employee.setCurrentCar(carr);
-        Employee fleetEmployee = new Employee("Floo", "Bar", "floo@bar.com", "password");
+        Employee fleetEmployee = new Employee("Floo", "Bar", "floo@bar.com", hashedPassword);
         CarOption option1 = new CruiseControl();
         CarOption option2 = new HeatedSeats();
         CarOption option3 = new LeatherInterior(LeatherType.IMITATION);

@@ -22,31 +22,31 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <h4>Employee List</h4>
+            <h4 th:text="#{msgemployeelist.employeelist}">Employee List</h4>
 
-            <div th:if="!${#lists.isEmpty(employeeList)}">
+            <div th:if="!${#lists.isEmpty(employeeDTOList)}">
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>first name</th>
-                        <th>last name</th>
-                        <th>email</th>
-                        <th>functionalLevel</th>
+                        <th th:text="#{msgemployeelist.firstName}">first name</th>
+                        <th th:text="#{msgemployeelist.lastName}">last name</th>
+                        <th th:text="#{msgemployeelist.email}">email</th>
+                        <th th:text="#{msgemployeelist.functionalLevel}">functionalLevel</th>
 
-                        <th class="text-right">Update functional level</th>
+                        <th class="text-right" th:text="#{msgemployeelist.edit}">Edit</th>
                         <!--<th class="text-right">Details</th>-->
                     </tr>
                     </thead>
 
                     <tbody>
-                    <tr th:each="employee : ${employeeList}">
-                        <td th:text="${employee.firstName}"></td>
-                        <td th:text="${employee.lastName}"></td>
-                        <td th:text="${employee.email}"></td>
-                        <td th:text="${employee.functionalLevel}"></td>
+                    <tr th:each="employeeDTO : ${employeeDTOList}">
+                        <td th:text="${employeeDTO.firstName}"></td>
+                        <td th:text="${employeeDTO.lastName}"></td>
+                        <td th:text="${employeeDTO.email}"></td>
+                        <td th:text="${employeeDTO.functionalLevel}"></td>
 
                         <td class="text-right"><a class="btn btn-info btn-xs"
-                                                  th:href="${#mvc.url('EC#employeeForm').arg(0, employee.id).build()}">Edit</a>
+                                                  th:href="${#mvc.url('EC#employeeForm').arg(0, employeeDTO.email).build()}" th:text="#{msgemployeelist.edit}">Edit</a>
                         </td>
                         <!--<td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('CTC#carTypeById').arg(0, carType.id).build()}">Details</a></td>-->
 
@@ -56,7 +56,7 @@
                 </table>
             </div>
 
-            <div th:if="${#lists.isEmpty(employeeList)}">
+            <div th:if="${#lists.isEmpty(employeeDTOList)}" th:text="#{msgemployeelist.noemployeesfound}">
                 No employees found...
             </div>
 
