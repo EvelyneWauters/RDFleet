@@ -1,5 +1,6 @@
 package com.realdolmen.rdfleet.controllers;
 
+import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
 import com.realdolmen.rdfleet.services.definitions.CarService;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.enums.FuelType;
@@ -87,13 +88,25 @@ public class CarTypeController {
 
     //put fuelType-enum values in a list so we can use it for the dropdown menu
     @ModelAttribute(value = "fueltypes")
-    public List<FuelType> genders() {
+    public List<FuelType> fueltypes() {
 
         List<FuelType> fuelTypes = new ArrayList<>();
         for (FuelType g : FuelType.values()) {
             fuelTypes.add(g);
         }
         return fuelTypes;
+    }
+
+
+    //put winterRimTypes-enum values in a list so we can use it for the dropdown menu
+    @ModelAttribute(value = "winterTyresRimTypes")
+    public List<WinterTyresRimType> winterTyresRimTypes() {
+
+        List<WinterTyresRimType> winterTyresRimTypes = new ArrayList<>();
+        for (WinterTyresRimType g : WinterTyresRimType.values()) {
+            winterTyresRimTypes.add(g);
+        }
+        return winterTyresRimTypes;
     }
 
 }
