@@ -1,7 +1,10 @@
 package com.realdolmen.rdfleet.controllers.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.fromMappingName;
@@ -18,19 +22,37 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
  */
 @Controller
 public class LoginController {
-//    @Autowired
-//    private Authentication authentication;
 
+    private Authentication authentication;
+//
+//    private boolean isLoggedIn;
+//
+//    @PostConstruct
+//    public void init(Model model) {
+//
+//    }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam Optional<String> error, Model model) {
-        model.addAttribute("error", error);
-        return "login";
+        Object authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication instanceof AnonymousAuthenticationToken) {
+            model.addAttribute("error", error);
+            return "login";
+        } else {
+            return "redirect:" + fromMappingName("HC#home").build();
+        }
     }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public String getLogoutPage(@RequestParam Optional<String> error, Model model) {
-        model.addAttribute("error", error);
-        return "home";
+    // Login form with error
+    @RequestMapping("/login-error.html")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login.html";
     }
+
+//    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+//    public String getLogoutPage(@RequestParam Optional<String> error, Model model) {
+//        model.addAttribute("error", error);
+//        return "home";
+//    }
 }
