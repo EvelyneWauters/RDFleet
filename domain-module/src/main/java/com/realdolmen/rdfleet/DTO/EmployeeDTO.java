@@ -20,8 +20,8 @@ public class EmployeeDTO {
     private String firstName;
     private String lastName;
 
-    @NotEmpty
     @Email
+    @NotEmpty(message = "Please enter your email addresss.")
     private String email = "";
 
 //    @NotEmpty

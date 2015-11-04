@@ -15,7 +15,8 @@ public class Employee extends User {
     @OneToOne(cascade = CascadeType.PERSIST)
     private Car currentCar;
 
-    @ManyToMany
+//    @ManyToMany
+    @ElementCollection
     private Set<Car> carList = new HashSet<>();
     @Column(name="functionalLevel")
     private int functionalLevel = 1;

@@ -17,7 +17,6 @@
 
     <form role="form" action="/login" method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-
         <div class="form-group">
             <label for="email">Email address</label>
             <input class="form-control" type="email" name="email" id="email"/>

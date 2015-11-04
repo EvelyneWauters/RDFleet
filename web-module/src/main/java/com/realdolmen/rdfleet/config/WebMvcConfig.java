@@ -28,11 +28,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     private SpringTemplateEngine springTemplateEngine;
 
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/", "classpath:/META-INF/web-resources/");
-    }
-
-    @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }
@@ -67,6 +62,18 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         templateResolver.setPrefix("/WEB-INF/");
         templateResolver.setTemplateMode("HTML5");
         return templateResolver;
+    }
+
+    private static final String[] CLASSPATH_RESOURCE_LOCATIONS = {
+            "classpath:/META-INF/resources/", "classpath:/resources/",
+            "classpath:/static/", "classpath:/public/", "classpath:/META-INF/web-resources/" };
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        if (!registry.hasMappingForPattern("/**")) {
+            registry.addResourceHandler("/**").addResourceLocations(
+                    CLASSPATH_RESOURCE_LOCATIONS);
+        }
     }
 }
 

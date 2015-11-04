@@ -33,7 +33,7 @@ public class Car extends AbstractEntity{
     private int amountOfRefuels = 0;
     @Column(name = "noLongerInUse")
     private boolean noLongerInUse = false;
-    @OneToMany
+    @ElementCollection
     private List<CarOption> carOptions = new ArrayList<>();
 
 
