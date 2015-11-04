@@ -25,7 +25,6 @@ import java.util.Locale;
 @ComponentScan("com.realdolmen.rdfleet")
 public class AppInternationalizationConfiguration extends WebMvcConfigurerAdapter {
 
-
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
