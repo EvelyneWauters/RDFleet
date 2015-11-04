@@ -1,0 +1,33 @@
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+    <input name="carId" type="long" />
+
+    <on-start>
+        <evaluate expression="orderService.createOrder(carId, currentUser.name)"
+                  result="flowScope.order" />
+    </on-start>
+
+
+
+    <view-state id="findcarbyfunctionallevel">
+        <transition on="submit" to="choosecar" />
+    </view-state>
+
+    <view-state id="choosecar">
+        <transition on="next" to="chooseoptions" />
+    </view-state>
+
+    <view-state id="chooseoptions">
+        <transition on="confirm" to="confirmation" />
+        <transition on="revise" to="choosecar" />
+        <transition on="cancel" to="cancellation" />
+    </view-state>
+
+    <end-state id="confirmation" />
+
+    <end-state id="cancellation" />
+
+</flow>

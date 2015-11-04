@@ -89,7 +89,6 @@ public class CarTypeController {
     //put fuelType-enum values in a list so we can use it for the dropdown menu
     @ModelAttribute(value = "fueltypes")
     public List<FuelType> fueltypes() {
-
         List<FuelType> fuelTypes = new ArrayList<>();
         for (FuelType g : FuelType.values()) {
             fuelTypes.add(g);

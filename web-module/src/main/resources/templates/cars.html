@@ -21,18 +21,18 @@
     </div>
     <div class="row">
         <div class="col-lg-12">
-            <h4>Fleet List</h4>
+            <h4 th:text="#{msgcars.fleetlist}">Fleet List</h4>
 
             <div th:if="!${#lists.isEmpty(carList)}">
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>Brand</th>
-                        <th>Model</th>
-                        <th>amountofRefuels</th>
-                        <th>mileage</th>
-                        <th>leasingdurationinyears</th>
-                        <th class="text-right">Remove</th>
+                        <th th:text="#{msgcars.brand}">Brand</th>
+                        <th th:text="#{msgcars.model}"> Model</th>
+                        <th th:text="#{msgcars.amountofrefuels}">amountofRefuels</th>
+                        <th th:text="#{msgcars.mileage}">mileage</th>
+                        <th th:text="#{msgcars.leasingdurationinyears}">leasingdurationinyears</th>
+                        <th class="text-right" th:text="#{msgcars.remove}">Remove</th>
                     </tr>
                     </thead>
 
@@ -46,7 +46,7 @@
                         <td th:text="${car.leasingDurationYears}"></td>
 
                         <td class="text-right"><a class="btn btn-danger btn-xs"
-                                                  th:href="${#mvc.url('CC#removeCar').arg(0, car.id).build()}">Remove</a>
+                                                  th:href="${#mvc.url('CC#removeCar').arg(0, car.id).build()}" th:text="#{msgcars.remove}">Remove</a>
                         </td>
                     </tr>
 
@@ -54,7 +54,7 @@
 
                 </table>
             </div>
-            <div th:if="${#lists.isEmpty(carList)}">
+            <div th:if="${#lists.isEmpty(carList)}" th:text="msgcars.nocarsfound">
                 No cars found...
             </div>
 
