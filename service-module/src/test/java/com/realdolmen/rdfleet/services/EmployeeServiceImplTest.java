@@ -17,7 +17,7 @@ import static org.mockito.Mockito.*;
 /**
  * Created by JDOAX80 on 2/11/2015.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+
 public class EmployeeServiceImplTest extends ServicesTest {
 
     private EmployeeServiceImpl employeeService;
@@ -38,15 +38,16 @@ public class EmployeeServiceImplTest extends ServicesTest {
     }
 
     @Test
-    public void getEmployeeByIdCanBeCalledFromService() {
-        employeeService.getEmployeeById(1);
-        verify(employeeRepository).findOne(1L);
-    }
-
-    @Test
     public void createEmployeeCanBeCalledFromService() {
         employeeService.createEmployee(employeeDTO);
         verify(employeeRepository).save(any(Employee.class));
+    }
+
+    @Test
+    public void getEmployeeByIdCanBeCalledFromService() {
+        when(employeeRepository.findOne(1L)).thenReturn(employee);
+        employeeService.getEmployeeById(1);
+        verify(employeeRepository).findOne(1L);
     }
 
     @Test

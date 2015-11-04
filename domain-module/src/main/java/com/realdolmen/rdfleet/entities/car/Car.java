@@ -18,7 +18,8 @@ public class Car extends AbstractEntity{
      */
 
     @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
-    @NotNull
+    @NotNull//-->2 in 1: Zowel Column(nullable = false, als validatie mbv JSR303)--> ligt wel aan het feit dat Hibernate de default JPA implementatie is
+    //Niet elke JPA implementatie dient JSR 303 te ondersteunen en zal dit dus voor werken.
     private CarType carType;
     @Column(name = "vinNumber", unique = true)
     private String vinNumber;

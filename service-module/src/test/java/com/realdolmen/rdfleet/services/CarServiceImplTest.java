@@ -21,7 +21,6 @@ import static org.mockito.Mockito.*;
 /**
  * Created by JDOAX80 on 2/11/2015.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 public class CarServiceImplTest extends ServicesTest {
 
     private CarServiceImpl carService;

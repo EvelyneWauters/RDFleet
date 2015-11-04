@@ -19,7 +19,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 /**
  * Created by JDOAX80 on 2/11/2015.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
 public class CarTypeServiceImplTest extends ServicesTest {
 
     private CarTypeServiceImpl carTypeService;

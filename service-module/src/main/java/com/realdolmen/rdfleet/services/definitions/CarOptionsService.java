@@ -12,7 +12,9 @@ public interface CarOptionsService {
 
     List<CarOption> findAllCarOptions();
 
-    CarOption findById(Long id);
+    CarOption getCarOptionById(Long id);
+
+    void createCarOption(CarOption carOption);
 
     void removeCarOption(Long id);
 }
