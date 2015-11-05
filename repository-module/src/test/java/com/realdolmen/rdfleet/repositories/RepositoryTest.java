@@ -1,6 +1,7 @@
 package com.realdolmen.rdfleet.repositories;
 
 import com.realdolmen.rdfleet.repositories.config.TestConfig;
+import org.junit.Assert;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.annotation.DirtiesContext;
@@ -14,7 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 @ContextConfiguration(classes = TestConfig.class)
-public class RepositoryTest {
+public class RepositoryTest extends Assert{
 
 }
 

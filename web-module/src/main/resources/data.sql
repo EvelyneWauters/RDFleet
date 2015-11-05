@@ -15,7 +15,7 @@ insert into carType (id, category, name, modelName, listPriceInclRealVat, co2,is
 
 
 
-insert into car (id, mileage, carType_id, startLeasing) values (1, '10', 1, '2015-01-01');
+insert into car (id, mileage, carType_id, startLeasing) values (1, '10', 1, '2015-04-01');
 insert into car (id, mileage, carType_id, startLeasing) values (2, '300', 2, '2015-01-01');
 insert into car (id, mileage, carType_id, startLeasing) values (3, '200', 2, '2015-01-01');
 insert into car (id, mileage, carType_id, startLeasing) values (4, '150', 3, '2015-01-01');

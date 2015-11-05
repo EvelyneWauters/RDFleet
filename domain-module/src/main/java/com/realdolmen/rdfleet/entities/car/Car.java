@@ -17,7 +17,7 @@ public class Car extends AbstractEntity{
      * Class fields
      */
 
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)//In principe geen persist!
     @NotNull//-->2 in 1: Zowel Column(nullable = false, als validatie mbv JSR303)--> ligt wel aan het feit dat Hibernate de default JPA implementatie is
     //Niet elke JPA implementatie dient JSR 303 te ondersteunen en zal dit dus voor werken.
     private CarType carType;
@@ -25,6 +25,8 @@ public class Car extends AbstractEntity{
     private String vinNumber;
     @Convert(converter= LocalDatePersistenceConverter.class)
     private LocalDate startLeasing;
+    @Convert(converter= LocalDatePersistenceConverter.class)
+    private LocalDate endLeasing;
     @Column(name = "leasingDurationYears")
     private int leasingDurationYears = 4;
     @Column(name = "mileage")
@@ -109,5 +111,13 @@ public class Car extends AbstractEntity{
 
     public void setCarOptions(List<CarOption> carOptions) {
         this.carOptions = carOptions;
+    }
+
+    public LocalDate getEndLeasing() {
+        return endLeasing;
+    }
+
+    public void setEndLeasing() {
+        this.endLeasing = startLeasing.plusYears(leasingDurationYears);
     }
 }

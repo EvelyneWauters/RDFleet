@@ -18,13 +18,15 @@ public class Employee extends User {
 //    @ManyToMany
     @ElementCollection
     private Set<Car> carList = new HashSet<>();
-    @Column(name="functionalLevel")
+    @Column(name = "functionalLevel")
     private int functionalLevel = 1;
     private Double monthlyCost;
     private Double fines;
 
-    @Column(name="active")
+    @Column(name = "active")
     private boolean active = true;
+    @Column(name = "receivedMailForNewCar")
+    private boolean receivedMailForNewCar = false;
 
 
     /**
@@ -100,4 +102,13 @@ public class Employee extends User {
     public void setActive(boolean active) {
         this.active = active;
     }
+
+    public boolean getReceivedMailForNewCar() {
+        return receivedMailForNewCar;
+    }
+
+    public void setReceivedMailForNewCar(boolean receivedMailForNewCar) {
+        this.receivedMailForNewCar = receivedMailForNewCar;
+    }
+
 }

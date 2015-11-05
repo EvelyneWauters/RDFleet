@@ -10,11 +10,9 @@ import javax.validation.constraints.NotNull;
 public class User extends AbstractEntity {
 
     @Column(name = "email", unique = true)
-    @NotNull
     private String email;
 
     @Column(name = "password_hash")
-    @NotNull
     private String passwordHash;
 
     @Column(name = "role")
