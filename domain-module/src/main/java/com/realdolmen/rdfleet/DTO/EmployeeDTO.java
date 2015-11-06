@@ -20,8 +20,8 @@ public class EmployeeDTO {
     private String firstName;
     private String lastName;
 
-    @NotEmpty
     @Email
+    @NotEmpty(message = "Please enter your email addresss.")
     private String email = "";
 
 //    @NotEmpty
@@ -36,7 +36,10 @@ public class EmployeeDTO {
 
     private boolean active = true;
 
-
+//    private Car currentCar;
+//    private Set<Car> carHistory = new HashSet<>();
+//    private Double monthlyCost;
+//    private Double fines;
 
     /**
      * Getters & Setters

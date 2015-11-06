@@ -44,7 +44,6 @@
                         <td th:text="${car.amountOfRefuels}"></td>
                         <td th:text="${car.mileage}"></td>
                         <td th:text="${car.leasingDurationYears}"></td>
-
                         <td class="text-right"><a class="btn btn-danger btn-xs"
                                                   th:href="${#mvc.url('CC#removeCar').arg(0, car.id).build()}" th:text="#{msgcars.remove}">Remove</a>
                         </td>

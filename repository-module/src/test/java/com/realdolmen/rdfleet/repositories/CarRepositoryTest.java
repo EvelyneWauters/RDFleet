@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.persistence.UniqueConstraint;
 import javax.validation.ConstraintViolationException;
+import java.time.LocalDate;
 
 /**
  * Created by JDOAX80 on 30/10/2015.
@@ -19,10 +20,14 @@ public class CarRepositoryTest extends RepositoryTest {
     @Autowired
     private CarRepository carRepository;
 
+    @Autowired
+    private CarTypeRepository carTypeRepository;
+
     private Car car;
     private Car car2;
     private CarType carType;
     private CarType carType2;
+
 
     @Before
     public void init() {
@@ -33,7 +38,9 @@ public class CarRepositoryTest extends RepositoryTest {
         car = new Car();
         car2 = new Car();
         carType = new CarType();
+        carType.setCategory(1);
         carType2 = new CarType();
+        carType2.setCategory(1);
         carType.setCarModel(carModel);
         carType2.setCarModel(carModel);
         carType.setBrand(brand);
@@ -43,6 +50,10 @@ public class CarRepositoryTest extends RepositoryTest {
     @Test
     public void carCanBeCreated() {
         car.setCarType(carType);
+        carTypeRepository.save(carType);
+        car.setVinNumber("147");
+        car.setStartLeasing(LocalDate.now());
+        car.setNumberPlate("1-JNL-715");
         carRepository.save(car);
     }
 
@@ -55,9 +66,35 @@ public class CarRepositoryTest extends RepositoryTest {
     public void vinNumberOfCarMustBeUnique() {
         car.setCarType(carType);
         car2.setCarType(carType2);
+        carTypeRepository.save(carType);
+        carTypeRepository.save(carType2);
         car.setVinNumber("145");
+        car.setNumberPlate("1");
+        car.setStartLeasing(LocalDate.now());
+        car2.setNumberPlate("2");
+        car2.setStartLeasing(LocalDate.now());
         car2.setVinNumber("145");
         carRepository.save(car);
         carRepository.save(car2);
     }
+
+    @Test(expected = ConstraintViolationException.class)
+    public void carCantBeCreatedWithoutVinNumber() {
+        car.setCarType(carType);
+        carTypeRepository.save(carType);
+        carRepository.save(car);
+    }
+
+    @Test(expected = ConstraintViolationException.class)
+    public void carCantBeCreatedWithoutNumberPlate() {
+        carRepository.save(car);
+    }
+
+    @Test(expected = ConstraintViolationException.class)
+    public void carCantBeCreatedWithoutStartLeasingDate() {
+        carRepository.save(car);
+    }
+
 }
+
+

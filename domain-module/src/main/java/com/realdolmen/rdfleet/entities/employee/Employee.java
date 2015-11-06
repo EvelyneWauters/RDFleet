@@ -12,37 +12,31 @@ public class Employee extends User {
     /**
      * Class fields
      */
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.MERGE)
     private Car currentCar;
-
     @ManyToMany
-    private Set<Car> carList = new HashSet<>();
-    @Column(name="functionalLevel")
+    private Set<Car> carHistory = new HashSet<>();
+    @Column(name = "functionalLevel")
     private int functionalLevel = 1;
     private Double monthlyCost;
     private Double fines;
-
-    @Column(name="active")
+    @Column(name = "active")
     private boolean active = true;
+    @Column(name = "receivedMailForNewCar")
+    private boolean receivedMailForNewCar = false;
 
 
     /**
-     * Constructor
+     * Constructors
      */
-
     public Employee() {
-
+        //Used by Hibernate
     }
 
     public Employee(String firstName, String lastName, String email, String passwordHash)
     {
         super(firstName, lastName, email, passwordHash);
     }
-
-    /**
-     * Bussiness Methods
-     */
-
 
     /**
      * Getters & Setters
@@ -84,12 +78,12 @@ public class Employee extends User {
         this.fines = Math.abs(fines);
     }
 
-    public Set<Car> getCarList() {
-        return carList;
+    public Set<Car> getCarHistory() {
+        return carHistory;
     }
 
-    public void setCarList(Set<Car> carList) {
-        this.carList = carList;
+    public void setCarHistory(Set<Car> carHistory) {
+        this.carHistory = carHistory;
     }
 
     public boolean getActive() {
@@ -98,5 +92,13 @@ public class Employee extends User {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public boolean getReceivedMailForNewCar() {
+        return receivedMailForNewCar;
+    }
+
+    public void setReceivedMailForNewCar(boolean receivedMailForNewCar) {
+        this.receivedMailForNewCar = receivedMailForNewCar;
     }
 }

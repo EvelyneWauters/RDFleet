@@ -8,7 +8,9 @@ import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
 public class User extends AbstractEntity {
-
+    /**
+     * Class fields
+     */
     @Column(name = "email", unique = true)
     @NotNull
     private String email;
@@ -24,6 +26,9 @@ public class User extends AbstractEntity {
     private String firstName;
     private String lastName;
 
+    /**
+     * Constructors
+     */
     public User() {
         //Used by Hibernate
     }
@@ -35,6 +40,9 @@ public class User extends AbstractEntity {
         this.lastName = lastName;
     }
 
+    /**
+     * Getters & Setters
+     */
     public String getEmail() {
         return email;
     }

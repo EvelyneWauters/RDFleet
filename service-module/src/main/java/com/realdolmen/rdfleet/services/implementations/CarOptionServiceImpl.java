@@ -2,6 +2,7 @@ package com.realdolmen.rdfleet.services.implementations;
 
 import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.repositories.CarOptionRepository;
+import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.services.definitions.CarOptionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,19 +17,24 @@ public class CarOptionServiceImpl implements CarOptionsService {
     @Autowired
     private CarOptionRepository carOptionRepository;
 
-    //TODO:Implementatie afwerken
+
     @Override
     public List<CarOption> findAllCarOptions() {
         return carOptionRepository.findAll();
     }
 
     @Override
-    public CarOption findById(Long id) {
-        return null;
+    public CarOption getCarOptionById(Long id) {
+        return carOptionRepository.findOne(id);
+    }
+
+    @Override
+    public void createCarOption(CarOption car)  {
+        carOptionRepository.save(car);
     }
 
     @Override
     public void removeCarOption(Long id) {
-
+        carOptionRepository.delete(id);
     }
 }

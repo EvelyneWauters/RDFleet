@@ -3,6 +3,7 @@ package com.realdolmen.rdfleet.controllers;
 import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.services.implementations.EmployeeServiceImpl;
+import com.realdolmen.rdfleet.services.mappers.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,8 @@ public class EmployeeController {
     //return all users (sorted on email)
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String employeeDTOList(Model model) {
+//        List<Employee> employees = (List) employeeService.getAllEmployees();
+//        List<EmployeeDTO> employeeDTOs = EmployeeMapper.mapEmployeeListToEmployeeDTOList(employees);
         List<EmployeeDTO> allEmployees = (List) employeeService.getAllEmployees();
         model.addAttribute(allEmployees);
         return "employeelist";

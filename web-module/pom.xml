@@ -30,5 +30,10 @@
             <artifactId>thymeleaf-extras-springsecurity4</artifactId>
             <version>2.1.2.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>com.realdolmen</groupId>
+            <artifactId>scheduled-job-module</artifactId>
+            <version>1.1</version>
+        </dependency>
     </dependencies>
 </project>

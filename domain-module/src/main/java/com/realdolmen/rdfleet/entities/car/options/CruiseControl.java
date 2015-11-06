@@ -13,4 +13,4 @@ public class CruiseControl extends CarOption {
     public CruiseControl() {
         super("Cruise Control", 50);
     }
-}
+ }

@@ -1,6 +1,8 @@
 package com.realdolmen.rdfleet.services.definitions;
 
 import com.realdolmen.rdfleet.entities.car.CarType;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

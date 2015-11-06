@@ -3,6 +3,9 @@ package com.realdolmen.rdfleet.services.mappers;
 import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class EmployeeMapper {
 
@@ -10,7 +13,7 @@ public class EmployeeMapper {
         employee.setActive(dto.getActive());
         employee.setFunctionalLevel(dto.getFunctionalLevel());
         return employee;
-        }
+    }
 
 
     public static EmployeeDTO mapEmployeeToEmployeeDtoObject(Employee employee) {
@@ -23,6 +26,14 @@ public class EmployeeMapper {
         dto.setFirstName(employee.getFirstName());
         dto.setLastName(employee.getLastName());
         return dto;
-        }
+    }
+
+    public static List<EmployeeDTO> mapEmployeeListToEmployeeDTOList(List<Employee> employees) {
+        List<EmployeeDTO> employeeDTOs = new ArrayList<>();
+        employees.forEach(employee -> {
+            employeeDTOs.add(mapEmployeeToEmployeeDtoObject(employee));
+        });
+        return employeeDTOs;
+    }
 }
 

@@ -2,10 +2,7 @@ package com.realdolmen.rdfleet.entities.car.options;
 
 import com.realdolmen.rdfleet.entities.car.options.enums.LeatherType;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 /**
  * Created by JDOAX80 on 2/11/2015.
@@ -15,7 +12,8 @@ import javax.persistence.Enumerated;
 public class LeatherInterior extends CarOption {
 
     @Enumerated(EnumType.STRING)
-    private LeatherType leatherType;
+    @Column(name = "leatherType")
+    private LeatherType leatherType = LeatherType.IMITATION;
 
     public LeatherInterior() {
         this(LeatherType.IMITATION);

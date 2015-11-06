@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,7 +46,7 @@ public class LoginController {
 
     // Login form with error
     @RequestMapping("/login-error.html")
-    public String loginError(Model model) {
+    public String loginError(Model model, BindingResult result) {
         model.addAttribute("loginError", true);
         return "login.html";
     }

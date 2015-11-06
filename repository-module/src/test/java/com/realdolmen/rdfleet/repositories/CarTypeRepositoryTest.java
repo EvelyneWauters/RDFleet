@@ -36,9 +36,31 @@ public class CarTypeRepositoryTest extends RepositoryTest {
     @Test
     public void carTypeCanBeCreated() {
         carType.setBrand(brand);
+        carType.setCategory(1);
         carType.setCarModel(carModel);
         carTypeRepository.save(carType);
     }
+
+    @Test(expected = ConstraintViolationException.class)
+    public void carTypeCantBeCreatedWithoutCategoryLevel() {
+        carType.setCarModel(carModel);
+        carTypeRepository.save(carType);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void carTypeCantBeCreatedWithCategoryLevelSmallerThanOne() {
+        carType.setCarModel(carModel);
+        carType.setCategory(0);
+        carTypeRepository.save(carType);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void carTypeCantBeCreatedWithCategoryLevelHigherThanSeven() {
+        carType.setCarModel(carModel);
+        carType.setCategory(8);
+        carTypeRepository.save(carType);
+    }
+
 
     @Test(expected = ConstraintViolationException.class)
     public void carTypeCantBeCreatedWithoutBrand() {

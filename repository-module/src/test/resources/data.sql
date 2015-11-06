@@ -1,0 +1,16 @@
+-- insert into carType (id, category, name, modelName, listPriceInclRealVat, co2,isAvailable) values (1, 1, 'Audi', 'A1', 15000, 120, true);
+-- insert into carType (id, category, name, modelName, listPriceInclRealVat, co2,isAvailable) values (2, 3, 'Audi', 'A3', 20000, 130, true);
+-- insert into carType (id, category, name, modelName, listPriceInclRealVat, co2,isAvailable) values (3, 3, 'Audi', 'A4', 20000, 130, true);
+-- insert into carType (id, category, name, modelName, listPriceInclRealVat, co2,isAvailable) values (4, 3, 'Audi', 'A5', 20000, 130, true);
+--
+--
+--
+-- insert into car (id, mileage, carType_id, startLeasing, endleasing, carType_id) values (1, '10', 1, '2015-04-01', '2019-04-01', 1);
+-- insert into car (id, mileage, carType_id, startLeasing) values (2, '300', 2, '2015-01-01');
+-- insert into car (id, mileage, carType_id, startLeasing) values (3, '200', 2, '2015-01-01');
+-- insert into car (id, mileage, carType_id, startLeasing) values (4, '150', 3, '2015-01-01');
+-- insert into car (id, mileage, carType_id, startLeasing) values (5, '110000', 4, '2015-01-01');
+--
+--
+-- insert into employee(id, firstName, lastName, email, password_hash, role, functionalLevel, active, currentCar_id) values(1, 'Gek', 'kie', 'gek@rd.com', 'gek', 'EMPLOYEE', 1, true, 1);
+--

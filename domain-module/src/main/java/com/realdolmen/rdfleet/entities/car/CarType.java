@@ -5,10 +5,13 @@ import com.realdolmen.rdfleet.entities.car.embedabbles.Brand;
 import com.realdolmen.rdfleet.entities.car.embedabbles.CarModel;
 import com.realdolmen.rdfleet.entities.car.enums.FuelType;
 import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import javax.validation.constraints.*;
 
 /**
  * Created by EWTAX45 on 28/10/2015.
@@ -23,37 +26,41 @@ public class CarType extends AbstractEntity implements Serializable{
     @Embedded
     @NotNull
     private CarModel carModel;
-
     //List price Incl. real VAT
     private Double listPriceInclRealVat;
-
-
+    @Digits(integer=10, fraction=0)
+    @Min(value = 1, message = "Category must be higher or equal to 1")
+    @Max(value = 7, message = "Category must be lower or equal to 7")
     private int category;
     private int co2;
-    private int fiscHp;
+    @Column(name = "fiscHp")
+    private int fiscHp = 0;
     @Enumerated(EnumType.STRING)
     private FuelType fuelType;
     @Enumerated(EnumType.STRING)
     private WinterTyresRimType winterTyresRimType;
-
     //IDEAL KM according to type of car
-    private int idealKm;
+    @Column(name = "idealKm")
+    private int idealKm = 0;
     //max. KM or 60 months on request of driver
-    private int maxKm;
-
+    @Column(name = "maxKm")
+    private int maxKm = 0;
     private Double benefitInKindPerMonth;
     private Double amountUpgradeInclVat;
     private Double amountDowngradeInclVat;
-
     @Column(name = "isAvailable")
     private boolean isAvailable = true;
-    
 
-
+    /**
+     * Constructors
+     */
     public CarType() {
+        //Used by Hibernate
     }
 
-
+    /**
+     * Getters & Setters
+     */
     public Brand getBrand() {
         return brand;
     }
