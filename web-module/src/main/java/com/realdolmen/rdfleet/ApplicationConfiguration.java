@@ -46,6 +46,7 @@ public class ApplicationConfiguration {
         Employee employee = new Employee("Foo", "Bar", "foo@bar.com", hashedPassword);
 //        employee.setCurrentCar(carr);
         Employee fleetEmployee = new Employee("Floo", "Bar", "floo@bar.com", hashedPassword);
+
         CarOption option1 = new CruiseControl();
         CarOption option2 = new HeatedSeats();
         CarOption option3 = new LeatherInterior(LeatherType.IMITATION);

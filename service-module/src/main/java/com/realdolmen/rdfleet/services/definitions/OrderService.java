@@ -2,6 +2,8 @@ package com.realdolmen.rdfleet.services.definitions;
 
 import com.realdolmen.rdfleet.entities.Order;
 import com.realdolmen.rdfleet.entities.employee.Employee;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 

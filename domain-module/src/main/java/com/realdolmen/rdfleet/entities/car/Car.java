@@ -16,14 +16,16 @@ public class Car extends AbstractEntity{
     /**
      * Class fields
      */
-
-    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)//In principe geen persist!
-    @NotNull//-->2 in 1: Zowel Column(nullable = false, als validatie mbv JSR303)--> ligt wel aan het feit dat Hibernate de default JPA implementatie is
+    @ManyToOne(optional = false)
+    @NotNull
+    //-->2 in 1: Zowel Column(nullable = false, als validatie mbv JSR303)--> ligt wel aan het feit dat Hibernate de default JPA implementatie is
     //Niet elke JPA implementatie dient JSR 303 te ondersteunen en zal dit dus voor werken.
     private CarType carType;
     @Column(name = "vinNumber", unique = true)
+    @NotNull
     private String vinNumber;
     @Convert(converter= LocalDatePersistenceConverter.class)
+    @NotNull
     private LocalDate startLeasing;
     @Convert(converter= LocalDatePersistenceConverter.class)
     private LocalDate endLeasing;
@@ -35,7 +37,9 @@ public class Car extends AbstractEntity{
     private int amountOfRefuels = 0;
     @Column(name = "noLongerInUse")
     private boolean noLongerInUse = false;
-    @ElementCollection
+    @NotNull
+    private String numberPlate;
+    @ManyToMany
     private List<CarOption> carOptions = new ArrayList<>();
 
 
@@ -43,12 +47,12 @@ public class Car extends AbstractEntity{
      * Constructor
      */
     public Car() {
+        //Used by Hibernate
     }
 
     /**
      * Getters & Setters
      */
-
     public String getVinNumber() {
         return vinNumber;
     }
@@ -63,6 +67,7 @@ public class Car extends AbstractEntity{
 
     public void setStartLeasing(LocalDate startLeasing) {
         this.startLeasing = startLeasing;
+        setEndLeasing();
     }
 
     public int getLeasingDurationYears() {
@@ -119,5 +124,13 @@ public class Car extends AbstractEntity{
 
     public void setEndLeasing() {
         this.endLeasing = startLeasing.plusYears(leasingDurationYears);
+    }
+
+    public String getNumberPlate() {
+        return numberPlate;
+    }
+
+    public void setNumberPlate(String numberPlate) {
+        this.numberPlate = numberPlate;
     }
 }

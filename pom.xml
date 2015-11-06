@@ -28,7 +28,7 @@
 		<module>repository-module</module>
 		<module>service-module</module>
 		<module>security-module</module>
-		<module>scheduled-jobs-module</module>
+		<module>scheduled-job-module</module>
 	</modules>
 
     <dependencyManagement>

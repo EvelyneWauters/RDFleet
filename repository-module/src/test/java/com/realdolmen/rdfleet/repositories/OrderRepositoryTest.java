@@ -17,4 +17,29 @@ import javax.validation.ConstraintViolationException;
  * Created by JDOAX80 on 4/11/2015.
  */
 public class OrderRepositoryTest extends RepositoryTest {
+
+    @Test
+    public void orderCanBeCreated() {
+
+    }
+
+    @Test
+    public void orderCantBeCreatedWithoutEmployee() {
+
+    }
+
+    @Test
+    public void orderCantBeCreatedWithoutCar() {
+
+    }
+
+    @Test
+    public void orderCanBeFoundByEmployee() {
+
+    }
+
+    @Test
+    public void orderCantBeFoundByEmployeeIfNoValidEmployee() {
+
+    }
 }

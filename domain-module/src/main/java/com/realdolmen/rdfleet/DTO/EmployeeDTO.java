@@ -36,7 +36,10 @@ public class EmployeeDTO {
 
     private boolean active = true;
 
-
+//    private Car currentCar;
+//    private Set<Car> carHistory = new HashSet<>();
+//    private Double monthlyCost;
+//    private Double fines;
 
     /**
      * Getters & Setters

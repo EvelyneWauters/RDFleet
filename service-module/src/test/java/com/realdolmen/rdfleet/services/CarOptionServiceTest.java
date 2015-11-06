@@ -15,7 +15,7 @@ import static org.mockito.Mockito.when;
 /**
  * Created by JDOAX80 on 4/11/2015.
  */
-public class CarOptionServiceTets extends ServicesTest {
+public class CarOptionServiceTest extends ServicesTest {
     private CarOptionServiceImpl carOptionService;
     private CarOptionRepository carOptionRepository;
     private CarOption carOption;

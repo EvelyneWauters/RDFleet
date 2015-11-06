@@ -17,46 +17,50 @@ import javax.validation.constraints.*;
 
 @Entity
 public class CarType extends AbstractEntity {
-
+    /**
+     * Class fields
+     */
     @Embedded
     @NotNull
     private Brand brand;
     @Embedded
     @NotNull
     private CarModel carModel;
-
     //List price Incl. real VAT
     private Double listPriceInclRealVat;
-
     @Digits(integer=10, fraction=0)
     @Min(value = 1, message = "Category must be higher or equal to 1")
     @Max(value = 7, message = "Category must be lower or equal to 7")
     private int category;
     private int co2;
-    private int fiscHp;
+    @Column(name = "fiscHp")
+    private int fiscHp = 0;
     @Enumerated(EnumType.STRING)
     private FuelType fuelType;
     @Enumerated(EnumType.STRING)
     private WinterTyresRimType winterTyresRimType;
-
     //IDEAL KM according to type of car
-    private int idealKm;
+    @Column(name = "idealKm")
+    private int idealKm = 0;
     //max. KM or 60 months on request of driver
-    private int maxKm;
-
+    @Column(name = "maxKm")
+    private int maxKm = 0;
     private Double benefitInKindPerMonth;
     private Double amountUpgradeInclVat;
     private Double amountDowngradeInclVat;
-
     @Column(name = "isAvailable")
     private boolean isAvailable = true;
-    
 
-
+    /**
+     * Constructors
+     */
     public CarType() {
+        //Used by Hibernate
     }
 
-
+    /**
+     * Getters & Setters
+     */
     public Brand getBrand() {
         return brand;
     }

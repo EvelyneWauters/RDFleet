@@ -19,5 +19,4 @@ public class CarOptionRepositoryTest extends RepositoryTest {
         CarOption carOption = new CarOption();
         carOptionRepository.save(carOption);
     }
-
 }

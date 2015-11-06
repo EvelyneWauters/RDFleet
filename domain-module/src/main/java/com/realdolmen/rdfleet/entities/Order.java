@@ -13,18 +13,26 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Order extends AbstractEntity {
-
+    /**
+     * Class fields
+     */
     @OneToOne(optional = false)
     @JoinColumn(unique = true)
     @NotNull
     private Employee employee;
-
     @NotNull
     private Car car;
 
+    /**
+     * Constructors
+     */
     public Order() {
+        //Used by Hibernate
     }
 
+    /**
+     * Getters & Setters
+     */
     public Order(Employee employee, Car car) {
         this.employee = employee;
         this.car = car;

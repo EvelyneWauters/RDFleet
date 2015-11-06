@@ -10,7 +10,6 @@ import java.io.Serializable;
 @Embeddable
 public class CarModel implements Serializable {
 
-    @Column(nullable = false)
     private String modelName;
     private String modelDesignation;
     private String horsePower;

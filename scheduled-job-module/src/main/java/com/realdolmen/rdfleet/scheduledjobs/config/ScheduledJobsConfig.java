@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet.config;
+package com.realdolmen.rdfleet.scheduledjobs.config;
 
 /**
  * Created by JDOAX80 on 4/11/2015.

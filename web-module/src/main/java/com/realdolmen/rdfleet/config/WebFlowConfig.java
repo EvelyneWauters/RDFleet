@@ -1,6 +1,5 @@
 package com.realdolmen.rdfleet.config;
 
-import com.realdolmen.rdfleet.BrowsingFlowHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,7 +13,6 @@ import org.springframework.webflow.mvc.builder.MvcViewFactoryCreator;
 import org.springframework.webflow.security.SecurityFlowExecutionListener;
 
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by JDOAX80 on 4/11/2015.
@@ -59,12 +57,6 @@ public class WebFlowConfig extends AbstractFlowConfiguration {
     @Bean
     public LocalValidatorFactoryBean validator() {
         return new LocalValidatorFactoryBean();
-    }
-
-    //TODO:Change bean name
-    @Bean(name="users/createUser")
-    public BrowsingFlowHandler browsingFlowHandler() {
-        return new BrowsingFlowHandler();
     }
 
 }

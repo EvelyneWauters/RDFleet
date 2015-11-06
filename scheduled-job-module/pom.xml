@@ -9,17 +9,20 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>scheduled-jobs-module</artifactId>
+    <artifactId>scheduled-job-module</artifactId>
     <version>1.1</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>com.realdolmen</groupId>
+            <artifactId>domain-module</artifactId>
+            <version>1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.realdolmen</groupId>
             <artifactId>repository-module</artifactId>
-            <version>${project.version}</version>
-            <type>jar</type>
+            <version>1.1</version>
         </dependency>
     </dependencies>
-
 </project>
