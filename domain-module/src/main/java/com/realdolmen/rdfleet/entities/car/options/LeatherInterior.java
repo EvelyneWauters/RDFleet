@@ -17,6 +17,10 @@ public class LeatherInterior extends CarOption {
     @Enumerated(EnumType.STRING)
     private LeatherType leatherType;
 
+    public LeatherInterior() {
+        this(LeatherType.IMITATION);
+    }
+
     public LeatherInterior(LeatherType leatherType) {
         super("Leather Interior", 50);
         this.leatherType = leatherType;

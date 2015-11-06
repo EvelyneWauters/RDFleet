@@ -8,13 +8,14 @@ import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by EWTAX45 on 28/10/2015.
  */
 
 @Entity
-public class CarType extends AbstractEntity {
+public class CarType extends AbstractEntity implements Serializable{
 
     @Embedded
     @NotNull

@@ -9,23 +9,13 @@
     <link th:href="@{/css/styles.css}" rel="stylesheet"/>
 </head>
 <body>
-
 <div th:include="navbar"/>
 
-<div class="container">
-    <div class="page-header text-center">
-        <h1><span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet</h1>
 
-        <p class="lead">Welcome to the <span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet Page!
-        </p>
-    </div>
-    <div class="row">
-        <div class="col-lg-12">
-            <h4>Homepage!</h4>
-            <img th:src="@{/images/logoRealDolmen.png}" alt="logo"/>
-        </div>
-    </div>
-    <hr/>
+<div class="container">
+    <form th:action="@{/order/confirm}" method="post" th:object="${car}">
+        <button type="submit" class="btn btn-lg btn-block btn-info">Confirm</button>
+    </form>
 </div>
 </body>
 </html>

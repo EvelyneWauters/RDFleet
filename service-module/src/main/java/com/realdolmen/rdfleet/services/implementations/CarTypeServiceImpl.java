@@ -31,6 +31,12 @@ public class CarTypeServiceImpl implements CarTypeService{
 
 
     @Override
+    public List<CarType> findCarByFunctionalLevel(int i)    {
+        return carTypeRepository.findCarTypeByCategory(i);
+    }
+
+
+    @Override
     public List<CarType> findAllAvailableCarTypes()  {
         List<CarType> catalog = carTypeRepository.findAll(new Sort(new Sort.Order(Sort.Direction.ASC, "category")));
         for (Iterator<CarType> it = catalog.listIterator(); it.hasNext(); ) {

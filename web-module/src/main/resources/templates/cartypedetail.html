@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8"/>
@@ -15,8 +15,8 @@
 <div class="container">
 
     <h1 th:text="${carType.brand.name + ' ' + carType.carModel.toString()}"></h1>
-
-
+    <a class="btn btn-danger btn-xs"
+       id="proceed" th:href="${#mvc.url('OC#getOrderOptions').arg(0, carType.id).build()}">Order</a>
 
 </div>
 </body>

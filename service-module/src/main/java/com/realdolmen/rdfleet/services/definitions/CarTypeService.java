@@ -12,6 +12,8 @@ public interface CarTypeService {
 
     List<CarType> findAllAvailableCarTypes();
 
+    List<CarType> findCarByFunctionalLevel(int i);
+
     CarType findById(Long id);
 
     void createOrUpdateCarType(CarType car);

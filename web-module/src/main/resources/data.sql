@@ -22,18 +22,14 @@ insert into carType (id, category, name, modelName, modelDesignation, horsePower
                      co2, listPriceInclRealVat, fiscHp, benefitInKindPerMonth, amountUpgradeInclVat, amountDowngradeInclVat,
                      idealKm, maxKm,
                      fuelType, winterTyresRimType, isAvailable)
-values (2, 2, 'Seat', 'Ibiza', 'ST 1,6 crtdi', '105 pk', 'Style ecomotive', 'http://www.topgear.nl/image/popup/seat-ibiza-sc-12-tsi-fr-full-12062012081532-7062.jpg',
+values (2, 1, 'Seat', 'Ibiza', 'ST 1,6 crtdi', '105 pk', 'Style ecomotive', 'http://www.topgear.nl/image/popup/seat-ibiza-sc-12-tsi-fr-full-12062012081532-7062.jpg',
         109, 19945.482528, 7, 104.17, 0, 2479.68653742731,
         140000, 180000,
         'DIESEL', 'STEEL', true);
 
 
-# insert into carType (id, category, name, modelName, listPriceInclRealVat, co2,isAvailable) values (2, 3, 'Audi', 'A3', 20000, 130, true);
 insert into carType (id, category, name, modelName, listPriceInclRealVat, co2,isAvailable) values (3, 3, 'Audi', 'A4', 20000, 130, true);
 insert into carType (id, category, name, modelName, listPriceInclRealVat, co2,isAvailable) values (4, 3, 'Audi', 'A5', 20000, 130, true);
-
-
-
 
 
 
