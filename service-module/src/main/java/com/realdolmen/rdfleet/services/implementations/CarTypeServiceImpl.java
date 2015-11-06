@@ -1,13 +1,17 @@
 package com.realdolmen.rdfleet.services.implementations;
 
+import com.realdolmen.rdfleet.DTO.CarTypeDTO;
+import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.CarTypeRepository;
 import com.realdolmen.rdfleet.services.definitions.CarTypeService;
+import com.realdolmen.rdfleet.services.mappers.CarTypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -24,30 +28,23 @@ public class CarTypeServiceImpl implements CarTypeService{
         this.carTypeRepository = carTypeRepository;
     }
 
-    @Override
-    public List<CarType> findAllCarTypes()  {
-        return carTypeRepository.findAll();
-    }
-
-
-    @Override
-    public List<CarType> findCarByFunctionalLevel(int i)    {
-        return carTypeRepository.findCarTypeByCategory(i);
-    }
-
-
-    @Override
-    public List<CarType> findAllAvailableCarTypes()  {
-        List<CarType> catalog = carTypeRepository.findAll(new Sort(new Sort.Order(Sort.Direction.ASC, "category")));
-        for (Iterator<CarType> it = catalog.listIterator(); it.hasNext(); ) {
-            CarType carType = it.next();
-            if (carType.getIsAvailable() == false) {
-                it.remove();
-            }
-        }
-        return catalog;
-    }
-
+//    @Override
+//    public List<CarType> findAllCarTypes()  {
+//        return carTypeRepository.findAll();
+//    }
+//
+//
+//    @Override
+//    public List<CarType> findCarByFunctionalLevel(int i)    {
+//        return carTypeRepository.findCarTypeByCategory(i);
+//    }
+//
+//
+//    @Override
+//    public List<CarType> findAllAvailableCarTypes()  {
+//        List<CarType> catalog = carTypeRepository.findAllByIsAvailableTrue();
+//        return catalog;
+//    }
 
     @Override
     public CarType findById(Long id)    {
@@ -55,8 +52,9 @@ public class CarTypeServiceImpl implements CarTypeService{
     }
 
     @Override
-    public void createOrUpdateCarType(CarType car)  {
-        carTypeRepository.save(car);
+    public void createOrUpdateCarType(CarType carType)  {
+        checkIfValidEntity(carType);
+        carTypeRepository.save(carType);
     }
 
     //will not remove the CarType, but set the 'is available'-flag to false
@@ -67,5 +65,12 @@ public class CarTypeServiceImpl implements CarTypeService{
         if (carType != null) {
             createOrUpdateCarType(carType);
         }
+    }
+
+    public boolean checkIfValidEntity(CarType carType) {
+        int category = carType.getCategory();
+        if (category < 1 || category > 7)
+            throw new IllegalArgumentException("The category can not be lower than 1 or higher than 7!");
+        return true;
     }
 }

@@ -1,12 +1,14 @@
 package com.realdolmen.rdfleet.entities;
 
 import com.realdolmen.rdfleet.entities.car.Car;
+import com.realdolmen.rdfleet.entities.car.CarType;
+import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by JDOAX80 on 4/11/2015.
@@ -20,8 +22,11 @@ public class Order extends AbstractEntity {
     @JoinColumn(unique = true)
     @NotNull
     private Employee employee;
+    @ManyToOne
     @NotNull
-    private Car car;
+    private CarType carType;
+    @ManyToMany
+    private List<CarOption> options = new ArrayList<>();
 
     /**
      * Constructors
@@ -33,9 +38,9 @@ public class Order extends AbstractEntity {
     /**
      * Getters & Setters
      */
-    public Order(Employee employee, Car car) {
+    public Order(Employee employee, CarType carType) {
         this.employee = employee;
-        this.car = car;
+        this.carType = carType;
     }
 
     public Employee getEmployee() {
@@ -46,11 +51,19 @@ public class Order extends AbstractEntity {
         this.employee = employee;
     }
 
-    public Car getCar() {
-        return car;
+    public CarType getCarType() {
+        return carType;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarType(CarType carType) {
+        this.carType = carType;
+    }
+
+    public List<CarOption> getOptions() {
+        return options;
+    }
+
+    public void setOptions(List<CarOption> options) {
+        this.options = options;
     }
 }

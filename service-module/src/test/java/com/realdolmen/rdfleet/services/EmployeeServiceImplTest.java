@@ -12,6 +12,8 @@ import org.mockito.Mockito;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.validation.ConstraintViolationException;
+
 import static org.mockito.Mockito.*;
 
 /**
@@ -61,4 +63,24 @@ public class EmployeeServiceImplTest extends ServicesTest {
         employeeService.getOptionalEmployeeByEmail(employee.getEmail());
         verify(employeeRepository).findOneByEmail(employee.getEmail());
     }
+
+//    @Test(expected = IllegalArgumentException.class)
+//    public void employeeFunctionalLevelCantBeLowerThanOne() {
+//        Employee employee = new Employee();
+//        employee.setFunctionalLevel(0);
+//    }
+//
+//    @Test(expected = IllegalArgumentException.class)
+//    public void employeeFunctionalLevelCantBeHigherThanSeven() {
+//        Employee employee = new Employee();
+//        employee.setFunctionalLevel(8);
+//    }
+//
+//    @Test(expected = IllegalArgumentException.class)
+//    public void employeeFunctionalLevelCantBeNegative() {
+//        Employee employee = new Employee();
+//        employee.setFunctionalLevel(-1);
+//    }
+
+
 }

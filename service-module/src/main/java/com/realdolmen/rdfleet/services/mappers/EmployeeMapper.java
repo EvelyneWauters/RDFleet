@@ -28,12 +28,12 @@ public class EmployeeMapper {
         return dto;
     }
 
-    public static List<EmployeeDTO> mapEmployeeListToEmployeeDTOList(List<Employee> employees) {
-        List<EmployeeDTO> employeeDTOs = new ArrayList<>();
-        employees.forEach(employee -> {
-            employeeDTOs.add(mapEmployeeToEmployeeDtoObject(employee));
-        });
-        return employeeDTOs;
-    }
+//    public static List<EmployeeDTO> mapEmployeeListToEmployeeDTOList(List<Employee> employees) {
+//        List<EmployeeDTO> employeeDTOs = new ArrayList<>();
+//        employees.forEach(employee -> {
+//            employeeDTOs.add(mapEmployeeToEmployeeDtoObject(employee));
+//        });
+//        return employeeDTOs;
+//    }
 }
 

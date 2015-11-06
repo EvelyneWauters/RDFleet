@@ -44,9 +44,7 @@ public class OrderServiceImplTest extends ServicesTest {
         brand.setName("brand");
         carType.setCarModel(carmodel);
         carType.setBrand(brand);
-        Car car = new Car();
-        car.setCarType(carType);
-        order.setCar(car);
+        order.setCarType(carType);
         this.order = Optional.of(order);
 
     }

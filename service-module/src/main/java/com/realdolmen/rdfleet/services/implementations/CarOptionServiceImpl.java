@@ -14,8 +14,14 @@ import java.util.List;
  */
 @Service
 public class CarOptionServiceImpl implements CarOptionsService {
+
+    private final CarOptionRepository carOptionRepository;
+
     @Autowired
-    private CarOptionRepository carOptionRepository;
+    public CarOptionServiceImpl(CarOptionRepository carOptionRepository) {
+        this.carOptionRepository = carOptionRepository;
+    }
+
 
 
     @Override

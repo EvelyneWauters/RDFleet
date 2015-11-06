@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import javax.validation.ConstraintViolationException;
+
 /**
  * Created by JDOAX80 on 2/11/2015.
  */
@@ -64,6 +66,26 @@ public class CarTypeServiceImplTest extends ServicesTest {
         Mockito.verify(carTypeRepository).findOne(car.getId());
         Mockito.verify(carTypeRepository).save(car.getCarType());
     }
+
+//    @Test(expected = ConstraintViolationException.class)
+//    public void carTypeCantBeCreatedWithoutCategoryLevel() {
+//        carType.setCarModel(carModel);
+//        carTypeRepository.save(carType);
+//    }
+//
+//    @Test(expected = ConstraintViolationException.class)
+//    public void carTypeCantBeCreatedWithCategoryLevelSmallerThanOne() {
+//        carType.setCarModel(carModel);
+//        carType.setCategory(0);
+//        carTypeRepository.save(carType);
+//    }
+//
+//    @Test(expected = IllegalArgumentException.class)
+//    public void carTypeCantBeCreatedWithCategoryLevelHigherThanSeven() {
+//        carType.setCarModel(carModel);
+//        carType.setCategory(8);
+//        carTypeRepository.save(carType);
+//    }
 
     public void createNewCar() {
         car = new Car();

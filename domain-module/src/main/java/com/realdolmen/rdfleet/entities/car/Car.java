@@ -17,15 +17,13 @@ public class Car extends AbstractEntity{
      * Class fields
      */
     @ManyToOne(optional = false)
-    @NotNull
     //-->2 in 1: Zowel Column(nullable = false, als validatie mbv JSR303)--> ligt wel aan het feit dat Hibernate de default JPA implementatie is
     //Niet elke JPA implementatie dient JSR 303 te ondersteunen en zal dit dus voor werken.
     private CarType carType;
-    @Column(name = "vinNumber", unique = true)
-    @NotNull
+    @Column(name = "vinNumber", unique = true, nullable = false)
     private String vinNumber;
     @Convert(converter= LocalDatePersistenceConverter.class)
-    @NotNull
+    @Column(name = "startLeasing", nullable = false)
     private LocalDate startLeasing;
     @Convert(converter= LocalDatePersistenceConverter.class)
     private LocalDate endLeasing;
@@ -37,7 +35,7 @@ public class Car extends AbstractEntity{
     private int amountOfRefuels = 0;
     @Column(name = "noLongerInUse")
     private boolean noLongerInUse = false;
-    @NotNull
+    @Column(nullable = false)
     private String numberPlate;
     @ManyToMany
     private List<CarOption> carOptions = new ArrayList<>();
