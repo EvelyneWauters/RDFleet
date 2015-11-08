@@ -9,11 +9,12 @@ import javax.persistence.Column;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Created by JDOAX80 on 28/10/2015.
  */
-public class EmployeeDTO {
+public class EmployeeDTO implements Serializable{
     /**
      * Class fields
      */

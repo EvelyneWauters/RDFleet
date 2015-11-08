@@ -43,7 +43,4 @@ public class BrowseController {
         model.put("carType", carTypeService.findById(carTypeId));
         return "cartypedetail";
     }
-
-
-
 }

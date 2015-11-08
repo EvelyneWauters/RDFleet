@@ -44,6 +44,7 @@ public class ApplicationConfiguration {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode("password");
         Employee employee = new Employee("Foo", "Bar", "foo@bar.com", hashedPassword);
+        employee.setFunctionalLevel(3);
 //        employee.setCurrentCar(carr);
         Employee fleetEmployee = new Employee("Floo", "Bar", "floo@bar.com", hashedPassword);
 

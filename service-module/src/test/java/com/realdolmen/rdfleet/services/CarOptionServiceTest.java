@@ -5,6 +5,7 @@ import com.realdolmen.rdfleet.repositories.CarOptionRepository;
 import com.realdolmen.rdfleet.services.implementations.CarOptionServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 
 import java.io.Serializable;
 
@@ -16,8 +17,8 @@ import static org.mockito.Mockito.when;
  * Created by JDOAX80 on 4/11/2015.
  */
 public class CarOptionServiceTest extends ServicesTest {
-    private CarOptionServiceImpl carOptionService;
     private CarOptionRepository carOptionRepository;
+    private CarOptionServiceImpl carOptionService;
     private CarOption carOption;
 
     @Before

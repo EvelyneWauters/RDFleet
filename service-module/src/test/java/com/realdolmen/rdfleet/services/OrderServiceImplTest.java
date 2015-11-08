@@ -48,7 +48,6 @@ public class OrderServiceImplTest extends ServicesTest {
         car.setCarType(carType);
         order.setCar(car);
         this.order = Optional.of(order);
-
     }
 
     @Test

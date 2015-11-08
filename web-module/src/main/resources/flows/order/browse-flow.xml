@@ -1,34 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--suppress ALL -->
 <flow xmlns="http://www.springframework.org/schema/webflow"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
   http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
-    <!--<input name="functionalLevel" type="int" />-->
+
+
+<on-start>
+    <!--<set name="employee" value="employeeServiceImpl.getEmployeeDtoByEmail('foo@bar.com')"/>-->
+    <!--<set name="employee" value="foo" type=""/>-->
+    <evaluate expression="employeeServiceImpl.getEmployeeDtoByEmail('foo@bar.com')" result="flowScope.currentEmployee" />
+</on-start>
 
 
     <view-state id="findcarbyfunctionallevel" view="webflow-findcarbyfunctionallevel">
         <on-render>
-            <evaluate expression="carTypeServiceImpl.findCarByFunctionalLevel(1)"
+            <evaluate expression="carTypeServiceImpl.findCarByFunctionalLevel(currentEmployee.getFunctionalLevel())"
                       result="flowScope.cartypes" />
+            <evaluate expression="carTypeServiceImpl.findCarByFunctionalLevel(currentEmployee.getFunctionalLevel()+1)"
+                      result="flowScope.cartypesupgrade" />
+            <evaluate expression="carTypeServiceImpl.findCarByFunctionalLevel(currentEmployee.getFunctionalLevel()-1)"
+                      result="flowScope.cartypesdowngrade" />
         </on-render>
 
-        <transition on="proceed" to="webflow-choosecar" />
-        <transition on="cancel" to="cancel" bind="false" />
+        <transition on="proceed" to="webflow-chooseoptions" />
+        <!--<transition on="cancel" to="cancel" bind="false" />-->
     </view-state>
 
-    <view-state id="webflow-choosecar" view="webflow-choosecar">
-        <transition on="next" to="webflow-chooseoptions" />
+
+    <view-state id="webflow-chooseoptions">
+        <transition on="confirm" to="webflow-confirmation" >
+             <!-- save order here-->
+             <!-- <evaluate expression="orderService.save(order)" result="flowScope.order"/>-->
+        </transition>
+        <!--<transition on="revise" to="webflow-choosecar" />-->
+        <!--<transition on="cancel" to="webflow-cancellation" />-->
     </view-state>
 
-    <view-state id="chooseoptions">
-        <transition on="confirm" to="webflow-confirmation" />
-        <transition on="revise" to="webflow-choosecar" />
-        <transition on="cancel" to="webflow-cancellation" />
+    <view-state id="webflow-confirmation">
+        <transition on="gotoindex" to="index"/>
     </view-state>
 
-    <end-state id="webflow-confirmation" />
+    <end-state id="index" />
 
-    <end-state id="webflow-cancellation" />
+    <!--<end-state id="webflow-cancellation" />-->
 
 </flow>

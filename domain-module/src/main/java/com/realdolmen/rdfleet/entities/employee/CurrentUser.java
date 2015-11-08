@@ -3,10 +3,12 @@ package com.realdolmen.rdfleet.entities.employee;
 import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import org.springframework.security.core.authority.AuthorityUtils;
 
+import java.io.Serializable;
+
 /**
  * Created by JDOAX80 on 28/10/2015.
  */
-public class CurrentUser extends org.springframework.security.core.userdetails.User {
+public class CurrentUser extends org.springframework.security.core.userdetails.User implements Serializable {
 
     private Employee employee;
 

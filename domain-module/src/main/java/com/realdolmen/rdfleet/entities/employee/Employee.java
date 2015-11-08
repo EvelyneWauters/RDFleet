@@ -4,11 +4,12 @@ import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import com.realdolmen.rdfleet.entities.car.Car;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-public class Employee extends User {
+public class Employee extends User implements Serializable {
     /**
      * Class fields
      */
