@@ -1,6 +1,8 @@
 package com.realdolmen.rdfleet.entities;
 
+import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.car.Car;
+import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 
 import javax.persistence.Entity;
@@ -16,12 +18,9 @@ public class Order extends AbstractEntity {
     /**
      * Class fields
      */
-    @OneToOne(optional = false)
-    @JoinColumn(unique = true)
-    @NotNull
     private Employee employee;
-    @NotNull
-    private Car car;
+    private CarType carType;
+
 
     /**
      * Constructors
@@ -30,13 +29,14 @@ public class Order extends AbstractEntity {
         //Used by Hibernate
     }
 
+    public Order(CarType carType, Employee employee) {
+        this.carType = carType;
+        this.employee = employee;
+    }
+
     /**
      * Getters & Setters
      */
-    public Order(Employee employee, Car car) {
-        this.employee = employee;
-        this.car = car;
-    }
 
     public Employee getEmployee() {
         return employee;
@@ -46,11 +46,11 @@ public class Order extends AbstractEntity {
         this.employee = employee;
     }
 
-    public Car getCar() {
-        return car;
+    public CarType getCarType() {
+        return carType;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarType(CarType carType) {
+        this.carType = carType;
     }
 }

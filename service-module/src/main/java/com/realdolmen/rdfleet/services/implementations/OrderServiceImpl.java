@@ -1,6 +1,8 @@
 package com.realdolmen.rdfleet.services.implementations;
 
+import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.Order;
+import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.repositories.OrderRepository;
 import com.realdolmen.rdfleet.services.definitions.OrderService;
@@ -32,5 +34,11 @@ public class OrderServiceImpl implements OrderService{
         else {
             throw new IllegalArgumentException("There is no order present for this employee");
         }
+    }
+
+    @Override
+    public void createOrder(CarType carType, EmployeeDTO employee) {
+        Order order = new Order(carType, employee);
+        orderRepository.save(order);
     }
 }

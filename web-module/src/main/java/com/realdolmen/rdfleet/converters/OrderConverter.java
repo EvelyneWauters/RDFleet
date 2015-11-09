@@ -1,20 +1,22 @@
 package com.realdolmen.rdfleet.converters;
 
+import com.realdolmen.rdfleet.DTO.OrderDTO;
 import com.realdolmen.rdfleet.converters.exceptions.CarModelConverterException;
+import com.realdolmen.rdfleet.entities.Order;
 import com.realdolmen.rdfleet.entities.car.embedabbles.CarModel;
 import com.realdolmen.rdfleet.repositories.CarTypeRepository;
+import com.realdolmen.rdfleet.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.convert.converters.Converter;
 import org.springframework.stereotype.Component;
 
 /**
- * Created by EWTAX45 on 6/11/2015.
+ * Created by EWTAX45 on 9/11/2015.
  */
-@Component(value = "carModelConverter")
-public class CarModelConverter implements Converter {
-
+@Component(value = "orderConverter")
+public class OrderConverter implements Converter{
     @Autowired
-    private CarTypeRepository carTypeRepository;
+    private OrderRepository orderRepository;
 
     @Override
     public Class<?> getSourceClass() {
@@ -23,7 +25,7 @@ public class CarModelConverter implements Converter {
 
     @Override
     public Class<?> getTargetClass() {
-        return CarModel.class;
+        return Order.class;
     }
 
     @Override
@@ -33,6 +35,6 @@ public class CarModelConverter implements Converter {
         }
         String idString = o.toString();
         long id = Long.parseLong(idString);
-        return carTypeRepository.findOne(id).getCarModel();
+        return orderRepository.findOne(id);
     }
 }

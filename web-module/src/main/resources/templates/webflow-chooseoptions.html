@@ -16,6 +16,10 @@
 <div class="container">
     <h1>Choose options here</h1>
 
+    <h2 th:text="${chosenCarType.brand.name + ' ' + chosenCarType.carModel.toString()}"></h2>
+
+
+
     <form method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 

@@ -5,16 +5,22 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
   http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
+    <var name="carType" class="com.realdolmen.rdfleet.DTO.CarTypeDTO"/>
+    <!--<var name="order" class="com.realdolmen.rdfleet.entities.Order"/>-->
 
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!-- Find a car by functional level                                           -->
+    <!-- functional level is defined by the current user that is logged in        -->
+    <!--                                                                          -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <on-start>
+        <evaluate expression="employeeServiceImpl.getEmployeeDtoByEmail('foo@bar.com')" result="flowScope.currentEmployee" />
+    </on-start>
 
-<on-start>
-    <!--<set name="employee" value="employeeServiceImpl.getEmployeeDtoByEmail('foo@bar.com')"/>-->
-    <!--<set name="employee" value="foo" type=""/>-->
-    <evaluate expression="employeeServiceImpl.getEmployeeDtoByEmail('foo@bar.com')" result="flowScope.currentEmployee" />
-</on-start>
-
-
-    <view-state id="findcarbyfunctionallevel" view="webflow-findcarbyfunctionallevel">
+    <view-state id="findcarbyfunctionallevel" view="webflow-findcarbyfunctionallevel" model="carType">
+        <binder>
+            <binding property="id"></binding>
+        </binder>
         <on-render>
             <evaluate expression="carTypeServiceImpl.findCarByFunctionalLevel(currentEmployee.getFunctionalLevel())"
                       result="flowScope.cartypes" />
@@ -23,21 +29,46 @@
             <evaluate expression="carTypeServiceImpl.findCarByFunctionalLevel(currentEmployee.getFunctionalLevel()-1)"
                       result="flowScope.cartypesdowngrade" />
         </on-render>
-
-        <transition on="proceed" to="webflow-chooseoptions" />
-        <!--<transition on="cancel" to="cancel" bind="false" />-->
+        <transition on="proceed" to="getChosenCarType" />
     </view-state>
 
 
+    <action-state id="getChosenCarType">
+        <evaluate expression="carTypeServiceImpl.findById(carType.id)"
+                  result="flowScope.chosenCarType" />
+        <transition to="webflow-chooseoptions"/>
+    </action-state>
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!-- Display details of the chosen cartype and show the possible options.     -->
+    <!-- Price is calculated dependent on the functional level + cartype + options-->
+    <!-- Confirm the order                                                        -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <view-state id="webflow-chooseoptions">
-        <transition on="confirm" to="webflow-confirmation" >
+        <!--<binder>-->
+            <!--<binding property=""></binding>-->
+        <!--</binder>-->
+
+        <transition on="confirm" to="createorder" >
              <!-- save order here-->
-             <!-- <evaluate expression="orderService.save(order)" result="flowScope.order"/>-->
+              <!--<evaluate expression="orderService.save(order)" result="flowScope.order"/>-->
+              <!--<evaluate expression="orderService.save(order)" result="flowScope.order"/>-->
         </transition>
         <!--<transition on="revise" to="webflow-choosecar" />-->
         <!--<transition on="cancel" to="webflow-cancellation" />-->
     </view-state>
 
+    <action-state id="createorder">
+        <evaluate expression="orderServiceImpl.createOrder(chosenCarType, currentEmployee)"/>
+        <transition to="webflow-confirmation"/>
+    </action-state>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!--              Confirmation page                                           -->
+    <!-- A new 'Order' object has been created                                    -->
+    <!-- (consists of a Cartype + List<Option>                                    -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <view-state id="webflow-confirmation">
         <transition on="gotoindex" to="index"/>
     </view-state>

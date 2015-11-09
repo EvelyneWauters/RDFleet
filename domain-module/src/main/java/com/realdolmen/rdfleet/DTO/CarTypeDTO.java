@@ -15,15 +15,10 @@ import java.io.Serializable;
  * Created by JDOAX80 on 5/11/2015.
  */
 public class CarTypeDTO implements Serializable {
-    @NotNull
+    private Long id;
     private Brand brand;
-    @NotNull
     private CarModel carModel;
-    //List price Incl. real VAT
     private Double listPriceInclRealVat;
-    @Digits(integer=10, fraction=0)
-    @Min(value = 1, message = "Category must be higher or equal to 1")
-    @Max(value = 7, message = "Category must be lower or equal to 7")
     private int category;
     private int co2;
     private int fiscHp;
@@ -39,6 +34,14 @@ public class CarTypeDTO implements Serializable {
     public CarTypeDTO() {
     }
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Brand getBrand() {
         return brand;

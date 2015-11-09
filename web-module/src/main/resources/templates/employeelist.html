@@ -10,14 +10,11 @@
 
 </head>
 <body>
-
 <div th:include="navbar"/>
 <div class="container">
 
-
     <div class="page-header text-center">
         <h1><span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet</h1>
-
         <p class="lead">Welcome to the <span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet!</p>
     </div>
     <div class="row">
@@ -49,7 +46,6 @@
                                                   th:href="${#mvc.url('EC#employeeForm').arg(0, employeeDTO.email).build()}" th:text="#{msgemployeelist.edit}">Edit</a>
                         </td>
                         <!--<td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('CTC#carTypeById').arg(0, carType.id).build()}">Details</a></td>-->
-
 
                     </tr>
                     </tbody>

@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Component(value = "brandConverter")
 public class BrandConverter implements Converter {
 
-
     @Autowired
     private CarTypeRepository carTypeRepository;
 
