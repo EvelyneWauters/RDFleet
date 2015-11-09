@@ -13,4 +13,5 @@ import java.util.List;
 @Repository
 public interface CarTypeRepository extends JpaRepository<CarType, Long>{
     List<CarType> findCarTypeByCategory(int i);
+    List<CarType> findAllByIsAvailableTrue();
 }

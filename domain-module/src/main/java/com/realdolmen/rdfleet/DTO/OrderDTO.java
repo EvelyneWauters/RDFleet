@@ -1,34 +1,37 @@
 package com.realdolmen.rdfleet.DTO;
 
+import com.realdolmen.rdfleet.entities.car.Car;
+import com.realdolmen.rdfleet.entities.car.CarType;
+import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by JDOAX80 on 5/11/2015.
  */
-public class OrderDTO {
-    private Long id;
-    private CarTypeDTO carTypeDTO;
+public class OrderDTO extends AbstractDTO {
+    private CarType carType;
     private Employee employee;
-    private List<CarOptionDTO> optionDTOList;
+    private List<CarOption> optionList;
 
 
     public OrderDTO() {
     }
 
-    public OrderDTO(CarTypeDTO carTypeDTO, Employee employee, List<CarOptionDTO> optionDTOList) {
-        this.carTypeDTO = carTypeDTO;
+    public OrderDTO(CarType carType, Employee employee, List<CarOption> optionList) {
+        this.carType = carType;
         this.employee = employee;
-        this.optionDTOList = optionDTOList;
+        this.optionList = optionList;
     }
 
-    public List<CarOptionDTO> getOptionDTOList() {
-        return optionDTOList;
+    public List<CarOption> getOptionList() {
+        return optionList;
     }
 
-    public void setOptionDTOList(List<CarOptionDTO> optionDTOList) {
-        this.optionDTOList = optionDTOList;
+    public void setOptionList(List<CarOption> optionList) {
+        this.optionList = optionList;
     }
 
     public Employee getEmployee() {
@@ -39,19 +42,13 @@ public class OrderDTO {
         this.employee = employee;
     }
 
-    public CarTypeDTO getCarTypeDTO() {
-        return carTypeDTO;
+    public CarType getCarType() {
+        return carType;
     }
 
-    public void setCarTypeDTO(CarTypeDTO carTypeDTO) {
-        this.carTypeDTO = carTypeDTO;
+    public void setCarType(CarType carType) {
+        this.carType = carType;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
 }

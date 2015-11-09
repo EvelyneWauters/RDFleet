@@ -14,6 +14,7 @@ import java.io.Serializable;
 @Embeddable
 public class Brand implements Serializable{
 
+    @Column(nullable = false)
     private String name;
 
     public Brand() {

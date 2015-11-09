@@ -85,9 +85,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     public void updateEmployee(EmployeeDTO employeeDTO)    {
         Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
-        employee.setFunctionalLevel(employeeDTO.getFunctionalLevel());
-        employee.setActive(employeeDTO.getActive());
-        employeeRepository.save(employee);
+        if(checkIfValidEntity(employee)) {
+            employee.setFunctionalLevel(employeeDTO.getFunctionalLevel());
+            employee.setActive(employeeDTO.getActive());
+            employeeRepository.save(employee);
+        }
     }
 
+
+    public boolean checkIfValidEntity(Employee employee) {
+        int functionalLevel = employee.getFunctionalLevel();
+        if (functionalLevel < 1 || functionalLevel > 7)
+            throw new IllegalArgumentException("The functional level can not be lower than 1 or higher than 7!");
+        return true;
+    }
 }

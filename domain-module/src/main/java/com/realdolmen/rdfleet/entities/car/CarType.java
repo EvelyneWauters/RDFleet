@@ -5,8 +5,6 @@ import com.realdolmen.rdfleet.entities.car.embedabbles.Brand;
 import com.realdolmen.rdfleet.entities.car.embedabbles.CarModel;
 import com.realdolmen.rdfleet.entities.car.enums.FuelType;
 import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
-import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -21,16 +19,10 @@ import javax.validation.constraints.*;
 public class CarType extends AbstractEntity implements Serializable{
 
     @Embedded
-    @NotNull
     private Brand brand;
     @Embedded
-    @NotNull
     private CarModel carModel;
-    //List price Incl. real VAT
     private Double listPriceInclRealVat;
-    @Digits(integer=10, fraction=0)
-    @Min(value = 1, message = "Category must be higher or equal to 1")
-    @Max(value = 7, message = "Category must be lower or equal to 7")
     private int category;
     private int co2;
     @Column(name = "fiscHp")
@@ -39,10 +31,8 @@ public class CarType extends AbstractEntity implements Serializable{
     private FuelType fuelType;
     @Enumerated(EnumType.STRING)
     private WinterTyresRimType winterTyresRimType;
-    //IDEAL KM according to type of car
     @Column(name = "idealKm")
     private int idealKm = 0;
-    //max. KM or 60 months on request of driver
     @Column(name = "maxKm")
     private int maxKm = 0;
     private Double benefitInKindPerMonth;
@@ -90,12 +80,7 @@ public class CarType extends AbstractEntity implements Serializable{
     }
 
     public void setCategory(int category) {
-        if(category >= 1 && category <= 7) {
-            this.category = category;
-        }
-        else {
-            throw new IllegalArgumentException("The category can not be lower than 1 or higher than 7!");
-        }
+        this.category = category;
     }
 
     public int getCo2() {

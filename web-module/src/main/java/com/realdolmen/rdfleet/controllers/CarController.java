@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.validation.Valid;
+
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.fromMappingName;
 
 /**
@@ -37,7 +39,7 @@ public class CarController {
 
 
     @RequestMapping(value="/newcar", method=RequestMethod.POST)
-    public String createCar(@PathVariable Car car)  {
+    public String createCar(@PathVariable @Valid Car car)  {
         carServiceImpl.createCar(car);
         return "cars";
     }

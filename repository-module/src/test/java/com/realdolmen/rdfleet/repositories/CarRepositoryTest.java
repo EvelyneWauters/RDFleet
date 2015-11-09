@@ -57,8 +57,11 @@ public class CarRepositoryTest extends RepositoryTest {
         carRepository.save(car);
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = DataIntegrityViolationException.class)
     public void carCantBeCreatedWithoutCarType() {
+        car.setNumberPlate("1-JNL-715");
+        car.setVinNumber("145");
+        car.setStartLeasing(LocalDate.now());
         carRepository.save(car);
     }
 
@@ -78,20 +81,26 @@ public class CarRepositoryTest extends RepositoryTest {
         carRepository.save(car2);
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = DataIntegrityViolationException.class)
     public void carCantBeCreatedWithoutVinNumber() {
         car.setCarType(carType);
+        car.setNumberPlate("1-JNL-715");
+        car.setStartLeasing(LocalDate.now());
         carTypeRepository.save(carType);
         carRepository.save(car);
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = DataIntegrityViolationException.class)
     public void carCantBeCreatedWithoutNumberPlate() {
+        car.setStartLeasing(LocalDate.now());
+        car.setVinNumber("145");
         carRepository.save(car);
     }
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = DataIntegrityViolationException.class)
     public void carCantBeCreatedWithoutStartLeasingDate() {
+        car.setVinNumber("145");
+        car.setNumberPlate("1-JNL-715");
         carRepository.save(car);
     }
 

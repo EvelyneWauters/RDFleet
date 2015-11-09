@@ -32,8 +32,6 @@ public class EmployeeController {
     //return all users (sorted on email)
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String employeeDTOList(Model model) {
-//        List<Employee> employees = (List) employeeService.getAllEmployees();
-//        List<EmployeeDTO> employeeDTOs = EmployeeMapper.mapEmployeeListToEmployeeDTOList(employees);
         List<EmployeeDTO> allEmployees = (List) employeeService.getAllEmployees();
         model.addAttribute(allEmployees);
         return "employeelist";

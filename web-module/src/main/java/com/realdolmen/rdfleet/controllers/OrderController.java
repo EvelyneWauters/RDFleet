@@ -29,8 +29,8 @@ public class OrderController {
 
     @RequestMapping(value = "/{id}/caroptions", method = RequestMethod.GET)
     public String getOrderOptions(@PathVariable("id") Long id, @ModelAttribute("car") Car car, Model model) {
-        car.setCarType(carTypeService.findById(id));
-        model.addAttribute("carOptions", carOptionService.findAllCarOptions());
+//        car.setCarType(carTypeService.findById(id));
+//        model.addAttribute("carOptions", carOptionService.findAllCarOptions());
         return "orderOptions";
     }
 

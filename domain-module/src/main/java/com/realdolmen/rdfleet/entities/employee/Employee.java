@@ -55,12 +55,7 @@ public class Employee extends User implements Serializable {
     }
 
     public void setFunctionalLevel(int functionalLevel) {
-        if(functionalLevel >= 1 && functionalLevel <= 7) {
-            this.functionalLevel = functionalLevel;
-        }
-        else {
-            throw new IllegalArgumentException("The functional level can not be lower than 1 or higher than 7!");
-        }
+        this.functionalLevel = functionalLevel;
     }
 
     public Double getMonthlyCost() {

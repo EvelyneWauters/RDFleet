@@ -14,7 +14,7 @@ import java.io.Serializable;
 /**
  * Created by JDOAX80 on 28/10/2015.
  */
-public class EmployeeDTO implements Serializable{
+public class EmployeeDTO extends AbstractDTO implements Serializable{
     /**
      * Class fields
      */

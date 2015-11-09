@@ -6,6 +6,7 @@
   http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
     <var name="carType" class="com.realdolmen.rdfleet.DTO.CarTypeDTO"/>
+    <var name="optionList" class="com.realdolmen.rdfleet.entities.car.options.OptionListObject"/>
     <!--<var name="order" class="com.realdolmen.rdfleet.entities.Order"/>-->
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
@@ -29,7 +30,7 @@
             <evaluate expression="carTypeServiceImpl.findCarByFunctionalLevel(currentEmployee.getFunctionalLevel()-1)"
                       result="flowScope.cartypesdowngrade" />
         </on-render>
-        <transition on="proceed" to="getChosenCarType" />
+        <transition on="proceed" to="getChosenCarType" validate="false"/>
     </view-state>
 
 
@@ -45,22 +46,23 @@
     <!-- Price is calculated dependent on the functional level + cartype + options-->
     <!-- Confirm the order                                                        -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
-    <view-state id="webflow-chooseoptions">
+    <view-state id="webflow-chooseoptions" model="optionList">
+        <on-render>
+            <evaluate expression="carOptionServiceImpl.findAllCarOptions()"
+                      result="flowScope.allOptions"/>
+        </on-render>
         <!--<binder>-->
             <!--<binding property=""></binding>-->
         <!--</binder>-->
 
         <transition on="confirm" to="createorder" >
-             <!-- save order here-->
-              <!--<evaluate expression="orderService.save(order)" result="flowScope.order"/>-->
-              <!--<evaluate expression="orderService.save(order)" result="flowScope.order"/>-->
         </transition>
         <!--<transition on="revise" to="webflow-choosecar" />-->
         <!--<transition on="cancel" to="webflow-cancellation" />-->
     </view-state>
 
     <action-state id="createorder">
-        <evaluate expression="orderServiceImpl.createOrder(chosenCarType, currentEmployee)"/>
+        <evaluate expression="orderServiceImpl.createOrder(flowScope.chosenCarType, currentEmployee, optionList )"/>
         <transition to="webflow-confirmation"/>
     </action-state>
 
