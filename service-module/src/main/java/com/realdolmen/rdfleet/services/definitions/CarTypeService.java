@@ -19,7 +19,9 @@ public interface CarTypeService {
 
     CarTypeDTO findById(Long id);
 
-    void createOrUpdateCarType(CarTypeDTO carTypeDTO);
+    void createCarType(CarTypeDTO carTypeDTO);
+
+    void updateExistingCarType(Long id, CarTypeDTO carTypeDTO);
 
     void removeCarTypeFromList(Long id);
 

@@ -1,10 +1,13 @@
 package com.realdolmen.rdfleet.controllers;
 
+import com.realdolmen.rdfleet.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
 import com.realdolmen.rdfleet.services.definitions.CarService;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.enums.FuelType;
+import com.realdolmen.rdfleet.services.definitions.CarTypeService;
 import com.realdolmen.rdfleet.services.implementations.CarTypeServiceImpl;
+import com.realdolmen.rdfleet.services.mappers.CarTypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,46 +38,73 @@ public class CarTypeController {
     //return all available cars (sorted on category)
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String carTypeList(Model model) {
-        List<CarType> catalog = carTypeServiceImpl.findAllAvailableCarTypes();
-        model.addAttribute(catalog);
+        List<CarTypeDTO> catalog = carTypeServiceImpl.findAllAvailableCarTypes();
+        model.addAttribute("carTypeList", catalog);
         return "cartypelist";
     }
 
 
+//    //GET-method of the create-page
+//    @RequestMapping(value = "/form", method = RequestMethod.GET)
+//    public String carTypeForm(@RequestParam(value = "id", required = false) Long carTypeId, Model model) {
+//        if (carTypeId != null) {
+//            model.addAttribute("carType", carTypeServiceImpl.findById(carTypeId));//Voegt een bestaande cartype toe aan het model
+//        } else {
+//            model.addAttribute("carType", new CarType()); //Voegt een nieuwe cartypeDTO toe aan het model
+//        }
+//        return "cartypeform";
+//    }
 
+
+    //POST-method of the create-page
+//    @RequestMapping(value = "/form", method = RequestMethod.POST)
+//    public String createCarType(@Valid CarType carType, BindingResult errors) {
+//        if(errors.hasErrors())   {
+//            return "cartypeform";
+//        }
+//        if(carType.getId() != null) {
+//
+//            CarType byId = carTypeServiceImpl.findById(carType.getId());
+//            carType.setVersionNumber(byId.getVersionNumber());
+//        }
+//        carTypeServiceImpl.createOrUpdateCarType(carType);
+//        return "redirect:" + fromMappingName("CTC#carTypeList").build();
+//    }
 
     //GET-method of the create-page
     @RequestMapping(value = "/form", method = RequestMethod.GET)
-    public String carTypeForm(@RequestParam(value = "id", required = false) Long carTypeId, Map<String, Object> model) {
+    public String carTypeForm(@RequestParam(value = "id", required = false) Long carTypeId, Model model) {
         if (carTypeId != null) {
-            model.put("carType", carTypeServiceImpl.findById(carTypeId));
+            model.addAttribute("carTypeDTO", carTypeServiceImpl.findById(carTypeId));//Voegt een bestaande cartypeDTO toe aan het model
         } else {
-            model.put("carType", new CarType());
+            model.addAttribute("carTypeDTO", new CarTypeDTO()); //Voegt een nieuwe cartypeDTO toe aan het model
         }
         return "cartypeform";
     }
 
 
-    //POST-method of the create-page
     @RequestMapping(value = "/form", method = RequestMethod.POST)
-    public String createCarType(@Valid CarType carType, BindingResult errors) {
-        if(errors.hasErrors())   {
+    public String createCarType(@Valid CarTypeDTO carTypeDTO, BindingResult errors) {
+        if (errors.hasErrors()) {
             return "cartypeform";
         }
-        if(carType.getId() != null) {
-            CarType byId = carTypeServiceImpl.findById(carType.getId());
-            carType.setVersionNumber(byId.getVersionNumber());
-        }
-        carTypeServiceImpl.createOrUpdateCarType(carType);
+        carTypeServiceImpl.createCarType(carTypeDTO);//creates a new carType
         return "redirect:" + fromMappingName("CTC#carTypeList").build();
     }
 
-
+    @RequestMapping(value= "/form/{carTypeId}", method = RequestMethod.POST)
+    public String updateCarType(@PathVariable("carTypeId") Long id, @Valid CarTypeDTO carTypeDTO, BindingResult errors) {
+        if (errors.hasErrors()) {
+            return "cartypeform";
+        }
+        carTypeServiceImpl.updateExistingCarType(id, carTypeDTO);//updates a carType
+        return "redirect:" + fromMappingName("CTC#carTypeList").build();
+    }
 
     //find carType by id and show details
     @RequestMapping(value = "/id/{id}", method = GET)
-    public String carTypeById(@PathVariable("id") Long carTypeId, Map<String, Object> model) {
-        model.put("carType", carTypeServiceImpl.findById(carTypeId));
+    public String carTypeById(@PathVariable("id") Long carTypeId, Model model) {
+        model.addAttribute("carType", carTypeServiceImpl.findById(carTypeId));
         return "cartypedetail";
     }
 
@@ -101,7 +131,6 @@ public class CarTypeController {
     //put winterRimTypes-enum values in a list so we can use it for the dropdown menu
     @ModelAttribute(value = "winterTyresRimTypes")
     public List<WinterTyresRimType> winterTyresRimTypes() {
-
         List<WinterTyresRimType> winterTyresRimTypes = new ArrayList<>();
         for (WinterTyresRimType g : WinterTyresRimType.values()) {
             winterTyresRimTypes.add(g);

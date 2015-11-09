@@ -30,9 +30,9 @@ public class BrowseController {
 
     @RequestMapping("/allcars")
     public String returnAllAvailableCarTypesForFunctionalLevel(Model model) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        List<CarType> carByFunctionalLevel = carTypeService.findCarByFunctionalLevel(employeeService.getEmployeeDtoByEmail(auth.getName()).getFunctionalLevel());
-        model.addAttribute("carList", carByFunctionalLevel);
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        List<CarType> carByFunctionalLevel = carTypeService.findCarByFunctionalLevel(employeeService.getEmployeeDtoByEmail(auth.getName()).getFunctionalLevel());
+//        model.addAttribute("carList", carByFunctionalLevel);
         return "browse-cars";
     }
 

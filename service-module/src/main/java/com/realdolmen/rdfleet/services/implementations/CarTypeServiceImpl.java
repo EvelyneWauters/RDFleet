@@ -10,16 +10,18 @@ import com.realdolmen.rdfleet.services.mappers.CarTypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by EWTAX45 on 30/10/2015.
  */
 @Service
-public class CarTypeServiceImpl implements CarTypeService{
+public class CarTypeServiceImpl implements CarTypeService {
 
     private final CarTypeRepository carTypeRepository;
 
@@ -47,23 +49,69 @@ public class CarTypeServiceImpl implements CarTypeService{
 //    }
 
     @Override
-    public CarType findById(Long id)    {
-        return carTypeRepository.findOne(id);
+    public List<CarTypeDTO> findAllCarTypes() {
+        List<CarType> allCarTypes = carTypeRepository.findAll();
+        return mapEntityListToDTOList(allCarTypes);
+    }
+
+
+    @Override
+    public List<CarTypeDTO> findCarByFunctionalLevel(int i) {
+        List<CarType> allCarTypes = carTypeRepository.findCarTypeByCategory(i);
+        return mapEntityListToDTOList(allCarTypes);
+    }
+
+
+    @Override
+    public List<CarTypeDTO> findAllAvailableCarTypes() {
+        List<CarType> allCarTypes = carTypeRepository.findAllByIsAvailableTrue();
+        return mapEntityListToDTOList(allCarTypes);
+    }
+
+    public List<CarTypeDTO> mapEntityListToDTOList(List<CarType> carTypes) {
+        List<CarTypeDTO> allCarTypeDTOs = new ArrayList<>();
+        carTypes.forEach(carType -> {
+            allCarTypeDTOs.add(CarTypeMapper.mapCarTypeObjectToCarTypeDTO(carType));
+        });
+        return allCarTypeDTOs;
     }
 
     @Override
-    public void createOrUpdateCarType(CarType carType)  {
+    public CarTypeDTO findById(Long id) {
+        return CarTypeMapper.mapCarTypeObjectToCarTypeDTO(carTypeRepository.findOne(id));
+    }
+
+    @Override
+//    @Transactional(readOnly = false)
+    public void createCarType(CarTypeDTO carTypeDTO) {
+        CarType carType = new CarType();
+        carType = CarTypeMapper.mapCarTypeDTOToCarTypeObject(carTypeDTO, carType);
         checkIfValidEntity(carType);
         carTypeRepository.save(carType);
     }
 
+
+    @Override
+//    @Transactional(readOnly = false)
+    public void updateExistingCarType(Long id, CarTypeDTO carTypeDTO) {
+        Optional<CarType> carTypeForGivenId = Optional.ofNullable(carTypeRepository.findOne(id));
+        if (carTypeForGivenId.isPresent()) {
+            CarType editedCarType = CarTypeMapper.mapCarTypeDTOToCarTypeObject(carTypeDTO, carTypeRepository.findOne(id));//The edited carType
+            carTypeRepository.save(editedCarType);
+        } else {
+            throw new IllegalArgumentException("there is no cartype found with id " + id);
+        }
+
+    }
+
     //will not remove the CarType, but set the 'is available'-flag to false
     @Override
+//    @Transactional(readOnly = false)
     public void removeCarTypeFromList(Long id) {
         CarType carType = carTypeRepository.findOne(id);
         carType.setIsAvailable(false);
         if (carType != null) {
-            createOrUpdateCarType(carType);
+            carTypeRepository.save(carType);
         }
     }
 

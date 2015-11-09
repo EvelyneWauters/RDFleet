@@ -6,47 +6,69 @@ import com.realdolmen.rdfleet.entities.car.enums.FuelType;
 import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.persistence.Embedded;
+import javax.validation.constraints.*;
 
 /**
  * Created by JDOAX80 on 5/11/2015.
  */
-public class CarTypeDTO {
+public class CarTypeDTO extends AbstractDTO{
+    private final String URL_PATTERN = "^(https?|ftp|file):\\/\\/[-a-zA-Z0-9+&@#\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\\/%=~_|]";
+
     @NotNull
     private Brand brand;
     @NotNull
+    @Embedded
     private CarModel carModel;
     @NotNull
     private Double listPriceInclRealVat;
     @Digits(integer = 10, fraction = 0, message = "This must be a number")
     @Min(value = 1, message = "Category must be higher or equal to 1")// {category.errorMessage.mustBeHigherThanOne}
     @Max(value = 7, message = "Category must be lower or equal to 7")// {category.errorMessage.mustBeLowerThanSeven}
-    private int category;
-    @Digits(integer = 10, fraction = 0)
+    @NotNull(message = "This field can't be left empty")
+    private Integer category;
+    @Digits(integer = 10, fraction = 0,  message = "This must be a number")
     @Min(value = 0, message = "Value can't be negative")
-    private int co2;
-    @Digits(integer = 10, fraction = 0)
+    @NotNull(message = "This field can't be left empty")
+
+    private Integer co2;
+    @Digits(integer = 10, fraction = 0,  message = "This must be a number")
     @Min(value = 0, message = "Value can't be negative")
-    private int fiscHp;
+    @NotNull(message = "This field can't be left empty")
+    private Integer fiscHp;
     @NotNull
     private FuelType fuelType;
     @NotNull
     private WinterTyresRimType winterTyresRimType;
-    @Digits(integer = 10, fraction = 0)
+    @Digits(integer = 10, fraction = 0,  message = "This must be a number")
     @Min(value = 0, message = "Value can't be negative")
-    private int idealKm = 0;
-    @Digits(integer = 10, fraction = 0)
+    @NotNull(message = "This field can't be left empty")
+    private Integer idealKm = 0;
+    @Digits(integer = 10, fraction = 0,  message = "This must be a number")
     @Min(value = 0, message = "Value can't be negative")
-    private int maxKm = 0;
-    @NotNull
+    @NotNull(message = "This field can't be left empty")
+    private Integer maxKm = 0;
+    @NotNull(message = "This field can't be left empty")
     private Double benefitInKindPerMonth;
-    @NotNull
+    @NotNull(message = "This field can't be left empty")
     private Double amountUpgradeInclVat;
-    @NotNull
+    @NotNull(message = "This field can't be left empty")
     private Double amountDowngradeInclVat;
+    @NotNull
+    private boolean isAvailable;
+
+    //CarModel
+    @Size(min = 1, message = "This field can not be left empty")
+    @NotNull
+    private String modelName;
+    private String modelDesignation;
+    @Digits(integer = 10, fraction = 0, message = "This must be a number")
+    @Min(value = 0, message = "Value can't be negative")
+    @NotNull(message = "This field can't be left empty")
+    private Integer horsePower;
+    private String versionName;
+    @Pattern(message = "Please enter a valid url", regexp = URL_PATTERN)
+    private String imageUrl;
 
     public Brand getBrand() {
         return brand;
@@ -62,6 +84,9 @@ public class CarTypeDTO {
 
     public void setCarModel(CarModel carModel) {
         this.carModel = carModel;
+        this.horsePower = carModel.getHorsePower();
+        this.modelName = carModel.getModelName();
+        this.imageUrl = carModel.getImageUrl();
     }
 
     public Double getListPriceInclRealVat() {
@@ -72,27 +97,27 @@ public class CarTypeDTO {
         this.listPriceInclRealVat = listPriceInclRealVat;
     }
 
-    public int getCategory() {
+    public Integer getCategory() {
         return category;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(Integer category) {
         this.category = category;
     }
 
-    public int getCo2() {
+    public Integer getCo2() {
         return co2;
     }
 
-    public void setCo2(int co2) {
+    public void setCo2(Integer co2) {
         this.co2 = co2;
     }
 
-    public int getFiscHp() {
+    public Integer getFiscHp() {
         return fiscHp;
     }
 
-    public void setFiscHp(int fiscHp) {
+    public void setFiscHp(Integer fiscHp) {
         this.fiscHp = fiscHp;
     }
 
@@ -112,15 +137,15 @@ public class CarTypeDTO {
         this.winterTyresRimType = winterTyresRimType;
     }
 
-    public int getIdealKm() {
+    public Integer getIdealKm() {
         return idealKm;
     }
 
-    public void setIdealKm(int idealKm) {
+    public void setIdealKm(Integer idealKm) {
         this.idealKm = idealKm;
     }
 
-    public int getMaxKm() {
+    public Integer getMaxKm() {
         return maxKm;
     }
 
@@ -150,5 +175,57 @@ public class CarTypeDTO {
 
     public void setAmountDowngradeInclVat(Double amountDowngradeInclVat) {
         this.amountDowngradeInclVat = amountDowngradeInclVat;
+    }
+
+    public boolean getIsAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public String getModelDesignation() {
+        return modelDesignation;
+    }
+
+    public void setModelDesignation(String modelDesignation) {
+        this.modelDesignation = modelDesignation;
+    }
+
+    public Integer getHorsePower() {
+        return horsePower;
+    }
+
+    public void setHorsePower(Integer horsePower) {
+        this.horsePower = horsePower;
+    }
+
+    public String getVersionName() {
+        return versionName;
+    }
+
+    public void setVersionName(String versionName) {
+        this.versionName = versionName;
     }
 }

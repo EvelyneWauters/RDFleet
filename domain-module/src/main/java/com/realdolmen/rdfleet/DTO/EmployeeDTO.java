@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Created by JDOAX80 on 28/10/2015.
  */
-public class EmployeeDTO {
+public class EmployeeDTO extends AbstractDTO{
     /**
      * Class fields
      */

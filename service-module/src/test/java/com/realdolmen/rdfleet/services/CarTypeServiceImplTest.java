@@ -36,7 +36,7 @@ public class CarTypeServiceImplTest extends ServicesTest {
 
     @Test
     public void createOrUpdateCarTypeCanBeCalledFromService() {
-        carTypeService.createOrUpdateCarType(car.getCarType());
+        //carTypeService.createCarType(car.getCarType());
         Mockito.verify(carTypeRepository).save(car.getCarType());
     }
 
