@@ -15,7 +15,7 @@ insert into carType (id, category, name, modelName, modelDesignation, horsePower
                      idealKm, maxKm,
                      fuelType, winterTyresRimType, isAvailable)
   values (1, 2, 'Audi', 'A3', 'Sportback 1,6 tdi', 110, 'ultra attraction', 'http://www.audi-me.com/content/dam/ngw/product/a3/a3_sportback/my_2013/multimedia/704x396_aa3_d_11109.jpg',
-          89, 25048.9890725, 9, 104.17, 0, 3924.43032005105,
+          89, 25048, 9, 104.17, 0, 3924.45,
           140000, 180000,
           'DIESEL', 'STEEL', true);
 
@@ -25,7 +25,7 @@ insert into carType (id, category, name, modelName, modelDesignation, horsePower
                      idealKm, maxKm,
                      fuelType, winterTyresRimType, isAvailable)
 values (2, 1, 'Seat', 'Ibiza', 'ST 1,6 crtdi', 105, 'Style ecomotive', 'http://www.topgear.nl/image/popup/seat-ibiza-sc-12-tsi-fr-full-12062012081532-7062.jpg',
-        109, 19945.482528, 7, 104.17, 0, 2479.68653742731,
+        109, 19945, 7, 104.17, 0, 2479.78,
         140000, 180000,
         'DIESEL', 'STEEL', true);
 

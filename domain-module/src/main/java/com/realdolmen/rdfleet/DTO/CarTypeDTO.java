@@ -15,59 +15,57 @@ import javax.validation.constraints.*;
 public class CarTypeDTO extends AbstractDTO{
     private final String URL_PATTERN = "^(https?|ftp|file):\\/\\/[-a-zA-Z0-9+&@#\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\\/%=~_|]";
 
-    @NotNull
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Brand brand;
-    @NotNull
-    @Embedded
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private CarModel carModel;
-    @NotNull
-    private Double listPriceInclRealVat;
-    @Digits(integer = 10, fraction = 0, message = "This must be a number")
-    @Min(value = 1, message = "Category must be higher or equal to 1")// {category.errorMessage.mustBeHigherThanOne}
-    @Max(value = 7, message = "Category must be lower or equal to 7")// {category.errorMessage.mustBeLowerThanSeven}
-    @NotNull(message = "This field can't be left empty")
+    @Digits(integer = 10, fraction = 0, message = "{field.errorMessage.mustBeANumber}")
+    @Min(value = 1, message = "{category.errorMessage.mustBeHigherThanOne}")//"Category must be higher or equal to 1")
+    @Max(value = 7, message = "{category.errorMessage.mustBeLowerThanSeven}")//"Category must be lower or equal to 7")
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Integer category;
-    @Digits(integer = 10, fraction = 0,  message = "This must be a number")
-    @Min(value = 0, message = "Value can't be negative")
-    @NotNull(message = "This field can't be left empty")
-
+    @Digits(integer = 10, fraction = 0,  message = "{field.errorMessage.mustBeANumber}")
+    @Min(value = 0, message = "{field.errorMessage.mustNotBeNegative}")
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Integer co2;
-    @Digits(integer = 10, fraction = 0,  message = "This must be a number")
-    @Min(value = 0, message = "Value can't be negative")
-    @NotNull(message = "This field can't be left empty")
+    @Digits(integer = 10, fraction = 0,  message = "{field.errorMessage.mustBeANumber}")
+    @Min(value = 0, message = "{field.errorMessage.mustNotBeNegative}")
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Integer fiscHp;
     @NotNull
     private FuelType fuelType;
     @NotNull
     private WinterTyresRimType winterTyresRimType;
-    @Digits(integer = 10, fraction = 0,  message = "This must be a number")
-    @Min(value = 0, message = "Value can't be negative")
-    @NotNull(message = "This field can't be left empty")
+    @Digits(integer = 10, fraction = 0,  message = "{field.errorMessage.mustBeANumber}")
+    @Min(value = 0, message = "{field.errorMessage.mustNotBeNegative}")
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Integer idealKm = 0;
-    @Digits(integer = 10, fraction = 0,  message = "This must be a number")
-    @Min(value = 0, message = "Value can't be negative")
-    @NotNull(message = "This field can't be left empty")
+    @Digits(integer = 10, fraction = 0,  message = "{field.errorMessage.mustBeANumber}")
+    @Min(value = 0, message = "{field.errorMessage.mustNotBeNegative}")
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Integer maxKm = 0;
-    @NotNull(message = "This field can't be left empty")
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Double benefitInKindPerMonth;
-    @NotNull(message = "This field can't be left empty")
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Double amountUpgradeInclVat;
-    @NotNull(message = "This field can't be left empty")
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Double amountDowngradeInclVat;
+    @NotNull(message = "{field.errorMessage.isEmpty}")
+    private Double listPriceInclRealVat;
     @NotNull
     private boolean isAvailable;
 
     //CarModel
-    @Size(min = 1, message = "This field can not be left empty")
+    @Size(min = 1, message = "{field.errorMessage.isEmpty}")
     @NotNull
     private String modelName;
     private String modelDesignation;
-    @Digits(integer = 10, fraction = 0, message = "This must be a number")
-    @Min(value = 0, message = "Value can't be negative")
-    @NotNull(message = "This field can't be left empty")
+    @Digits(integer = 10, fraction = 0, message = "{field.errorMessage.mustBeANumber}")
+    @Min(value = 0, message = "{field.errorMessage.mustNotBeNegative}")
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Integer horsePower;
     private String versionName;
-    @Pattern(message = "Please enter a valid url", regexp = URL_PATTERN)
+    @Pattern(message = "{field.errorMessage.invalidUrl}", regexp = URL_PATTERN)
     private String imageUrl;
 
     public Brand getBrand() {
@@ -227,5 +225,21 @@ public class CarTypeDTO extends AbstractDTO{
 
     public void setVersionName(String versionName) {
         this.versionName = versionName;
+    }
+
+    @Override
+    public String toString() {
+        return
+               printIfNotNull(brand.getName()) + " " + printIfNotNull(modelName) + " " + printIfNotNull(carModel.getModelDesignation()) + " "  + printIfNotNull(String.valueOf(horsePower)) + " pk" + " "  + printIfNotNull(carModel.getVersionName());
+    }
+
+
+    private String printIfNotNull(String stringToCheck) {
+        if(stringToCheck != null && !stringToCheck.isEmpty()) {
+            return stringToCheck;
+        }
+        else {
+            return "";
+        }
     }
 }

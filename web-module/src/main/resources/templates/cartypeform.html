@@ -18,9 +18,8 @@
         <h2 th:text = "#{msgcartypeform.h2}">Add a new car to the catalog</h2>
     </div>
     <div th:if="${carTypeDTO.id != null}">
-        <h2 th:text="${'Edit ' + carTypeDTO.brand.name + ' ' + carTypeDTO.carModel.toString()}"/>
+        <h2 th:text="${#messages.msg('msg.button.edit') + ' ' + carTypeDTO.toString()}"> </h2>
     </div>
-
 
     <form role="form" method="post" th:object="${carTypeDTO}">
 
@@ -94,7 +93,7 @@
 
         <div class="form-group" th:class="${#fields.hasErrors('listPriceInclRealVat')}? 'has-error'">
             <label th:for="${#ids.next('listPriceInclRealVat')}" th:text="#{msgcartypeform.listPriceInclRealVat}"/>
-            <input type="number" min="0" th:field="*{listPriceInclRealVat}" class="form-control"/>
+            <input type="number" step="any" min="0" th:field="*{listPriceInclRealVat}" class="form-control"/>
             <span th:if="${#fields.hasErrors('listPriceInclRealVat')}" class="help-block"
                   th:errors="*{listPriceInclRealVat}"></span>
         </div>
@@ -107,21 +106,21 @@
 
         <div class="form-group" th:class="${#fields.hasErrors('benefitInKindPerMonth')}? 'has-error'">
             <label th:for="${#ids.next('benefitInKindPerMonth')}" th:text="#{msgcartypeform.benefitInKindPerMonth}"/>
-            <input type="number" min="0" th:field="*{benefitInKindPerMonth}" class="form-control"/>
+            <input type="number"  step="any"min="0" th:field="*{benefitInKindPerMonth}" class="form-control"/>
             <span th:if="${#fields.hasErrors('benefitInKindPerMonth')}" class="help-block"
                   th:errors="*{benefitInKindPerMonth}"></span>
         </div>
 
         <div class="form-group" th:class="${#fields.hasErrors('amountUpgradeInclVat')}? 'has-error'">
             <label th:for="${#ids.next('amountUpgradeInclVat')}" th:text="#{msgcartypeform.amountUpgradeInclVat}"/>
-            <input type="number" min="0" th:field="*{amountUpgradeInclVat}" class="form-control"/>
+            <input type="number" step="any" min="0" th:field="*{amountUpgradeInclVat}" class="form-control"/>
             <span th:if="${#fields.hasErrors('amountUpgradeInclVat')}" class="help-block"
                   th:errors="*{amountUpgradeInclVat}"></span>
         </div>
 
         <div class="form-group" th:class="${#fields.hasErrors('amountDowngradeInclVat')}? 'has-error'">
             <label th:for="${#ids.next('amountDowngradeInclVat')}" th:text="#{msgcartypeform.amountDowngradeInclVat}"/>
-            <input type="number" min="0" th:field="*{amountDowngradeInclVat}" class="form-control"/>
+            <input type="number" step="any" min="0" th:field="*{amountDowngradeInclVat}" class="form-control"/>
             <span th:if="${#fields.hasErrors('amountDowngradeInclVat')}" class="help-block"
                   th:errors="*{amountDowngradeInclVat}"></span>
         </div>
