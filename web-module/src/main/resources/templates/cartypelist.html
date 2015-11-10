@@ -49,7 +49,7 @@
                     <tr th:each="carTypeDTO : ${carTypeList}">
                         <td th:text="${carTypeDTO.category}"></td>
                         <td th:text="${carTypeDTO.brand.name}"></td>
-                        <td th:text="${carTypeDTO.modelName}"></td>
+                        <td th:text="${carTypeDTO.carModelDTO.modelName}"></td>
                         <td th:text="${carTypeDTO.co2}"></td>
                         <td th:text="${carTypeDTO.listPriceInclRealVat}"></td>
                         <td th:text="${carTypeDTO.isAvailable}"></td>

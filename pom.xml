@@ -29,6 +29,7 @@
 		<module>service-module</module>
 		<module>security-module</module>
 		<module>scheduled-job-module</module>
+		<module>webservice-module</module>
 	</modules>
 
     <dependencyManagement>

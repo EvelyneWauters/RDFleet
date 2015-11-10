@@ -7,22 +7,22 @@ import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Embedded;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
-import java.io.Serializable;
 
 /**
  * Created by JDOAX80 on 5/11/2015.
  */
-public class CarTypeDTO extends AbstractDTO implements Serializable{
+public class CarTypeDTO extends AbstractDTO{
     private final String URL_PATTERN = "^(https?|ftp|file):\\/\\/[-a-zA-Z0-9+&@#\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\\/%=~_|]";
 
     @NotNull(message = "{field.errorMessage.isEmpty}")
     private Brand brand;
-    @NotNull(message = "{field.errorMessage.isEmpty}")
-    private CarModel carModel;
+    @Valid
+    private CarModelDTO carModelDTO;
     @Digits(integer = 10, fraction = 0, message = "{field.errorMessage.mustBeANumber}")
-    @Min(value = 1, message = "{category.errorMessage.mustBeHigherThanOne}")//"Category must be higher or equal to 1")
-    @Max(value = 7, message = "{category.errorMessage.mustBeLowerThanSeven}")//"Category must be lower or equal to 7")
+    @Min(value = 1, message = "{category.errorMessage.mustBeHigherThanOne}")
+    @Max(value = 7, message = "{category.errorMessage.mustBeLowerThanSeven}")
     @NotNull(message = "{field.errorMessage.isEmpty}")
     private Integer category;
     @Digits(integer = 10, fraction = 0,  message = "{field.errorMessage.mustBeANumber}")
@@ -33,9 +33,9 @@ public class CarTypeDTO extends AbstractDTO implements Serializable{
     @Min(value = 0, message = "{field.errorMessage.mustNotBeNegative}")
     @NotNull(message = "{field.errorMessage.isEmpty}")
     private Integer fiscHp;
-    @NotNull
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private FuelType fuelType;
-    @NotNull
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private WinterTyresRimType winterTyresRimType;
     @Digits(integer = 10, fraction = 0,  message = "{field.errorMessage.mustBeANumber}")
     @Min(value = 0, message = "{field.errorMessage.mustNotBeNegative}")
@@ -56,18 +56,6 @@ public class CarTypeDTO extends AbstractDTO implements Serializable{
     @NotNull
     private boolean isAvailable;
 
-    //CarModel
-    @Size(min = 1, message = "{field.errorMessage.isEmpty}")
-    @NotNull
-    private String modelName;
-    private String modelDesignation;
-    @Digits(integer = 10, fraction = 0, message = "{field.errorMessage.mustBeANumber}")
-    @Min(value = 0, message = "{field.errorMessage.mustNotBeNegative}")
-    @NotNull(message = "{field.errorMessage.isEmpty}")
-    private Integer horsePower;
-    private String versionName;
-    @Pattern(message = "{field.errorMessage.invalidUrl}", regexp = URL_PATTERN)
-    private String imageUrl;
 
     public Brand getBrand() {
         return brand;
@@ -77,15 +65,12 @@ public class CarTypeDTO extends AbstractDTO implements Serializable{
         this.brand = brand;
     }
 
-    public CarModel getCarModel() {
-        return carModel;
+    public CarModelDTO getCarModelDTO() {
+        return carModelDTO;
     }
 
-    public void setCarModel(CarModel carModel) {
-        this.carModel = carModel;
-        this.horsePower = carModel.getHorsePower();
-        this.modelName = carModel.getModelName();
-        this.imageUrl = carModel.getImageUrl();
+    public void setCarModelDTO(CarModelDTO carModelDTO) {
+        this.carModelDTO = carModelDTO;
     }
 
     public Double getListPriceInclRealVat() {
@@ -148,7 +133,7 @@ public class CarTypeDTO extends AbstractDTO implements Serializable{
         return maxKm;
     }
 
-    public void setMaxKm(int maxKm) {
+    public void setMaxKm(Integer maxKm) {
         this.maxKm = maxKm;
     }
 
@@ -182,65 +167,5 @@ public class CarTypeDTO extends AbstractDTO implements Serializable{
 
     public void setIsAvailable(boolean isAvailable) {
         this.isAvailable = isAvailable;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public String getModelName() {
-        return modelName;
-    }
-
-    public void setModelName(String modelName) {
-        this.modelName = modelName;
-    }
-
-    public String getModelDesignation() {
-        return modelDesignation;
-    }
-
-    public void setModelDesignation(String modelDesignation) {
-        this.modelDesignation = modelDesignation;
-    }
-
-    public Integer getHorsePower() {
-        return horsePower;
-    }
-
-    public void setHorsePower(Integer horsePower) {
-        this.horsePower = horsePower;
-    }
-
-    public String getVersionName() {
-        return versionName;
-    }
-
-    public void setVersionName(String versionName) {
-        this.versionName = versionName;
-    }
-
-    @Override
-    public String toString() {
-        return
-               printIfNotNull(brand.getName()) + " " + printIfNotNull(modelName) + " " + printIfNotNull(carModel.getModelDesignation()) + " "  + printIfNotNull(String.valueOf(horsePower)) + " pk" + " "  + printIfNotNull(carModel.getVersionName());
-    }
-
-
-    private String printIfNotNull(String stringToCheck) {
-        if(stringToCheck != null && !stringToCheck.isEmpty()) {
-            return stringToCheck;
-        }
-        else {
-            return "";
-        }
     }
 }
