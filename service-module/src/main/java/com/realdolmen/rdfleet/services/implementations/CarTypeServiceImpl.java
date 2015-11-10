@@ -30,24 +30,6 @@ public class CarTypeServiceImpl implements CarTypeService {
         this.carTypeRepository = carTypeRepository;
     }
 
-//    @Override
-//    public List<CarType> findAllCarTypes()  {
-//        return carTypeRepository.findAll();
-//    }
-//
-//
-//    @Override
-//    public List<CarType> findCarByFunctionalLevel(int i)    {
-//        return carTypeRepository.findCarTypeByCategory(i);
-//    }
-//
-//
-//    @Override
-//    public List<CarType> findAllAvailableCarTypes()  {
-//        List<CarType> catalog = carTypeRepository.findAllByIsAvailableTrue();
-//        return catalog;
-//    }
-
     @Override
     public List<CarTypeDTO> findAllCarTypes() {
         List<CarType> allCarTypes = carTypeRepository.findAll();

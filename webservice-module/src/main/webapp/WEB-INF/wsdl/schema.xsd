@@ -1,0 +1,40 @@
+<?xml version="1.0" ?>
+
+<!-- My custom XSD file -->
+
+<xs:schema xmlns:tns="http://realdolmen.com/"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           version="1.0"
+           targetNamespace="http://realdolmen.com/">
+
+    <xs:element name="updateCarStatistics" type="tns:employees"/>
+    <xs:element name="updateCarStatisticsResponse" type="tns:success"/>
+
+
+    <xs:complexType name="success">
+        <xs:sequence>
+            <xs:element name="responseMessage" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="employees">
+        <xs:sequence>
+            <xs:element name="employee" maxOccurs="unbounded">
+                <xs:complexType>
+                    <xs:all>
+                        <xs:element name="car">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="mileage"/>
+                                    <xs:element name="amountOfRefuels"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                        <xs:element name="firstName"/>
+                        <xs:element name="lastName"/>
+                    </xs:all>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

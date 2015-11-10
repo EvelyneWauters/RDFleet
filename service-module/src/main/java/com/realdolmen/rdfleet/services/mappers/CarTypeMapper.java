@@ -13,8 +13,8 @@ public class CarTypeMapper {
     public static CarType mapCarTypeDTOToCarTypeObject(CarTypeDTO dto, CarType carType) {
         carType.setId(dto.getId());
         carType.setCategory(dto.getCategory());
-        carType.setCarModel(dto.getCarModel());
         carType.setBrand(dto.getBrand());
+        carType.setCarModel(mapCarModelDTOToCarModelObject(dto.getCarModelDTO(), new CarModel()));
         carType.setFiscHp(dto.getFiscHp());
         carType.setCo2(dto.getCo2());
         carType.setAmountDowngradeInclVat(dto.getAmountDowngradeInclVat());
@@ -26,36 +26,14 @@ public class CarTypeMapper {
         carType.setWinterTyresRimType(dto.getWinterTyresRimType());
         carType.setListPriceInclRealVat(dto.getListPriceInclRealVat());
         carType.setIsAvailable(carType.getIsAvailable());
-        carType.getCarModel().setModelName(dto.getModelName());
-        carType.getCarModel().setImageUrl(dto.getImageUrl());
-        carType.getCarModel().setHorsePower(dto.getHorsePower());
         return carType;
     }
-
-//    private static CarModel mapCarModelDTOToCarModelObject(CarModelDTO carModelDTO, CarModel carModel) {
-//        carModel.setModelName(carModelDTO.getModelName());
-//        carModel.setImageUrl(carModelDTO.getImageUrl());
-//        carModel.setHorsePower(carModelDTO.getHorsePower());
-//        carModel.setModelDesignation(carModelDTO.getModelDesignation());
-//        carModel.setVersionName(carModelDTO.getVersionName());
-//        return carModel;
-//    }
-
-//    private static CarModelDTO mapCarModelToCarModelDTO(CarModel carModel) {
-//        CarModelDTO carModelDTO = new CarModelDTO();
-//        carModelDTO.setModelName(carModel.getModelName());
-//        carModelDTO.setImageUrl(carModel.getImageUrl());
-//        carModelDTO.setHorsePower(carModel.getHorsePower());
-//        carModelDTO.setModelDesignation(carModel.getModelDesignation());
-//        carModel.setVersionName(carModel.getVersionName());
-//        return carModelDTO;
-//    }
 
     public static CarTypeDTO mapCarTypeObjectToCarTypeDTO(CarType carType) {
         CarTypeDTO dto = new CarTypeDTO();
         dto.setId(carType.getId());
         dto.setCategory(carType.getCategory());
-        dto.setCarModel(carType.getCarModel());
+        dto.setCarModelDTO(mapCarModelToCarModelDTO(carType.getCarModel()));
         dto.setBrand(carType.getBrand());
         dto.setFiscHp(carType.getFiscHp());
         dto.setCo2(carType.getCo2());
@@ -69,5 +47,24 @@ public class CarTypeMapper {
         dto.setIsAvailable(carType.getIsAvailable());
         dto.setListPriceInclRealVat(carType.getListPriceInclRealVat());
         return dto;
+    }
+
+    private static CarModel mapCarModelDTOToCarModelObject(CarModelDTO carModelDTO, CarModel carModel) {
+        carModel.setModelName(carModelDTO.getModelName());
+        carModel.setImageUrl(carModelDTO.getImageUrl());
+        carModel.setHorsePower(carModelDTO.getHorsePower());
+        carModel.setModelDesignation(carModelDTO.getModelDesignation());
+        carModel.setVersionName(carModelDTO.getVersionName());
+        return carModel;
+    }
+
+    private static CarModelDTO mapCarModelToCarModelDTO(CarModel carModel) {
+        CarModelDTO carModelDTO = new CarModelDTO();
+        carModelDTO.setModelName(carModel.getModelName());
+        carModelDTO.setImageUrl(carModel.getImageUrl());
+        carModelDTO.setHorsePower(carModel.getHorsePower());
+        carModelDTO.setModelDesignation(carModel.getModelDesignation());
+        carModelDTO.setVersionName(carModel.getVersionName());
+        return carModelDTO;
     }
 }

@@ -44,4 +44,3 @@ insert into car (id, mileage, carType_id, startLeasing, numberPlate, vinNumber) 
 
 
 insert into employee(id, firstName, lastName, email, password_hash, role, functionalLevel, active, currentCar_id) values(5, 'Gek', 'kie', 'tmcmowner@gmail.com', 'gek', 'FLEET_EMPLOYEE', 1, true, 1);
-
