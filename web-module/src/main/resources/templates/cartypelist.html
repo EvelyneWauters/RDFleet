@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8"/>
@@ -17,7 +18,8 @@
     <div class="page-header text-center">
         <h1><span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet</h1>
 
-        <p class="lead"><span th:text="#{msgcartypelist.title.part1}">Welcome to the </span> <span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet!</p>
+        <p class="lead"><span th:text="#{msgcartypelist.title.part1}">Welcome to the </span> <span
+                class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet!</p>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -33,9 +35,13 @@
                         <th th:text="#{msgcartypelist.co2}">co2</th>
                         <th th:text="#{msgcartypelist.price}">price</th>
                         <th th:text="#{msgcartypelist.isavailable}">is available</th>
-                        <th class="text-right" th:text="#{msg.button.update}">Update</th>
+                        <th class="text-right" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"
+                            th:text="#{msg.button.update}">Update
+                        </th>
                         <th class="text-right" th:text="#{msg.button.details}">Details</th>
-                        <th class="text-right" th:text="#{msg.button.remove}">Remove</th>
+                        <th class="text-right" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"
+                            th:text="#{msg.button.remove}">Remove
+                        </th>
                     </tr>
                     </thead>
 
@@ -48,14 +54,20 @@
                         <td th:text="${carTypeDTO.listPriceInclRealVat}"></td>
                         <td th:text="${carTypeDTO.isAvailable}"></td>
 
-                        <td class="text-right"><a class="btn btn-info btn-xs"
-                                                  th:href="${#mvc.url('CTC#carTypeForm').arg(0, carTypeDTO.id).build()}" th:text="#{msg.button.edit}">Edit</a>
+                        <td class="text-right" sec:authorize="hasAuthority('FLEET_EMPLOYEE')">
+                            <a class="btn btn-info btn-xs"
+                                th:href="${#mvc.url('CTC#carTypeForm').arg(0, carTypeDTO.id).build()}"
+                                th:text="#{msg.button.edit}">Edit</a>
                         </td>
-                        <td class="text-right"><a class="btn btn-info btn-xs"
-                                                  th:href="${#mvc.url('CTC#carTypeById').arg(0, carTypeDTO.id).build()}" th:text="#{msg.button.details}">Details</a>
+                        <td class="text-right">
+                            <a class="btn btn-info btn-xs"
+                               th:href="${#mvc.url('CTC#carTypeById').arg(0, carTypeDTO.id).build()}"
+                               th:text="#{msg.button.details}">Details</a>
                         </td>
-                        <td class="text-right"><a class="btn btn-danger btn-xs"
-                                                  th:href="${#mvc.url('CTC#removeCarType').arg(0, carTypeDTO.id).build()}" th:text="#{msg.button.remove}">Remove</a>
+                        <td class="text-right" sec:authorize="hasAuthority('FLEET_EMPLOYEE')">
+                            <a class="btn btn-danger btn-xs"
+                                th:href="${#mvc.url('CTC#removeCarType').arg(0, carTypeDTO.id).build()}"
+                                th:text="#{msg.button.remove}">Remove</a>
                         </td>
                     </tr>
                     </tbody>
@@ -63,7 +75,7 @@
             </div>
 
             <div th:if="${#lists.isEmpty(carTypeList)}">
-                No cars found...
+               <p th:text="#{msgcartypelist.nocarsfound}"/> No cars found...
             </div>
 
         </div>

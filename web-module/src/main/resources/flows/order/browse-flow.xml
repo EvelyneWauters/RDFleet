@@ -15,7 +15,7 @@
     <!--                                                                          -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <on-start>
-        <evaluate expression="employeeServiceImpl.getEmployeeDtoByEmail('foo@bar.com')" result="flowScope.currentEmployee" />
+        <evaluate expression="employeeServiceImpl.getEmployeeDtoByEmail(currentUser.name)" result="flowScope.currentEmployee" />
     </on-start>
 
     <view-state id="findcarbyfunctionallevel" view="webflow-findcarbyfunctionallevel" model="carType">
@@ -29,7 +29,10 @@
                       result="flowScope.cartypesupgrade" />
             <evaluate expression="carTypeServiceImpl.findCarByFunctionalLevel(currentEmployee.getFunctionalLevel()-1)"
                       result="flowScope.cartypesdowngrade" />
+            <evaluate expression="carTypeServiceImpl.findCarsInTheFreePool()"
+                      result="flowScope.carsInTheFreePool"/>
         </on-render>
+        <transition on="proceed" to="getChosenCarType" validate="false"/>
         <transition on="proceed" to="getChosenCarType" validate="false"/>
     </view-state>
 

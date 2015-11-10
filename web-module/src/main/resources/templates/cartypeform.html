@@ -106,7 +106,7 @@
 
         <div class="form-group" th:class="${#fields.hasErrors('benefitInKindPerMonth')}? 'has-error'">
             <label th:for="${#ids.next('benefitInKindPerMonth')}" th:text="#{msgcartypeform.benefitInKindPerMonth}"/>
-            <input type="number"  step="any"min="0" th:field="*{benefitInKindPerMonth}" class="form-control"/>
+            <input type="number"  step="any" min="0" th:field="*{benefitInKindPerMonth}" class="form-control"/>
             <span th:if="${#fields.hasErrors('benefitInKindPerMonth')}" class="help-block"
                   th:errors="*{benefitInKindPerMonth}"></span>
         </div>
