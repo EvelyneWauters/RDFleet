@@ -30,4 +30,5 @@ public interface CarTypeService {
     List<CarTypeDTO> findAllAvailableCarTypes();
 
     List<CarTypeDTO> findCarByFunctionalLevel(int i);
+
 }

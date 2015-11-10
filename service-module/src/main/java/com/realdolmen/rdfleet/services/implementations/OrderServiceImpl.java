@@ -1,16 +1,15 @@
 package com.realdolmen.rdfleet.services.implementations;
 
+import com.realdolmen.rdfleet.DTO.CarDTO;
 import com.realdolmen.rdfleet.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.Order;
+import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.car.options.OptionListObject;
 import com.realdolmen.rdfleet.entities.employee.Employee;
-import com.realdolmen.rdfleet.repositories.CarOptionRepository;
-import com.realdolmen.rdfleet.repositories.CarTypeRepository;
-import com.realdolmen.rdfleet.repositories.EmployeeRepository;
-import com.realdolmen.rdfleet.repositories.OrderRepository;
+import com.realdolmen.rdfleet.repositories.*;
 import com.realdolmen.rdfleet.services.definitions.OrderService;
 import com.realdolmen.rdfleet.services.mappers.CarTypeMapper;
 import com.realdolmen.rdfleet.services.mappers.EmployeeMapper;
@@ -35,6 +34,8 @@ public class OrderServiceImpl implements OrderService{
     private EmployeeRepository employeeRepository;
     @Autowired
     private CarOptionRepository carOptionRepository;
+    @Autowired
+    private CarRepository carRepository;
 
 
     @Autowired
@@ -55,7 +56,7 @@ public class OrderServiceImpl implements OrderService{
     }
 
     @Override
-    public void createOrder(CarTypeDTO carTypeDTO, EmployeeDTO employeeDTO, OptionListObject optionListObject) {
+    public Order createOrder(CarTypeDTO carTypeDTO, EmployeeDTO employeeDTO, OptionListObject optionListObject) {
         CarType carType = carTypeRepository.findOne(carTypeDTO.getId());
         Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
         List<String> selectedOptions = optionListObject.getSelectedOptions();
@@ -65,6 +66,17 @@ public class OrderServiceImpl implements OrderService{
         }
         Order order = new Order(carType, employee);
         order.setOptions(carOptions);
-        orderRepository.save(order);
+        return orderRepository.save(order);
     }
+
+//    @Override
+//    public Order createOrderPoolCar(CarDTO carDTO, EmployeeDTO employeeDTO) {
+//        Car car = carRepository.findOne(carDTO.getId());
+//        Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
+//        return orderRepository.save(new Order(car, employee));
+//
+//
+//    }
+
+
 }

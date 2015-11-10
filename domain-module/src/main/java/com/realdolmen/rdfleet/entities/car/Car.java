@@ -37,8 +37,10 @@ public class Car extends AbstractEntity{
     private boolean noLongerInUse = false;
     @Column(nullable = false)
     private String numberPlate;
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     private List<CarOption> carOptions = new ArrayList<>();
+    @Column(name="inThePool")
+    private boolean inThePool = false;
 
 
     /**
@@ -130,5 +132,13 @@ public class Car extends AbstractEntity{
 
     public void setNumberPlate(String numberPlate) {
         this.numberPlate = numberPlate;
+    }
+
+    public boolean getInThePool() {
+        return inThePool;
+    }
+
+    public void setInThePool(boolean inThePool) {
+        inThePool = inThePool;
     }
 }

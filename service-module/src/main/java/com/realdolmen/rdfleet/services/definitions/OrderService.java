@@ -1,8 +1,10 @@
 package com.realdolmen.rdfleet.services.definitions;
 
+import com.realdolmen.rdfleet.DTO.CarDTO;
 import com.realdolmen.rdfleet.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.Order;
+import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.options.OptionListObject;
 import com.realdolmen.rdfleet.entities.employee.Employee;
@@ -18,6 +20,8 @@ public interface OrderService {
     //TODO: Write service interface
     Order getOrderForEmployee(Employee employee);
 
-    void createOrder(CarTypeDTO carType, EmployeeDTO employee, OptionListObject optionListObject);
+    Order createOrder(CarTypeDTO carType, EmployeeDTO employee, OptionListObject optionListObject);
+
+//    Order createOrderPoolCar(CarDTO carDTO, EmployeeDTO employeeDTO);
 
     }

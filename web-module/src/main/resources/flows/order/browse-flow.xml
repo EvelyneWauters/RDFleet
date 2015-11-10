@@ -5,7 +5,7 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
   http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
-    <var name="carType" class="com.realdolmen.rdfleet.DTO.CarTypeDTO"/>
+    <var name="abstractDto" class="com.realdolmen.rdfleet.DTO.AbstractDTO"/>
     <var name="optionList" class="com.realdolmen.rdfleet.entities.car.options.OptionListObject"/>
     <!--<var name="order" class="com.realdolmen.rdfleet.entities.Order"/>-->
 
@@ -18,7 +18,7 @@
         <evaluate expression="employeeServiceImpl.getEmployeeDtoByEmail(currentUser.name)" result="flowScope.currentEmployee" />
     </on-start>
 
-    <view-state id="findcarbyfunctionallevel" view="webflow-findcarbyfunctionallevel" model="carType">
+    <view-state id="findcarbyfunctionallevel" view="webflow-findcarbyfunctionallevel" model="abstractDto">
         <binder>
             <binding property="id"></binding>
         </binder>
@@ -29,18 +29,25 @@
                       result="flowScope.cartypesupgrade" />
             <evaluate expression="carTypeServiceImpl.findCarByFunctionalLevel(currentEmployee.getFunctionalLevel()-1)"
                       result="flowScope.cartypesdowngrade" />
-            <evaluate expression="carTypeServiceImpl.findCarsInTheFreePool()"
+            <evaluate expression="carServiceImpl.findCarsInTheFreePool()"
                       result="flowScope.carsInTheFreePool"/>
         </on-render>
         <transition on="proceed" to="getChosenCarType" validate="false"/>
-        <transition on="proceed" to="getChosenCarType" validate="false"/>
+        <transition on="proceedPoolCar" to="getToChosenPoolCar" validate="false"/>
     </view-state>
 
 
     <action-state id="getChosenCarType">
-        <evaluate expression="carTypeServiceImpl.findById(carType.id)"
+        <evaluate expression="carTypeServiceImpl.findById(abstractDto.id)"
                   result="flowScope.chosenCarType" />
         <transition to="webflow-chooseoptions"/>
+    </action-state>
+
+
+    <action-state id="getToChosenPoolCar">
+        <evaluate expression="carServiceImpl.findById(abstractDto.id)"
+                  result="flowScope.chosenPoolCar" />
+        <transition to="goToChosenPoolCar"/>
     </action-state>
 
 
@@ -54,9 +61,6 @@
             <evaluate expression="carOptionServiceImpl.findAllCarOptions()"
                       result="flowScope.allOptions"/>
         </on-render>
-        <!--<binder>-->
-            <!--<binding property=""></binding>-->
-        <!--</binder>-->
 
         <transition on="confirm" to="createorder" >
         </transition>
@@ -77,6 +81,35 @@
     <view-state id="webflow-confirmation">
         <transition on="gotoindex" to="index"/>
     </view-state>
+
+
+
+    <view-state id="goToChosenPoolCar" view="webflow-choosepoolcar">
+        <on-render>
+            <evaluate expression="carOptionServiceImpl.findAllCarOptions()"
+                      result="flowScope.allOptions"/>
+        </on-render>
+        <transition on="confirm" to="createorderPoolCar" >
+        </transition>
+        <!--<transition on="revise" to="webflow-choosecar" />-->
+        <!--<transition on="cancel" to="webflow-cancellation" />-->
+    </view-state>
+
+
+
+    <action-state id="createorderPoolCar">
+        <evaluate expression="orderServiceImpl.createOrderPoolCar(flowScope.chosenCarType, currentEmployee)"/>
+        <transition to="webflow-confirmation"/>
+    </action-state>
+
+
+
+
+
+
+
+
+
 
     <end-state id="index" />
 

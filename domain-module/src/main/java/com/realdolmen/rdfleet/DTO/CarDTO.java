@@ -32,7 +32,12 @@ public class CarDTO extends AbstractDTO{
     @NotNull
     private String numberPlate;
     private List<CarOption> carOptions = new ArrayList<>();
+    private boolean inThePool;
+    private boolean noLongerInUse;
 
+
+    public CarDTO() {
+    }
 
     public CarType getCarType() {
         return carType;
@@ -104,5 +109,21 @@ public class CarDTO extends AbstractDTO{
 
     public void setCarOptions(List<CarOption> carOptions) {
         this.carOptions = carOptions;
+    }
+
+    public boolean getInThePool() {
+        return inThePool;
+    }
+
+    public void setInThePool(boolean inThePool) {
+        this.inThePool = inThePool;
+    }
+
+    public boolean getNoLongerInUse() {
+        return noLongerInUse;
+    }
+
+    public void setNoLongerInUse(boolean noLongerInUse) {
+        this.noLongerInUse = noLongerInUse;
     }
 }

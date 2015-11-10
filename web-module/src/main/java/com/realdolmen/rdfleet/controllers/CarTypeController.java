@@ -104,7 +104,7 @@ public class CarTypeController {
     //find carType by id and show details
     @RequestMapping(value = "/id/{id}", method = GET)
     public String carTypeById(@PathVariable("id") Long carTypeId, Model model) {
-        model.addAttribute("carType", carTypeServiceImpl.findById(carTypeId));
+        model.addAttribute("carTypeDTO", carTypeServiceImpl.findById(carTypeId));
         return "cartypedetail";
     }
 

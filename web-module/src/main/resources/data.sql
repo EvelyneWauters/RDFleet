@@ -57,11 +57,12 @@ values (4, 4, 'Audi', 'A5', 'ST 1,6 crtdi', 105, 'Style ecomotive', 'http://www.
 
 
 
-insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber) values (1, '10', 1, '2015-11-06', '2015-11-06', '1-JNL-715', '145');
-insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber) values (2, '300', 2, '2015-01-01', '2015-11-06','1-JNL-714', '1451');
-insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber) values (3, '200', 2, '2015-01-01', '2015-11-06','1-JNL-713', '1452');
-insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber) values (4, '150', 3, '2015-01-01', '2015-11-06','1-JNL-717', '1453e');
-insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber) values (5, '110000', 4, '2015-01-01', '2015-11-06','1-JNL-716', '1459');
+insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (1, '10', 1, '2015-11-06', '2015-11-06', '1-JNL-715', '145', FALSE );
+insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (2, '300', 2, '2015-01-01', '2015-11-06','1-JNL-714', '1451', FALSE );
+insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (3, '200', 2, '2015-01-01', '2015-11-06','1-JNL-713', '1452', FALSE );
+insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (4, '150', 3, '2015-01-01', '2015-11-06','1-JNL-717', '1453e', FALSE );
+insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (5, '110000', 4, '2015-01-01', '2015-11-06','1-JNL-716', '1459', FALSE );
+insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (6, '110000', 4, '2015-01-01', '2015-11-06','1-JNL-715', '1458', true);
 
 
 insert into employee(id, firstName, lastName, email, password_hash, role, functionalLevel, active, currentCar_id) values(5, 'Gek', 'kie', 'tmcmowner@gmail.com', 'gek', 'FLEET_EMPLOYEE', 1, true, 1);
