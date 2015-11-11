@@ -4,7 +4,6 @@ import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import com.realdolmen.rdfleet.entities.AbstractEntity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @MappedSuperclass

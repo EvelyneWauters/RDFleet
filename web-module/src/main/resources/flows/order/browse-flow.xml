@@ -5,7 +5,7 @@
       xsi:schemaLocation="http://www.springframework.org/schema/webflow
   http://www.springframework.org/schema/webflow/spring-webflow-2.4.xsd">
 
-    <var name="abstractDto" class="com.realdolmen.rdfleet.DTO.AbstractDTO"/>
+    <var name="abstractDto" class="com.realdolmen.rdfleet.services.DTO.AbstractDTO"/>
     <var name="optionList" class="com.realdolmen.rdfleet.entities.car.options.OptionListObject"/>
 
 

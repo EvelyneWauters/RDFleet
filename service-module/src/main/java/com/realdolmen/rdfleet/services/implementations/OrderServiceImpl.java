@@ -1,8 +1,5 @@
 package com.realdolmen.rdfleet.services.implementations;
 
-import com.realdolmen.rdfleet.DTO.CarDTO;
-import com.realdolmen.rdfleet.DTO.CarTypeDTO;
-import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.Order;
 import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
@@ -10,6 +7,8 @@ import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.car.options.OptionListObject;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.repositories.*;
+import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
+import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.services.definitions.OrderService;
 import com.realdolmen.rdfleet.services.mappers.CarTypeMapper;
 import com.realdolmen.rdfleet.services.mappers.EmployeeMapper;
@@ -25,7 +24,6 @@ import java.util.Optional;
  */
 @Service
 public class OrderServiceImpl implements OrderService{
-    //TODO: Write services implementation
     private final OrderRepository orderRepository;
 
     @Autowired
@@ -67,6 +65,11 @@ public class OrderServiceImpl implements OrderService{
         Order order = new Order(carType, employee);
         order.setOptions(carOptions);
         return orderRepository.save(order);
+    }
+
+    @Override
+    public List<Order> findAllOrders() {
+        return orderRepository.findAll();
     }
 
 //    @Override
