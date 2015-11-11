@@ -15,7 +15,7 @@ public class Employee extends User implements Serializable {
      */
     @OneToOne(cascade = CascadeType.MERGE)
     private Car currentCar;
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER)
     private Set<Car> carHistory = new HashSet<>();
     @Column(name = "functionalLevel")
     private int functionalLevel = 1;

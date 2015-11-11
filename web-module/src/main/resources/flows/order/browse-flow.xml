@@ -7,7 +7,7 @@
 
     <var name="abstractDto" class="com.realdolmen.rdfleet.DTO.AbstractDTO"/>
     <var name="optionList" class="com.realdolmen.rdfleet.entities.car.options.OptionListObject"/>
-    <!--<var name="order" class="com.realdolmen.rdfleet.entities.Order"/>-->
+
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <!-- Find a car by functional level                                           -->
@@ -74,6 +74,24 @@
     </action-state>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+    <!-- Display details of the chosen POOLCAR and show the possible options.     -->
+    <!-- Price is calculated dependent on the functional level + cartype          -->
+    <!-- Confirm the order                                                        -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
+
+    <view-state id="goToChosenPoolCar" view="webflow-choosepoolcar">
+        <transition on="confirm" to="createorderPoolCar" >
+        </transition>
+        <!--<transition on="revise" to="webflow-choosecar" />-->
+        <!--<transition on="cancel" to="webflow-cancellation" />-->
+    </view-state>
+
+    <action-state id="createorderPoolCar">
+        <evaluate expression="employeeServiceImpl.assignPoolCarToEmployee(currentEmployee, flowScope.chosenPoolCar)"/>
+        <transition to="webflow-confirmation"/>
+    </action-state>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <!--              Confirmation page                                           -->
     <!-- A new 'Order' object has been created                                    -->
     <!-- (consists of a Cartype + List<Option>                                    -->
@@ -83,24 +101,6 @@
     </view-state>
 
 
-
-    <view-state id="goToChosenPoolCar" view="webflow-choosepoolcar">
-        <on-render>
-            <evaluate expression="carOptionServiceImpl.findAllCarOptions()"
-                      result="flowScope.allOptions"/>
-        </on-render>
-        <transition on="confirm" to="createorderPoolCar" >
-        </transition>
-        <!--<transition on="revise" to="webflow-choosecar" />-->
-        <!--<transition on="cancel" to="webflow-cancellation" />-->
-    </view-state>
-
-
-
-    <action-state id="createorderPoolCar">
-        <evaluate expression="orderServiceImpl.createOrderPoolCar(flowScope.chosenCarType, currentEmployee)"/>
-        <transition to="webflow-confirmation"/>
-    </action-state>
 
 
 

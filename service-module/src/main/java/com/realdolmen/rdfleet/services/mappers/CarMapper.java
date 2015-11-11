@@ -29,6 +29,7 @@ public class CarMapper {
 
     public static CarDTO mapCarObjectToCarDTO(Car car) {
         CarDTO dto = new CarDTO();
+        dto.setId(car.getId());
         dto.setCarType(car.getCarType());
         dto.setAmountOfRefuels(car.getAmountOfRefuels());
         dto.setCarOptions(car.getCarOptions());
