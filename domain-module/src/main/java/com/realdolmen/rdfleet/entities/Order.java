@@ -1,11 +1,14 @@
 package com.realdolmen.rdfleet.entities;
 
+import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +16,7 @@ import java.util.List;
  * Created by JDOAX80 on 4/11/2015.
  */
 @Entity
+@Table(name = "CarOrder")
 public class Order extends AbstractEntity {
     /**
      * Class fields
@@ -30,6 +34,11 @@ public class Order extends AbstractEntity {
      */
     public Order() {
         //Used by Hibernate
+    }
+
+    public Order(CarType carType, Employee employee) {
+        this.carType = carType;
+        this.employee = employee;
     }
 
     /**
@@ -63,4 +72,6 @@ public class Order extends AbstractEntity {
     public void setOptions(List<CarOption> options) {
         this.options = options;
     }
+
+
 }

@@ -3,11 +3,12 @@ package com.realdolmen.rdfleet.services.DTO;
 
 import javax.persistence.Embeddable;
 import javax.validation.constraints.*;
+import java.io.Serializable;
 
 /**
  * Created by JDOAX80 on 9/11/2015.
  */
-public class CarModelDTO {
+public class CarModelDTO implements Serializable{
     private final String URL_PATTERN = "^(https?|ftp|file):\\/\\/[-a-zA-Z0-9+&@#\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\\/%=~_|]";
 
     @Size(min = 1, message = "{field.errorMessage.isEmpty}")

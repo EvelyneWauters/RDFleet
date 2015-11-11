@@ -57,7 +57,8 @@ public class CarTypeServiceImpl implements CarTypeService {
 
     @Override
     public CarTypeDTO findById(Long id) {
-        return CarTypeMapper.mapCarTypeObjectToCarTypeDTO(carTypeRepository.findOne(id));
+        CarTypeDTO carTypeDTO = CarTypeMapper.mapCarTypeObjectToCarTypeDTO(carTypeRepository.findOne(id));
+        return carTypeDTO;
     }
 
     @Override

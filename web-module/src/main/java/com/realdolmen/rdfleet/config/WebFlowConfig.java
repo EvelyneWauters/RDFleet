@@ -49,6 +49,7 @@ public class WebFlowConfig extends AbstractFlowConfiguration {
         DefaultConversionService defaultConversionService = new DefaultConversionService();
         defaultConversionService.addConverter(this.webMvcConfig.carModelConverter);
         defaultConversionService.addConverter(this.webMvcConfig.brandConverter);
+        defaultConversionService.addConverter(this.webMvcConfig.carTypeConverter);
         return defaultConversionService;
     }
 

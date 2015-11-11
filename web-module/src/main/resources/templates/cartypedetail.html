@@ -14,10 +14,9 @@
 
 <div class="container">
 
-    <h1 th:text="${carType.brand.name + ' ' + carType.carModel.toString()}"></h1>
-    <a class="btn btn-danger btn-xs"
-       id="proceed" th:href="${#mvc.url('OC#getOrderOptions').arg(0, carType.id).build()}">Order</a>
-
+    <h1 th:text="${carTypeDTO.brand.name + ' ' + carTypeDTO.carModelDTO.toString()}"></h1>
+    <a class="btn btn-info btn-xs" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"
+       th:href="${#mvc.url('CTC#carTypeForm').arg(0, carType.id).build()}" th:text="#{msg.button.edit}">Edit</a>
 </div>
 </body>
 </html>

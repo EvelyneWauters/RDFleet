@@ -1,12 +1,14 @@
 package com.realdolmen.rdfleet.services.implementations;
 
+import com.realdolmen.rdfleet.DTO.CarDTO;
 import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.repositories.CarRepository;
-import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import com.realdolmen.rdfleet.services.definitions.CarService;
+import com.realdolmen.rdfleet.services.mappers.CarMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,6 +38,21 @@ public class CarServiceImpl implements CarService {
     @Override
     public void removeCar(Long id) {
         carRepository.delete(id);
+    }
+
+    @Override
+    public List<CarDTO> findCarsInTheFreePool() {
+        List<Car> allCarsByIsInThePoolTrue = carRepository.findAllCarsByInThePoolTrue();
+        List<CarDTO> carDTOList = new ArrayList<>();
+        for (Car car : allCarsByIsInThePoolTrue) {
+           carDTOList.add(CarMapper.mapCarObjectToCarDTO(car));
+        }
+        return carDTOList;
+    }
+
+    @Override
+    public CarDTO findById(Long id) {
+        return CarMapper.mapCarObjectToCarDTO(carRepository.findOne(id));
     }
 
 

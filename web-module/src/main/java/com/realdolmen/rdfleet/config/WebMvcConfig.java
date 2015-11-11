@@ -2,7 +2,9 @@ package com.realdolmen.rdfleet.config;
 
 import com.realdolmen.rdfleet.converters.BrandConverter;
 import com.realdolmen.rdfleet.converters.CarModelConverter;
+import com.realdolmen.rdfleet.converters.CarTypeConverter;
 import com.realdolmen.rdfleet.security.SecurityConfig;
+import com.sun.xml.internal.fastinfoset.Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,7 +34,8 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     protected CarModelConverter carModelConverter;
     @Autowired
     protected BrandConverter brandConverter;
-
+    @Autowired
+    protected CarTypeConverter carTypeConverter;
 
 
     @Override
@@ -62,6 +65,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         AjaxThymeleafViewResolver viewResolver = new AjaxThymeleafViewResolver();
         viewResolver.setViewClass(FlowAjaxThymeleafView.class);
         viewResolver.setTemplateEngine(springTemplateEngine);
+        viewResolver.setCharacterEncoding(Encoder.UTF_8);
         return viewResolver;
     }
 

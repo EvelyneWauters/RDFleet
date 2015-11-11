@@ -12,6 +12,7 @@ import javax.validation.constraints.*;
  * Created by JDOAX80 on 5/11/2015.
  */
 public class CarTypeDTO extends AbstractDTO{
+    private final String URL_PATTERN = "^(https?|ftp|file):\\/\\/[-a-zA-Z0-9+&@#\\/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#\\/%=~_|]";
 
     @NotNull(message = "{field.errorMessage.isEmpty}")
     private Brand brand;

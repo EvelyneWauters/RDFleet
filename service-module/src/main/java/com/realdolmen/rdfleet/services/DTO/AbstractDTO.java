@@ -1,9 +1,11 @@
 package com.realdolmen.rdfleet.services.DTO;
 
+import java.io.Serializable;
+
 /**
  * Created by JDOAX80 on 7/11/2015.
  */
-public class AbstractDTO {
+public class AbstractDTO implements Serializable {
 
     private Long id;
     private Long versionNumber;
