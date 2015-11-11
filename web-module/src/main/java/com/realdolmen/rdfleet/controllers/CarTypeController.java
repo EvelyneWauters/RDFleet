@@ -1,24 +1,19 @@
 package com.realdolmen.rdfleet.controllers;
 
-import com.realdolmen.rdfleet.DTO.CarTypeDTO;
+import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
 import com.realdolmen.rdfleet.services.definitions.CarService;
-import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.enums.FuelType;
-import com.realdolmen.rdfleet.services.definitions.CarTypeService;
 import com.realdolmen.rdfleet.services.implementations.CarTypeServiceImpl;
-import com.realdolmen.rdfleet.services.mappers.CarTypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.fromMappingName;

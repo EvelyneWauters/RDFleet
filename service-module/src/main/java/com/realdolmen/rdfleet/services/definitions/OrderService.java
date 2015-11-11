@@ -11,6 +11,6 @@ import java.util.Optional;
  * Created by JDOAX80 on 4/11/2015.
  */
 public interface OrderService {
-    //TODO: Write service interface
+    //TODO: Write services interface
     Order getOrderForEmployee(Employee employee);
 }

@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet.DTO;
+package com.realdolmen.rdfleet.services.DTO;
 
 /**
  * Created by JDOAX80 on 7/11/2015.

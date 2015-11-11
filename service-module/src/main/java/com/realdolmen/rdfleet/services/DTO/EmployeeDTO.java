@@ -1,14 +1,8 @@
-package com.realdolmen.rdfleet.DTO;
+package com.realdolmen.rdfleet.services.DTO;
 
 import com.realdolmen.rdfleet.entities.employee.enums.Role;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.beans.factory.annotation.Value;
 
-import javax.persistence.Column;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 /**
  * Created by JDOAX80 on 28/10/2015.
@@ -20,8 +14,8 @@ public class EmployeeDTO extends AbstractDTO{
     private String firstName;
     private String lastName;
 
-    @Email
-    @NotEmpty(message = "Please enter your email addresss.")
+    @NotNull(message = "Please enter your email addresss.")
+    @Size(min = 1)
     private String email = "";
 
 //    @NotEmpty

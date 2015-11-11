@@ -1,10 +1,8 @@
-package com.realdolmen.rdfleet.DTO;
+package com.realdolmen.rdfleet.services.DTO;
 
 import com.realdolmen.rdfleet.entities.car.embedabbles.Brand;
-import com.realdolmen.rdfleet.entities.car.embedabbles.CarModel;
 import com.realdolmen.rdfleet.entities.car.enums.FuelType;
 import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
-import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Embedded;
 import javax.validation.Valid;

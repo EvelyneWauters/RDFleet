@@ -1,9 +1,7 @@
 package com.realdolmen.rdfleet.controllers;
 
-import com.realdolmen.rdfleet.DTO.EmployeeDTO;
-import com.realdolmen.rdfleet.entities.employee.Employee;
+import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.services.implementations.EmployeeServiceImpl;
-import com.realdolmen.rdfleet.services.mappers.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.fromMappingName;
 

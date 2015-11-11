@@ -11,7 +11,6 @@
     </parent>
 
     <artifactId>web-module</artifactId>
-    <version>1.1</version>
     <packaging>war</packaging>
 
     <dependencies>
@@ -26,14 +25,18 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.thymeleaf.extras</groupId>
-            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
-            <version>2.1.2.RELEASE</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>scheduled-job-module</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.realdolmen</groupId>
-            <artifactId>scheduled-job-module</artifactId>
-            <version>1.1</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.webflow</groupId>
+            <artifactId>spring-webflow</artifactId>
+            <version>2.4.2.RELEASE</version>
         </dependency>
     </dependencies>
 </project>

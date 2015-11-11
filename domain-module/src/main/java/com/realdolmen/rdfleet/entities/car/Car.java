@@ -5,7 +5,6 @@ import com.realdolmen.rdfleet.entities.AbstractEntity;
 import com.realdolmen.rdfleet.entities.car.options.CarOption;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +64,7 @@ public class Car extends AbstractEntity{
 
     public void setStartLeasing(LocalDate startLeasing) {
         this.startLeasing = startLeasing;
-        setEndLeasing();
+        setEndLeasingDate();
     }
 
     public int getLeasingDurationYears() {
@@ -120,8 +119,13 @@ public class Car extends AbstractEntity{
         return endLeasing;
     }
 
-    public void setEndLeasing() {
-        this.endLeasing = startLeasing.plusYears(leasingDurationYears);
+    public void setEndLeasing(LocalDate endLeasing) {
+        this.endLeasing = endLeasing;
+    }
+
+    public void setEndLeasingDate() {
+        LocalDate date = startLeasing.plusYears(leasingDurationYears);
+        this.endLeasing = date;
     }
 
     public String getNumberPlate() {

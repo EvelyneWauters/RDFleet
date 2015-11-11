@@ -6,7 +6,6 @@ import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +19,8 @@ public class Order extends AbstractEntity {
      */
     @OneToOne(optional = false)
     @JoinColumn(unique = true)
-    @NotNull
     private Employee employee;
     @ManyToOne
-    @NotNull
     private CarType carType;
     @ManyToMany
     private List<CarOption> options = new ArrayList<>();

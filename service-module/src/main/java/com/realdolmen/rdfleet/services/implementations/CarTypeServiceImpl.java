@@ -1,9 +1,7 @@
 package com.realdolmen.rdfleet.services.implementations;
 
-import com.realdolmen.rdfleet.DTO.CarTypeDTO;
-import com.realdolmen.rdfleet.entities.car.Car;
+import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.entities.car.CarType;
-import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.CarTypeRepository;
 import com.realdolmen.rdfleet.services.definitions.CarTypeService;
 import com.realdolmen.rdfleet.services.mappers.CarTypeMapper;
@@ -13,7 +11,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 

@@ -1,8 +1,7 @@
 package com.realdolmen.rdfleet.services.definitions;
 
-import com.realdolmen.rdfleet.DTO.EmployeeDTO;
+import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;

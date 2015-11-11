@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet.DTO;
+package com.realdolmen.rdfleet.services.DTO;
 
 
 import javax.persistence.Embeddable;

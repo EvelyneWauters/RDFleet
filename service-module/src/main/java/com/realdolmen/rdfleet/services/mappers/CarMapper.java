@@ -1,9 +1,8 @@
 package com.realdolmen.rdfleet.services.mappers;
 
-import com.realdolmen.rdfleet.DTO.CarDTO;
-import com.realdolmen.rdfleet.DTO.CarTypeDTO;
+import com.realdolmen.rdfleet.services.DTO.CarDTO;
+import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.entities.car.Car;
-import com.realdolmen.rdfleet.entities.car.CarType;
 
 /**
  * Created by JDOAX80 on 6/11/2015.

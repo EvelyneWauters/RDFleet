@@ -8,7 +8,7 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.validation.constraints.NotNull;
+
 
 /**
  * Created by JDOAX80 on 2/11/2015.
@@ -18,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @DiscriminatorColumn(name = "car_option")
 public class CarOption extends AbstractEntity{
 
-    @NotNull
+
     private String optionName;
     private double price;
 

@@ -1,10 +1,7 @@
 package com.realdolmen.rdfleet.services.mappers;
 
-import com.realdolmen.rdfleet.DTO.EmployeeDTO;
+import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class EmployeeMapper {
