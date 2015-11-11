@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <definitions
         xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
         xmlns:rd="http://realdolmen.com/"
@@ -5,9 +6,10 @@
         xmlns="http://schemas.xmlsoap.org/wsdl/"
         targetNamespace="http://realdolmen.com/"
         name="CarStatisticsService">
+
     <types>
         <xsd:schema>
-            <xsd:import namespace="http://realdolmen.com/" schemaLocation="schema.xsd"/>
+            <xsd:import namespace="http://realdolmen.com/" schemaLocation="updateCarStatisticsSchema.xsd"/>
         </xsd:schema>
     </types>
 
@@ -20,7 +22,7 @@
     </message>
 
     <portType name="UpdateCarStatistics">
-        <operation name="updateCarStatistics">
+        <operation name="UpdateCarStatistics">
             <input message="rd:updateCarStatisticsRequest"/>
             <output message="rd:updateCarStatisticsResponse"/>
         </operation>
@@ -28,7 +30,7 @@
 
     <binding name="UpdateCarStatisticsBinding" type="rd:UpdateCarStatistics">
         <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-        <operation name="updateCarStatistics">
+        <operation name="UpdateCarStatistics">
             <soap:operation soapAction=""/>
             <input>
                 <soap:body use="literal"/>
@@ -41,7 +43,7 @@
 
     <service name="CarStatisticsService">
         <port name="UpdateCarStatisticsServicePort" binding="rd:UpdateCarStatisticsBinding">
-            <soap:address location="http://localhost:8080/webservice-module/CarStatisticsService"/>
+            <soap:address location="http://localhost:8080/CarStatisticsService"/>
         </port>
     </service>
 </definitions>

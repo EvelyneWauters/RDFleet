@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
  */
 public class OrderServiceImplTest extends ServicesTest {
 
-    //TODO: Write service test, WERKT NIET
+    //TODO: Write services test, WERKT NIET
     private OrderServiceImpl orderService;
     private OrderRepository orderRepository;
     private Employee employee;

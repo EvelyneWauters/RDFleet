@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet.DTO;
+package com.realdolmen.rdfleet.services.DTO;
 
 import com.realdolmen.rdfleet.converter.LocalDatePersistenceConverter;
 import com.realdolmen.rdfleet.entities.car.CarType;
@@ -6,8 +6,6 @@ import com.realdolmen.rdfleet.entities.car.options.CarOption;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;

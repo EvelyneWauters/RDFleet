@@ -1,8 +1,6 @@
 <?xml version="1.0" ?>
 
-<!-- My custom XSD file -->
-
-<xs:schema xmlns:tns="http://realdolmen.com/"
+    <xs:schema xmlns:tns="http://realdolmen.com/"
            xmlns:xs="http://www.w3.org/2001/XMLSchema"
            version="1.0"
            targetNamespace="http://realdolmen.com/">
@@ -13,7 +11,7 @@
 
     <xs:complexType name="success">
         <xs:sequence>
-            <xs:element name="responseMessage" type="xs:string"/>
+            <xs:element name="responseMessage" type="xs:string" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
     </xs:complexType>
 
@@ -24,14 +22,13 @@
                     <xs:all>
                         <xs:element name="car">
                             <xs:complexType>
-                                <xs:sequence>
-                                    <xs:element name="mileage"/>
-                                    <xs:element name="amountOfRefuels"/>
-                                </xs:sequence>
+                                <xs:all>
+                                    <xs:element name="mileage" type="xs:double" minOccurs="1" maxOccurs="1"/>
+                                    <xs:element name="amountOfRefuels" type="xs:integer" minOccurs="1" maxOccurs="1"/>
+                                </xs:all>
                             </xs:complexType>
                         </xs:element>
-                        <xs:element name="firstName"/>
-                        <xs:element name="lastName"/>
+                        <xs:element name="email" type="xs:string" minOccurs="1" maxOccurs="1"/>
                     </xs:all>
                 </xs:complexType>
             </xs:element>

@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 
 import javax.persistence.PersistenceException;
-import javax.validation.ConstraintViolationException;
+import javax.validation .ConstraintViolationException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;

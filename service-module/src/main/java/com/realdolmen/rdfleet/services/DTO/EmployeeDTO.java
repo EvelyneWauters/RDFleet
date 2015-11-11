@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet.DTO;
+package com.realdolmen.rdfleet.services.DTO;
 
 import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import org.hibernate.validator.constraints.Email;

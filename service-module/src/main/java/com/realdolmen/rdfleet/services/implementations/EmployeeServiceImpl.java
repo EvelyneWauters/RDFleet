@@ -4,6 +4,7 @@ import com.realdolmen.rdfleet.DTO.CarDTO;
 import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.DTO.OrderDTO;
 import com.realdolmen.rdfleet.entities.car.Car;
+import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;

@@ -13,11 +13,9 @@ public class User extends AbstractEntity implements Serializable {
      * Class fields
      */
     @Column(name = "email", unique = true)
-    @NotNull
     private String email;
 
     @Column(name = "password_hash")
-    @NotNull
     private String passwordHash;
 
     @Column(name = "role")

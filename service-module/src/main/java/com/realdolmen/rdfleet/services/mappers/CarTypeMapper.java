@@ -1,7 +1,7 @@
 package com.realdolmen.rdfleet.services.mappers;
 
-import com.realdolmen.rdfleet.DTO.CarModelDTO;
-import com.realdolmen.rdfleet.DTO.CarTypeDTO;
+import com.realdolmen.rdfleet.services.DTO.CarModelDTO;
+import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.embedabbles.CarModel;
 

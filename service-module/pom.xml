@@ -10,16 +10,17 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>service-module</artifactId>
-    <version>1.1</version>
-    <packaging>jar</packaging>
-
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>repository-module</artifactId>
             <version>${project.version}</version>
-            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.1.0.Final</version>
         </dependency>
     </dependencies>
 
