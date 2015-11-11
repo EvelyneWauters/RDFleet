@@ -4,7 +4,7 @@ import com.realdolmen.rdfleet.converters.BrandConverter;
 import com.realdolmen.rdfleet.converters.CarModelConverter;
 import com.realdolmen.rdfleet.converters.CarTypeConverter;
 import com.realdolmen.rdfleet.security.SecurityConfig;
-import com.sun.xml.internal.fastinfoset.Encoder;
+//import com.sun.xml.internal.fastinfoset.Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +15,6 @@ import org.springframework.webflow.mvc.servlet.FlowHandlerMapping;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.AjaxThymeleafViewResolver;
 import org.thymeleaf.spring4.view.FlowAjaxThymeleafView;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 
 /**
@@ -65,7 +64,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         AjaxThymeleafViewResolver viewResolver = new AjaxThymeleafViewResolver();
         viewResolver.setViewClass(FlowAjaxThymeleafView.class);
         viewResolver.setTemplateEngine(springTemplateEngine);
-        viewResolver.setCharacterEncoding(Encoder.UTF_8);
+//        viewResolver.setCharacterEncoding(Encoder.UTF_8);
         return viewResolver;
     }
 

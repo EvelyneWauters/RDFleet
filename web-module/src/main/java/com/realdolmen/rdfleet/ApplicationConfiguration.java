@@ -1,6 +1,5 @@
 package com.realdolmen.rdfleet;
 
-import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.car.options.CruiseControl;
 import com.realdolmen.rdfleet.entities.car.options.HeatedSeats;
@@ -16,7 +15,6 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @SpringBootApplication

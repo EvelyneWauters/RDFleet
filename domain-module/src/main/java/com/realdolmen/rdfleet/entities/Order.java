@@ -1,14 +1,10 @@
 package com.realdolmen.rdfleet.entities;
 
-import com.realdolmen.rdfleet.DTO.EmployeeDTO;
-import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

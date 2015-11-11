@@ -57,7 +57,7 @@ public class MailJob {
 
 
     public MimeMessageHelper setUpMail() throws MessagingException {
-        MimeMessageHelper mimeMessageHelper = null;
+        MimeMessageHelper mimeMessageHelper;
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
         mimeMessageHelper = new MimeMessageHelper(mimeMessage, true);
         mimeMessageHelper.setSubject(MAIL_SUBJECT);

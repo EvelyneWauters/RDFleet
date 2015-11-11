@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8"/>
@@ -47,12 +47,12 @@
                         <li><a th:href="@{/admin/employee/all}" th:text="#{users}"
                                sec:authorize="hasAuthority('FLEET_EMPLOYEE')"/></li>
                         <li role="separator" class="divider" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"></li>
-                        <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="isAuthenticated()"><span th:text="${#messages.msg('navbar.loggedInUser') + ' '}"></span><span sec:authentication="name"></span></li>
                 <li class="active" sec:authorize="!isAuthenticated()">
                     <a class="btn" th:href="@{/login}" th:text="#{login}">
                         <span class="sr-only">(current)</span></a>

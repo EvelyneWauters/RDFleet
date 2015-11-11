@@ -1,6 +1,6 @@
 package com.realdolmen.rdfleet.services.implementations;
 
-import com.realdolmen.rdfleet.DTO.CarDTO;
+import com.realdolmen.rdfleet.services.DTO.CarDTO;
 import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.services.definitions.CarService;
