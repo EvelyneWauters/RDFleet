@@ -1,9 +1,13 @@
 package com.realdolmen.rdfleet.services.definitions;
 
+import com.realdolmen.rdfleet.DTO.CarDTO;
+import com.realdolmen.rdfleet.DTO.EmployeeDTO;
+import com.realdolmen.rdfleet.DTO.OrderDTO;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -27,4 +31,8 @@ public interface EmployeeService {
     void updateEmployee(EmployeeDTO employeeDTO);
 
     String hashPassword(String password);
+
+    CarDTO assignCarToEmployee(EmployeeDTO employeeDTO, OrderDTO order, int leasingDurationInYears, String numberPlate , LocalDate startLeasingDate, String vinNumber);
+
+    CarDTO assignPoolCarToEmployee(EmployeeDTO employeeDTO, CarDTO car);
 }

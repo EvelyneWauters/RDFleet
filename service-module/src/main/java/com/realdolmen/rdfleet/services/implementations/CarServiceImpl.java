@@ -52,7 +52,10 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public CarDTO findById(Long id) {
-        return CarMapper.mapCarObjectToCarDTO(carRepository.findOne(id));
+        Car car = carRepository.findOne(id);
+        CarDTO carDTO = CarMapper.mapCarObjectToCarDTO(car);
+        return carDTO;
+//        return CarMapper.mapCarObjectToCarDTO(carRepository.findOne(id));
     }
 
 

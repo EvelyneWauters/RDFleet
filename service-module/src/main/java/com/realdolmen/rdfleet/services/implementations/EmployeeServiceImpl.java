@@ -1,19 +1,24 @@
 package com.realdolmen.rdfleet.services.implementations;
 
+import com.realdolmen.rdfleet.DTO.CarDTO;
+import com.realdolmen.rdfleet.DTO.EmployeeDTO;
+import com.realdolmen.rdfleet.DTO.OrderDTO;
+import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
+import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import com.realdolmen.rdfleet.services.definitions.EmployeeService;
+import com.realdolmen.rdfleet.services.mappers.CarMapper;
+import com.realdolmen.rdfleet.services.mappers.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
 
 import static com.realdolmen.rdfleet.services.mappers.EmployeeMapper.mapEmployeeToEmployeeDtoObject;
 
@@ -26,6 +31,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository employeeRepository;
 
     @Autowired
+    private CarRepository carRepository;
+
+    @Autowired
     public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
@@ -33,9 +41,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDTO getEmployeeById(long id) {
         Optional<Employee> employee = Optional.ofNullable(employeeRepository.findOne(id));
-        if(employee.isPresent())    {
+        if (employee.isPresent()) {
             return mapEmployeeToEmployeeDtoObject(employee.get());
-        }   else    {
+        } else {
             throw new IllegalArgumentException("there is no employee found with id " + id);
         }
     }
@@ -43,9 +51,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDTO getEmployeeDtoByEmail(String email) {
         Optional<Employee> employee = employeeRepository.findOneByEmail(email);
-        if(employee.isPresent())    {
+        if (employee.isPresent()) {
             return mapEmployeeToEmployeeDtoObject(employee.get());
-        }   else    {
+        } else {
             throw new IllegalArgumentException("there is no employee found with email ' " + email + " '.");
         }
     }
@@ -82,9 +90,47 @@ public class EmployeeServiceImpl implements EmployeeService {
         return hashedPassword;
     }
 
-    public void updateEmployee(EmployeeDTO employeeDTO)    {
+    @Override
+    public CarDTO assignCarToEmployee(EmployeeDTO employeeDTO, OrderDTO order, int leasingDurationInYears, String numberPlate, LocalDate startLeasingDate, String vinNumber) {
         Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
-        if(checkIfValidEntity(employee)) {
+        Set<Car> carHistory = employee.getCarHistory();
+        carHistory.add(employee.getCurrentCar());
+        Car car = new Car();
+        car.setCarType(order.getCarType());
+        car.setCarOptions(order.getOptionList());
+        car.setLeasingDurationYears(leasingDurationInYears);
+        car.setNumberPlate(numberPlate);
+        car.setStartLeasing(startLeasingDate);
+        car.setVinNumber(vinNumber);
+        employee.setCurrentCar(car);
+        employeeRepository.save(employee);
+        return CarMapper.mapCarObjectToCarDTO(car);
+    }
+
+    @Override
+    public CarDTO assignPoolCarToEmployee(EmployeeDTO employeeDTO, CarDTO carDTO) {
+        Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
+
+        updateCar(carRepository.findOne(carDTO.getId()));
+
+        if (employee.getCurrentCar() != null) {
+            Set<Car> carHistory = employee.getCarHistory();
+            carHistory.add(employee.getCurrentCar());
+        }
+        employee.setCurrentCar(carRepository.findOne(carDTO.getId()));
+        employeeRepository.save(employee);
+        return carDTO;
+    }
+
+    public void updateCar(Car car)  {
+        car.setInThePool(false);
+        carRepository.save(car);
+    }
+
+
+    public void updateEmployee(EmployeeDTO employeeDTO) {
+        Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
+        if (checkIfValidEntity(employee)) {
             employee.setFunctionalLevel(employeeDTO.getFunctionalLevel());
             employee.setActive(employeeDTO.getActive());
             employeeRepository.save(employee);

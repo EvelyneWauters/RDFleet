@@ -143,6 +143,6 @@ public class Car extends AbstractEntity{
     }
 
     public void setInThePool(boolean inThePool) {
-        inThePool = inThePool;
+        this.inThePool = inThePool;
     }
 }
