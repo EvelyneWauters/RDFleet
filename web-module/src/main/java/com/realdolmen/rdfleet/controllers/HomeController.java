@@ -14,8 +14,14 @@ public class HomeController {
     OrderService orderService;
 
     @RequestMapping(value="/", method= RequestMethod.GET)
-    public String home(Model model)    {
-//        model.addAttribute()
+    public String home()    {
         return "index";
+    }
+
+
+
+    @RequestMapping(value="/public/test", method= RequestMethod.GET)
+    public String test()    {
+        return "navbartest";
     }
 }
