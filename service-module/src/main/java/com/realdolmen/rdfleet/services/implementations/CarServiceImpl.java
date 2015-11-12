@@ -1,7 +1,9 @@
 package com.realdolmen.rdfleet.services.implementations;
 
 import com.realdolmen.rdfleet.entities.car.Car;
+import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.repositories.CarRepository;
+import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import com.realdolmen.rdfleet.services.DTO.CarDTO;
 import com.realdolmen.rdfleet.services.definitions.CarService;
 import com.realdolmen.rdfleet.services.mappers.CarMapper;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by EWTAX45 on 28/10/2015.
@@ -19,25 +22,37 @@ public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
 
+
+    @Autowired
+    public EmployeeRepository employeeRepository;
+
     @Autowired
     public CarServiceImpl(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
 
     @Override
-    public List<Car> findAll()  {
-        List<Car> all = carRepository.findAll();
+    public List<Car> findAll() {
+        List<Car> all = carRepository.findAllCarsByNoLongerInUseFalse();
         return all;
     }
 
     @Override
-    public void createCar(Car car)  {
+    public void createCar(Car car) {
         carRepository.save(car);
     }
 
     @Override
     public void removeCar(Long id) {
-        carRepository.delete(id);
+        Car car = carRepository.findOne(id);
+        car.setNoLongerInUse(true);
+        Optional<Employee> employeeOpt = employeeRepository.findByCurrentCar(car);
+        if (employeeOpt.isPresent()) {
+            Employee employee = employeeOpt.get();
+            employee.setCurrentCar(null);
+            employeeRepository.save(employee);
+        }
+        carRepository.save(car);
     }
 
     @Override
@@ -45,7 +60,7 @@ public class CarServiceImpl implements CarService {
         List<Car> allCarsByIsInThePoolTrue = carRepository.findAllCarsByInThePoolTrue();
         List<CarDTO> carDTOList = new ArrayList<>();
         for (Car car : allCarsByIsInThePoolTrue) {
-           carDTOList.add(CarMapper.mapCarObjectToCarDTO(car));
+            carDTOList.add(CarMapper.mapCarObjectToCarDTO(car));
         }
         return carDTOList;
     }
