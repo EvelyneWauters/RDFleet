@@ -22,7 +22,7 @@ public class Order extends AbstractEntity {
     private Employee employee;
     @ManyToOne
     private CarType carType;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<CarOption> options = new ArrayList<>();
 
     /**

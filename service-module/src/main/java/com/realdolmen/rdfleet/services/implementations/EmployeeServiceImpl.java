@@ -1,5 +1,8 @@
 package com.realdolmen.rdfleet.services.implementations;
 
+import com.realdolmen.rdfleet.entities.Order;
+import com.realdolmen.rdfleet.entities.car.options.CarOption;
+import com.realdolmen.rdfleet.repositories.OrderRepository;
 import com.realdolmen.rdfleet.services.DTO.CarDTO;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.services.DTO.OrderDTO;
@@ -30,6 +33,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private CarRepository carRepository;
+    @Autowired
+    private OrderRepository orderRepository;
 
     @Autowired
     public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
@@ -89,20 +94,48 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public CarDTO assignCarToEmployee(EmployeeDTO employeeDTO, OrderDTO order, int leasingDurationInYears, String numberPlate, LocalDate startLeasingDate, String vinNumber) {
-        Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
-        Set<Car> carHistory = employee.getCarHistory();
-        carHistory.add(employee.getCurrentCar());
-        Car car = new Car();
-        car.setCarType(order.getCarType());
-        car.setCarOptions(order.getOptionList());
-        car.setLeasingDurationYears(leasingDurationInYears);
-        car.setNumberPlate(numberPlate);
-        car.setStartLeasing(startLeasingDate);
-        car.setVinNumber(vinNumber);
+    public CarDTO assignCarToEmployee(Order order, int leasingDurationInYears, String numberPlate, String vinNumber) {
+        Employee employee = order.getEmployee();
+        if(employee.getCurrentCar() != null) {
+            moveCurrentCarToCarHistory(employee);
+        }
+
+        Car car = createNewCarFromOrder(order, leasingDurationInYears, numberPlate, vinNumber);
+
         employee.setCurrentCar(car);
+
         employeeRepository.save(employee);
         return CarMapper.mapCarObjectToCarDTO(car);
+    }
+
+    private Car createNewCarFromOrder(Order order, int leasingDurationInYears, String numberPlate, String vinNumber) {
+        Car car = new Car();
+        car.setCarType(order.getCarType());
+
+        if(order.getOptions().size() > 1) {
+            List<CarOption> optionList = order.getOptions();
+            car.setCarOptions(optionList);
+        }
+
+        car.setLeasingDurationYears(leasingDurationInYears);
+        car.setNumberPlate(numberPlate);
+        car.setStartLeasing(LocalDate.now());
+        car.setVinNumber(vinNumber);
+
+        orderRepository.delete(order);
+        carRepository.save(car);
+        return car;
+    }
+
+    private void moveCurrentCarToCarHistory(Employee employee) {
+        Car currentCar = carRepository.findOne(employee.getCurrentCar().getId());
+        Set<Car> carHistory = employee.getCarHistory();
+        carHistory.add(employee.getCurrentCar());
+
+        if(currentCar.getEndLeasing().isAfter(LocalDate.now()) && !(currentCar.getEndLeasing().isEqual(LocalDate.now()))) {
+            currentCar.setInThePool(true);
+        }
+        carRepository.save(currentCar);
     }
 
     @Override
@@ -127,7 +160,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         car.setStartLeasing(LocalDate.now());
         carRepository.save(car);
     }
-
 
 
     public void updateEmployee(EmployeeDTO employeeDTO) {

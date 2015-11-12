@@ -1,5 +1,6 @@
 package com.realdolmen.rdfleet.services.DTO;
 
+import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -10,6 +11,8 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by JDOAX80 on 28/10/2015.
@@ -37,8 +40,8 @@ public class EmployeeDTO extends AbstractDTO implements Serializable{
 
     private boolean active = true;
 
-//    private Car currentCar;
-//    private Set<Car> carHistory = new HashSet<>();
+    private Car currentCar;
+    private Set<Car> carHistory = new HashSet<>();
 //    private Double monthlyCost;
 //    private Double fines;
 
@@ -99,5 +102,21 @@ public class EmployeeDTO extends AbstractDTO implements Serializable{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Car getCurrentCar() {
+        return currentCar;
+    }
+
+    public void setCurrentCar(Car currentCar) {
+        this.currentCar = currentCar;
+    }
+
+    public Set<Car> getCarHistory() {
+        return carHistory;
+    }
+
+    public void setCarHistory(Set<Car> carHistory) {
+        this.carHistory = carHistory;
     }
 }

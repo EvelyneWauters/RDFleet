@@ -59,11 +59,13 @@ public class OrderServiceImpl implements OrderService{
         Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
         List<String> selectedOptions = optionListObject.getSelectedOptions();
         List<CarOption> carOptions = new ArrayList<>();
-        for (String selectedOption : selectedOptions) {
-            carOptions.add(carOptionRepository.findOne(Long.parseLong(selectedOption)));
-        }
         Order order = new Order(carType, employee);
-        order.setOptions(carOptions);
+        if(selectedOptions != null && selectedOptions.size() > 0) {
+            for (String selectedOption : selectedOptions) {
+                carOptions.add(carOptionRepository.findOne(Long.parseLong(selectedOption)));
+            }
+            order.setOptions(carOptions);
+        }
         return orderRepository.save(order);
     }
 
@@ -72,6 +74,11 @@ public class OrderServiceImpl implements OrderService{
         return orderRepository.findAll();
     }
 
+
+    @Override
+    public Order findById(Long id)  {
+        return orderRepository.findOne(id);
+    }
 //    @Override
 //    public Order createOrderPoolCar(CarDTO carDTO, EmployeeDTO employeeDTO) {
 //        Car car = carRepository.findOne(carDTO.getId());
