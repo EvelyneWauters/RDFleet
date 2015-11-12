@@ -111,7 +111,11 @@
     </view-state>
 
 
-    <end-state id="index" />
+    <!--<view-state id="index" view="index">-->
+        <!-- -->
+    <!--</view-state>-->
+
+    <end-state id="index" view="index" />
 
 
     <!--<end-state id="webflow-cancellation" />-->

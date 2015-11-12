@@ -30,7 +30,7 @@
 <div th:replace="navbar :: navbar"/>
 <div class="thiscontainer">
 
-    <span style="padding-left: 15px; font-family: 'Josefin Sans', sans-serif; font-weight: 400; font-size: 300%; ">Your order is confirmed!</span>
+    <span style="padding-left: 15px; font-family: 'Josefin Sans', sans-serif; font-weight: 400; font-size: 300%; " th:text="#{msgorderconf.yourorderisconfirmed}">Your order is confirmed!</span>
 
 
     <div clas="row">
@@ -105,7 +105,7 @@
             <form method="post">
                 <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-                <button class="btn btn-lg btn-block" th:text="#{msgconf.gotoindex}" type="submit"
+                <button class="btn btn-lg btn-block" th:text="#{msgorderconf.gotoindex}" type="submit"
                         name="_eventId_gotoindex">revise
                 </button>
             </form>
