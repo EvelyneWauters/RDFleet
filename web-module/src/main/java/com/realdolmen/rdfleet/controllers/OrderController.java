@@ -24,6 +24,8 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 public class OrderController {
     @Autowired
     private OrderServiceImpl orderService;
+    @Autowired
+    private EmployeeServiceImpl employeeService;
 
 
     @RequestMapping(value="/all", method = RequestMethod.GET)

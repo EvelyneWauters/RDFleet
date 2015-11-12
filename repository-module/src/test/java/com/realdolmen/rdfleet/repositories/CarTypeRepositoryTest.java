@@ -57,13 +57,13 @@ public class CarTypeRepositoryTest extends RepositoryTest {
 
     @Test
     public void findCarTypeByCategoryCanBeSuccessfullyCalled() {
-        List<CarType> carTypes = carTypeRepository.findCarTypeByCategory(1);
+        List<CarType> carTypes = carTypeRepository.findCarTypeByCategoryAndIsAvailableTrue(1);
         assertEquals(1, carTypes.size());
     }
 
     @Test
     public void findCarTypeByCategoryReturnsNoCarTypesWhenGivenAnInvalidCategory() {
-        List<CarType> carTypes = carTypeRepository.findCarTypeByCategory(8);
+        List<CarType> carTypes = carTypeRepository.findCarTypeByCategoryAndIsAvailableTrue(8);
         assertEquals(0, carTypes.size());
     }
 
