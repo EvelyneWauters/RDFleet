@@ -65,7 +65,7 @@
 </head>
 <body>
 
-<div th:include="navbar"/>
+<div th:replace="navbar :: navbar"/>
 
 <div class="container">
     <h2 th:text="#{msgemployeeform.editemployee}">Edit employee</h2>

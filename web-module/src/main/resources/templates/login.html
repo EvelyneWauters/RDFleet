@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div th:include="navbar"/>
+<div th:replace="navbar :: navbar"/>
 <div class="container">
 
     <p th:if="${loginError}">Wrong user or password</p>
