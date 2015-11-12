@@ -33,7 +33,7 @@ public class EmployeeController {
     //return all users (sorted on email)
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public String employeeDTOList(Model model) {
-        List<EmployeeDTO> allEmployees = (List) employeeService.getAllEmployees();
+        List<EmployeeDTO> allEmployees = (List) employeeService.getAllEmployeesByActive(true);
         model.addAttribute(allEmployees);
         return "employeelist";
     }
@@ -54,9 +54,9 @@ public class EmployeeController {
     //POST-method of the create-page
     @RequestMapping(value = "/form", method = RequestMethod.POST)
     public String updateEmployee(@Valid EmployeeDTO employee, Errors errors) {
-//        if(errors.hasErrors())   {
-//            return "employeeform";
-//        }
+        if(errors.hasErrors())   {
+            return "employeeform";
+        }
 //        Optional<Employee> employeeById = employeeService.getEmployeeById(employee.getId());
 //        Employee editedEmployee = employeeById.get();
 //        editedEmployee.setFunctionalLevel(employee.getFunctionalLevel());

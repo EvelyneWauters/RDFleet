@@ -16,18 +16,17 @@ import java.util.List;
  */
 public class CarDTO extends AbstractDTO{
 
-    @NotNull
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private CarType carType;
-    @NotNull
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private String vinNumber;
-    @NotNull
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private LocalDate startLeasing;
-    @Convert(converter = LocalDatePersistenceConverter.class)
     private LocalDate endLeasing;
     private int leasingDurationYears = 4;
     private double mileage;
     private int amountOfRefuels;
-    @NotNull
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private String numberPlate;
     private List<CarOption> carOptions = new ArrayList<>();
     private boolean inThePool;

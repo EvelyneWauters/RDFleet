@@ -9,11 +9,6 @@ import java.util.List;
  * Created by JDOAX80 on 30/10/2015.
  */
 public interface CarTypeService {
-//    List<CarType> findAllCarTypes();
-//
-//    List<CarType> findAllAvailableCarTypes();
-//
-//    List<CarType> findCarByFunctionalLevel(int i);
 
     CarTypeDTO findById(Long id);
 

@@ -14,7 +14,6 @@ import org.springframework.webflow.mvc.servlet.FlowHandlerMapping;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.AjaxThymeleafViewResolver;
 import org.thymeleaf.spring4.view.FlowAjaxThymeleafView;
-import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 
 /**

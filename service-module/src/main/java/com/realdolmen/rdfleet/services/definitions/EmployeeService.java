@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -36,4 +37,6 @@ public interface EmployeeService {
     CarDTO assignCarToEmployee(Order order, int leasingDurationInYears, String numberPlate , String vinNumber);
 
     CarDTO assignPoolCarToEmployee(EmployeeDTO employeeDTO, CarDTO car);
+
+    List<EmployeeDTO> getAllEmployeesByActive(boolean isActive);
 }

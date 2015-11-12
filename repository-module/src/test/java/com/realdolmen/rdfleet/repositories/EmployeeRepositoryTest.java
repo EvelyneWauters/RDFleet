@@ -8,6 +8,7 @@ import com.realdolmen.rdfleet.entities.employee.Employee;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.annotation.DirtiesContext;
 
 import javax.persistence.PersistenceException;
@@ -24,30 +25,26 @@ import java.util.Optional;
 public class EmployeeRepositoryTest extends RepositoryTest {
     @Autowired
     private EmployeeRepository employeeRepository;
-
     private Employee employee;
 
-    @Test
-    public void employeeCanBeCreated() {
+    @Before
+    public void init() {
+        super.init();
         employee = new Employee();
         employee.setEmail("Bla@Bla.com");
         employee.setPasswordHash("zefzefé");
+    }
+
+    @Test
+    public void employeeCanBeCreated() {
         employeeRepository.save(employee);
         assertNotNull(employee.getId());
     }
 
-    @Test(expected = ConstraintViolationException.class)
-    public void employeeCantBeCreatedWithoutEmailAddress() {
-        employee = new Employee();
-        employee.setPasswordHash("zefzefé");
-        employeeRepository.save(employee);
-    }
-
-    @Test(expected = ConstraintViolationException.class)
-    public void employeeCantBeCreatedWithoutPassword() {
-        employee = new Employee();
-        employee.setEmail("Bla@Bla.com");
-        employeeRepository.save(employee);
+    @Test(expected = DataIntegrityViolationException.class)
+    public void currentCarAssignedToAnEmployeeMustBeUnique() {
+        employee.setCurrentCar(getCar());
+        employeeRepository.save(this.employee);
     }
 
 

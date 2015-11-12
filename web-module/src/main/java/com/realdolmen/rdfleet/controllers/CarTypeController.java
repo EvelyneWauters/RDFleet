@@ -2,7 +2,6 @@ package com.realdolmen.rdfleet.controllers;
 
 import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
-import com.realdolmen.rdfleet.services.definitions.CarService;
 import com.realdolmen.rdfleet.entities.car.enums.FuelType;
 import com.realdolmen.rdfleet.services.implementations.CarTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +23,6 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 public class CarTypeController {
     @Autowired
     private CarTypeServiceImpl carTypeServiceImpl;
-    
-
-    @Autowired
-    CarService carService;
-
 
     //return all available cars (sorted on category)
     @RequestMapping(value = "/all", method = RequestMethod.GET)

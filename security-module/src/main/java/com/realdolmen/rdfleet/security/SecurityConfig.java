@@ -12,9 +12,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 /**
  * Created by EWTAX45 on 28/10/2015.
  */

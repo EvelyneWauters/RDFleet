@@ -14,6 +14,7 @@ public class Employee extends User implements Serializable {
      * Class fields
      */
     @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(unique = true)
     private Car currentCar;
     @ManyToMany (fetch = FetchType.EAGER)
     private Set<Car> carHistory = new HashSet<>();

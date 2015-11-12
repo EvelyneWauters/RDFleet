@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.PostConstruct;
+import java.security.Principal;
 import java.util.Optional;
 
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.fromMappingName;
@@ -25,17 +26,11 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 public class LoginController {
 
     private Authentication authentication;
-//
-//    private boolean isLoggedIn;
-//
-//    @PostConstruct
-//    public void init(Model model) {
-//
-//    }
+
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String getLoginPage(@RequestParam Optional<String> error, Model model) {
-        Object authentication = SecurityContextHolder.getContext().getAuthentication();
+        authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication instanceof AnonymousAuthenticationToken) {
             model.addAttribute("error", error);
             return "login";
@@ -43,17 +38,4 @@ public class LoginController {
             return "redirect:" + fromMappingName("HC#home").build();
         }
     }
-
-    // Login form with error
-    @RequestMapping("/login-error.html")
-    public String loginError(Model model, BindingResult result) {
-        model.addAttribute("loginError", true);
-        return "login.html";
-    }
-
-//    @RequestMapping(value = "/logout", method = RequestMethod.POST)
-//    public String getLogoutPage(@RequestParam Optional<String> error, Model model) {
-//        model.addAttribute("error", error);
-//        return "home";
-//    }
 }

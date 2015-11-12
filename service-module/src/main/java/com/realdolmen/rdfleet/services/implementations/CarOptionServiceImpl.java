@@ -2,7 +2,6 @@ package com.realdolmen.rdfleet.services.implementations;
 
 import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.repositories.CarOptionRepository;
-import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.services.definitions.CarOptionsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

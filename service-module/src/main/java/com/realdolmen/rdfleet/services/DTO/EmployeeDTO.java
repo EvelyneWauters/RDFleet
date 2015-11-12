@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.persistence.Column;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -17,7 +18,7 @@ import java.util.Set;
 /**
  * Created by JDOAX80 on 28/10/2015.
  */
-public class EmployeeDTO extends AbstractDTO implements Serializable{
+public class EmployeeDTO extends AbstractDTO implements Serializable {
     /**
      * Class fields
      */
@@ -25,17 +26,18 @@ public class EmployeeDTO extends AbstractDTO implements Serializable{
     private String lastName;
 
     @Email
-    @NotEmpty(message = "Please enter your email addresss.")
+    @NotEmpty(message = "{field.errorMessage.pleaseEnterMail}")
     private String email = "";
 
 //    @NotEmpty
     private String password = "";
 
-    @NotNull
+    @NotNull(message = "{field.errorMessage.isEmpty}")
     private Role role = Role.EMPLOYEE;
 
-    @Min(value = 1, message = "functional level must be between 1 and 7")
-    @Max(value = 7, message = "functional level must be between 1 and 7")
+    @Digits(integer = 10, fraction = 0, message = "{field.errorMessage.mustBeANumber}")
+    @Min(value = 1, message = "{functionalLevel.errorMessage.mustBeHigherThanOne}")
+    @Max(value = 7, message = "{functionalLevel.errorMessage.mustBeLowerThanSeven}")
     private int functionalLevel = 1;
 
     private boolean active = true;

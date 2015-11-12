@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>RealDolmen Fleet</title>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
-
 </head>
 <body>
 <div th:fragment="navbar">
@@ -58,6 +57,7 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
+                <li sec:authorize="isAuthenticated()"><span th:text="${#messages.msg('navbar.loggedInUser') + ' '}"></span><span sec:authentication="name"></span></li>
                 <li class="active" sec:authorize="!isAuthenticated()">
                     <a class="btn" th:href="@{/login}" th:text="#{login}">
                         <span class="sr-only">(current)</span></a>

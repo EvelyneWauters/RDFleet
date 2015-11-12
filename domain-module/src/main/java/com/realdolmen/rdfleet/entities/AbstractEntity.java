@@ -20,7 +20,6 @@ public class AbstractEntity implements Serializable{
     public AbstractEntity() {
     }
 
-
     public Long getId() {
         return id;
     }

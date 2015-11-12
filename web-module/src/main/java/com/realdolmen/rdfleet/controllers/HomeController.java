@@ -18,5 +18,4 @@ public class HomeController {
 //        model.addAttribute()
         return "index";
     }
-
 }

@@ -36,42 +36,6 @@
             <span th:if="${#fields.hasErrors('brand.name')}" class="help-block" th:errors="*{brand.name}"></span>
         </div>
 
-
-        <!--<div class="form-group" th:class="${#fields.hasErrors('modelName')}? 'has-error'">-->
-            <!--<label th:for="${#ids.next('modelName')}" th:text="#{msgcartypeform.modelname}"/>-->
-            <!--<input type="text" th:field="*{modelName}" class="form-control"/>-->
-            <!--<span th:if="${#fields.hasErrors('modelName')}" class="help-block"-->
-                  <!--th:errors="*{modelName}"></span>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" th:class="${#fields.hasErrors('carModel.modelDesignation')}? 'has-error'">-->
-            <!--<label th:for="${#ids.next('carModel.modelDesignation')}" th:text="#{msgcartypeform.modeldesignation}"/>-->
-            <!--<input type="text" th:field="*{carModel.modelDesignation}" class="form-control"/>-->
-            <!--<span th:if="${#fields.hasErrors('carModel.modelDesignation')}" class="help-block"-->
-                  <!--th:errors="*{carModel.modelDesignation}"></span>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" th:class="${#fields.hasErrors('horsePower')}? 'has-error'">-->
-            <!--<label th:for="${#ids.next('horsePower')}" th:text="#{msgcartypeform.horsepower}"/>-->
-            <!--<input type="number" min="0" th:field="*{horsePower}" class="form-control"/>-->
-            <!--<span th:if="${#fields.hasErrors('horsePower')}" class="help-block"-->
-                  <!--th:errors="*{horsePower}"></span>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" th:class="${#fields.hasErrors('carModel.versionName')}? 'has-error'">-->
-            <!--<label th:for="${#ids.next('carModel.versionName')}" th:text="#{msgcartypeform.versionName}"/>-->
-            <!--<input type="text" th:field="*{carModel.versionName}" class="form-control"/>-->
-            <!--<span th:if="${#fields.hasErrors('carModel.versionName')}" class="help-block"-->
-                  <!--th:errors="*{carModel.versionName}"></span>-->
-        <!--</div>-->
-
-        <!--<div class="form-group" th:class="${#fields.hasErrors('imageUrl')}? 'has-error'">-->
-            <!--<label th:for="${#ids.next('imageUrl')}" th:text="#{msgcartypeform.imageUrl}"/>-->
-            <!--<input type="text" th:field="*{imageUrl}" class="form-control"/>-->
-            <!--<span th:if="${#fields.hasErrors('imageUrl')}" class="help-block"-->
-                  <!--th:errors="*{imageUrl}"></span>-->
-        <!--</div>-->
-
         <div class="form-group" th:class="${#fields.hasErrors('carModelDTO.modelName')}? 'has-error'">
             <label th:for="${#ids.next('carModelDTO.modelName')}" th:text="#{msgcartypeform.modelname}"/>
             <input type="text" th:field="*{carModelDTO.modelName}" class="form-control"/>

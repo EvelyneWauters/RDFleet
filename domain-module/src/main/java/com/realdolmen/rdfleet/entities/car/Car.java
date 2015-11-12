@@ -34,7 +34,7 @@ public class Car extends AbstractEntity{
     private int amountOfRefuels = 0;
     @Column(name = "noLongerInUse")
     private boolean noLongerInUse = false;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String numberPlate;
     @ManyToMany (fetch = FetchType.EAGER)
     private List<CarOption> carOptions = new ArrayList<>();

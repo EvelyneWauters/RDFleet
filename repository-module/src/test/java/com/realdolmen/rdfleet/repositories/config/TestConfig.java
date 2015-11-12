@@ -27,7 +27,8 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories(basePackages = "com.realdolmen.rdfleet.repositories")
 @EnableTransactionManagement
-@Profile("test") public class TestConfig {
+@Profile("test")
+public class TestConfig {
 
     @Bean
     public DataSource dataSource() {
@@ -55,7 +56,7 @@ import java.util.Properties;
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
         hibernateJpaVendorAdapter.setDatabase(Database.H2);
-        hibernateJpaVendorAdapter.setShowSql(true);
+        hibernateJpaVendorAdapter.setShowSql(false);
         return hibernateJpaVendorAdapter;
     }
 
