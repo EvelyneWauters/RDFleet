@@ -1,8 +1,5 @@
 package com.realdolmen.rdfleet.services.implementations;
 
-import com.realdolmen.rdfleet.DTO.CarDTO;
-import com.realdolmen.rdfleet.DTO.CarTypeDTO;
-import com.realdolmen.rdfleet.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.Order;
 import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
@@ -35,9 +32,6 @@ public class OrderServiceImpl implements OrderService{
     private EmployeeRepository employeeRepository;
     @Autowired
     private CarOptionRepository carOptionRepository;
-    @Autowired
-    private CarRepository carRepository;
-
 
     @Autowired
     public OrderServiceImpl(OrderRepository orderRepository) {
@@ -62,8 +56,10 @@ public class OrderServiceImpl implements OrderService{
         Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
         List<String> selectedOptions = optionListObject.getSelectedOptions();
         List<CarOption> carOptions = new ArrayList<>();
-        for (String selectedOption : selectedOptions) {
-            carOptions.add(carOptionRepository.findOne(Long.parseLong(selectedOption)));
+        if(selectedOptions != null && selectedOptions.size() > 0) {
+            for (String selectedOption : selectedOptions) {
+                carOptions.add(carOptionRepository.findOne(Long.parseLong(selectedOption)));
+            }
         }
         Order order = new Order(carType, employee);
         order.setOptions(carOptions);

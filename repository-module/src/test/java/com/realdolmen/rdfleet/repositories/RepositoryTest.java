@@ -27,6 +27,7 @@ import java.time.ZoneId;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("test")
 @ContextConfiguration(classes = TestConfig.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class RepositoryTest extends Assert {
     @Autowired
     private EmployeeRepository employeeRepository;
@@ -37,6 +38,7 @@ public class RepositoryTest extends Assert {
 
     private CarType carType;
     private Car car;
+    private Employee employee;
 
     @Before
     public void init() {
@@ -48,7 +50,7 @@ public class RepositoryTest extends Assert {
     public Car createCar() {
         car = new Car();
         car.setVinNumber("145214587e");
-        car.setNumberPlate("1-JNL-715");
+        car.setNumberPlate("1-JNL-745");
         car.setCarType(carType);
         car.setStartLeasing(LocalDate.now(ZoneId.systemDefault()));
         return car;
@@ -67,11 +69,14 @@ public class RepositoryTest extends Assert {
     }
 
     public Employee createEmployee() {
-        Employee employee = new Employee("Test", "Je", "test@rd.com", "passwordHash");
+        employee = new Employee("Test", "Je", "test@rd.com", "passwordHash");
         employee.setCurrentCar(car);
         return employee;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
     public CarType getCarType() {
         return carType;
     }

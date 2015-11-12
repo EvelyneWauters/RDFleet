@@ -9,6 +9,7 @@ import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import com.realdolmen.rdfleet.services.definitions.EmployeeService;
 import com.realdolmen.rdfleet.services.mappers.CarMapper;
+import com.realdolmen.rdfleet.services.mappers.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -64,12 +65,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Collection<EmployeeDTO> getAllEmployees() {
-        List<Employee> employeeList = employeeRepository.findAll(new Sort("email"));
-        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
-        for (Employee employee : employeeList) {
-            employeeDTOList.add(mapEmployeeToEmployeeDtoObject(employee));
-        }
-        return employeeDTOList;
+//        List<Employee> employeeList = employeeRepository.findAll(new Sort("email"));
+//        List<EmployeeDTO> employeeDTOList = new ArrayList<>();
+//        for (Employee employee : employeeList) {
+//            employeeDTOList.add(mapEmployeeToEmployeeDtoObject(employee));
+//        }
+//        return employeeDTOList;
+        return mapEmployeeListToEmployeeDTOList(employeeRepository.findAll(new Sort("email")));
     }
 
     @Override
@@ -122,12 +124,24 @@ public class EmployeeServiceImpl implements EmployeeService {
         return carDTO;
     }
 
+    @Override
+    public List<EmployeeDTO> getAllEmployeesByActive(boolean isActive) {
+        return mapEmployeeListToEmployeeDTOList(employeeRepository.findAllByActive(isActive));
+    }
+
+    private List<EmployeeDTO> mapEmployeeListToEmployeeDTOList(List<Employee> employees) {
+        List<EmployeeDTO> employeeDTOs = new ArrayList<>();
+        employees.forEach(employee -> {
+            employeeDTOs.add(EmployeeMapper.mapEmployeeToEmployeeDtoObject(employee));
+        });
+        return employeeDTOs;
+    }
+
     public void updatePoolCar(Car car)  {
         car.setInThePool(false);
         car.setStartLeasing(LocalDate.now());
         carRepository.save(car);
     }
-
 
 
     public void updateEmployee(EmployeeDTO employeeDTO) {

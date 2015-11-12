@@ -2,7 +2,6 @@ package com.realdolmen.rdfleet.controllers;
 
 import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.entities.car.enums.WinterTyresRimType;
-import com.realdolmen.rdfleet.services.definitions.CarService;
 import com.realdolmen.rdfleet.entities.car.enums.FuelType;
 import com.realdolmen.rdfleet.services.implementations.CarTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +23,6 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 public class CarTypeController {
     @Autowired
     private CarTypeServiceImpl carTypeServiceImpl;
-    
-
-    @Autowired
-    CarService carService;
-
 
     //return all available cars (sorted on category)
     @RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -37,34 +31,6 @@ public class CarTypeController {
         model.addAttribute("carTypeList", catalog);
         return "cartypelist";
     }
-
-
-//    //GET-method of the create-page
-//    @RequestMapping(value = "/form", method = RequestMethod.GET)
-//    public String carTypeForm(@RequestParam(value = "id", required = false) Long carTypeId, Model model) {
-//        if (carTypeId != null) {
-//            model.addAttribute("carType", carTypeServiceImpl.findById(carTypeId));//Voegt een bestaande cartype toe aan het model
-//        } else {
-//            model.addAttribute("carType", new CarType()); //Voegt een nieuwe cartypeDTO toe aan het model
-//        }
-//        return "cartypeform";
-//    }
-
-
-    //POST-method of the create-page
-//    @RequestMapping(value = "/form", method = RequestMethod.POST)
-//    public String createCarType(@Valid CarType carType, BindingResult errors) {
-//        if(errors.hasErrors())   {
-//            return "cartypeform";
-//        }
-//        if(carType.getId() != null) {
-//
-//            CarType byId = carTypeServiceImpl.findById(carType.getId());
-//            carType.setVersionNumber(byId.getVersionNumber());
-//        }
-//        carTypeServiceImpl.createOrUpdateCarType(carType);
-//        return "redirect:" + fromMappingName("CTC#carTypeList").build();
-//    }
 
     //GET-method of the create-page
     @RequestMapping(value = "/form", method = RequestMethod.GET)

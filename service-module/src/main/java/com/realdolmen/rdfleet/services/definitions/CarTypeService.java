@@ -1,6 +1,7 @@
 package com.realdolmen.rdfleet.services.definitions;
 
 import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

@@ -7,7 +7,7 @@ import javax.persistence.Entity;
  * Created by JDOAX80 on 2/11/2015.
  */
 @Entity
-@DiscriminatorValue(value = "hc")
+@DiscriminatorValue(value = "hs")
 public class HeatedSeats extends CarOption {
 
     public HeatedSeats() {

@@ -62,7 +62,6 @@ public class CarTypeServiceImpl implements CarTypeService {
     }
 
     @Override
-//    @Transactional(readOnly = false)
     public void createCarType(CarTypeDTO carTypeDTO) {
         CarType carType = new CarType();
         carType = CarTypeMapper.mapCarTypeDTOToCarTypeObject(carTypeDTO, carType);
@@ -72,7 +71,6 @@ public class CarTypeServiceImpl implements CarTypeService {
 
 
     @Override
-//    @Transactional(readOnly = false)
     public void updateExistingCarType(Long id, CarTypeDTO carTypeDTO) {
         Optional<CarType> carTypeForGivenId = Optional.ofNullable(carTypeRepository.findOne(id));
         if (carTypeForGivenId.isPresent()) {
@@ -86,7 +84,6 @@ public class CarTypeServiceImpl implements CarTypeService {
 
     //will not remove the CarType, but set the 'is available'-flag to false
     @Override
-//    @Transactional(readOnly = false)
     public void removeCarTypeFromList(Long id) {
         CarType carType = carTypeRepository.findOne(id);
         carType.setIsAvailable(false);

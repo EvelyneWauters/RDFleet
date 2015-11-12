@@ -38,11 +38,4 @@ public class LoginController {
             return "redirect:" + fromMappingName("HC#home").build();
         }
     }
-
-    // Login form with error
-    @RequestMapping("/login?error")
-    public String loginError(Model model, BindingResult result) {
-        model.addAttribute("loginError", true);
-        return "login.html";
-    }
 }

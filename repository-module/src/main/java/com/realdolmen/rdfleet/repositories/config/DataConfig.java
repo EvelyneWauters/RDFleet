@@ -19,7 +19,6 @@ import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "com.realdolmen.rdfleet.repositories")
-@ComponentScan(basePackages = "com.realdolmen.rdfleet")
 @EnableTransactionManagement
 public class DataConfig {
 

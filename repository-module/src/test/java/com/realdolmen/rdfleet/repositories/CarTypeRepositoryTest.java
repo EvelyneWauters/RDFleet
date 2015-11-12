@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.persistence.PersistenceException;
 import javax.validation.ConstraintViolationException;
+import java.util.List;
 
 /**
  * Created by JDOAX80 on 30/10/2015.
@@ -26,6 +27,7 @@ public class CarTypeRepositoryTest extends RepositoryTest {
 
     @Before
     public void init() {
+        super.init();
         carModel = new CarModel();
         carModel.setModelName("A6");
         brand = new Brand();
@@ -51,5 +53,33 @@ public class CarTypeRepositoryTest extends RepositoryTest {
     public void carTypeCantBeCreatedWithoutModel() {
         carType.setBrand(brand);
         carTypeRepository.save(carType);
+    }
+
+    @Test
+    public void findCarTypeByCategoryCanBeSuccessfullyCalled() {
+        List<CarType> carTypes = carTypeRepository.findCarTypeByCategory(1);
+        assertEquals(1, carTypes.size());
+    }
+
+    @Test
+    public void findCarTypeByCategoryReturnsNoCarTypesWhenGivenAnInvalidCategory() {
+        List<CarType> carTypes = carTypeRepository.findCarTypeByCategory(8);
+        assertEquals(0, carTypes.size());
+    }
+
+
+    @Test
+    public void findAllByIsAvailableTrueCanBeSuccessfullyCalled() {
+        List<CarType> carTypes = carTypeRepository.findAllByIsAvailableTrue();
+        assertEquals(1, carTypes.size());
+    }
+
+    @Test
+    public void findAllByIsAvailableTrueReturnsNoCarTypesIfNoneAreAvailable() {
+        CarType carType = getCarType();
+        carType.setIsAvailable(false);
+        carTypeRepository.save(carType);
+        List<CarType> carTypes = carTypeRepository.findAllByIsAvailableTrue();
+        assertEquals(0, carTypes.size());
     }
 }

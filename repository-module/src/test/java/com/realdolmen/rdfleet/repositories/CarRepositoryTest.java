@@ -12,6 +12,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import javax.persistence.UniqueConstraint;
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * Created by JDOAX80 on 30/10/2015.
@@ -31,6 +32,7 @@ public class CarRepositoryTest extends RepositoryTest {
 
     @Before
     public void init() {
+        super.init();
         CarModel carModel = new CarModel();
         carModel.setModelName("A6");
         Brand brand = new Brand();
@@ -91,6 +93,22 @@ public class CarRepositoryTest extends RepositoryTest {
     }
 
     @Test(expected = DataIntegrityViolationException.class)
+    public void numberPlateOfCarMustBeUnique() {
+        car.setCarType(carType);
+        car2.setCarType(carType2);
+        carTypeRepository.save(carType);
+        carTypeRepository.save(carType2);
+        car.setVinNumber("145");
+        car.setNumberPlate("1");
+        car.setStartLeasing(LocalDate.now());
+        car2.setNumberPlate("1");
+        car2.setStartLeasing(LocalDate.now());
+        car2.setVinNumber("146");
+        carRepository.save(car);
+        carRepository.save(car2);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
     public void carCantBeCreatedWithoutNumberPlate() {
         car.setStartLeasing(LocalDate.now());
         car.setVinNumber("145");
@@ -104,6 +122,20 @@ public class CarRepositoryTest extends RepositoryTest {
         carRepository.save(car);
     }
 
+    @Test
+    public void findAllCarsByInThePoolTrueCanBeSuccessfullyCalled() {
+        Car car = getCar();
+        car.setInThePool(true);
+        carRepository.save(car);
+        List<Car> cars = carRepository.findAllCarsByInThePoolTrue();
+        assertEquals(1, cars.size());
+    }
+
+    @Test
+    public void findAllCarsByInThePoolTrueReturnsNoCarsIfThereAreNonPresent() {
+        List<Car> cars = carRepository.findAllCarsByInThePoolTrue();
+        assertEquals(0, cars.size());
+    }
 }
 
 
