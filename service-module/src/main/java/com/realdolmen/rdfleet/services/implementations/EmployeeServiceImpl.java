@@ -1,16 +1,14 @@
 package com.realdolmen.rdfleet.services.implementations;
 
-import com.realdolmen.rdfleet.DTO.CarDTO;
-import com.realdolmen.rdfleet.DTO.EmployeeDTO;
-import com.realdolmen.rdfleet.DTO.OrderDTO;
-import com.realdolmen.rdfleet.entities.car.Car;
+import com.realdolmen.rdfleet.services.DTO.CarDTO;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
+import com.realdolmen.rdfleet.services.DTO.OrderDTO;
+import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import com.realdolmen.rdfleet.services.definitions.EmployeeService;
 import com.realdolmen.rdfleet.services.mappers.CarMapper;
-import com.realdolmen.rdfleet.services.mappers.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -111,21 +109,25 @@ public class EmployeeServiceImpl implements EmployeeService {
     public CarDTO assignPoolCarToEmployee(EmployeeDTO employeeDTO, CarDTO carDTO) {
         Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
 
-        updateCar(carRepository.findOne(carDTO.getId()));
+        updatePoolCar(carRepository.findOne(carDTO.getId()));
+        Car currentCar = employee.getCurrentCar();
 
-        if (employee.getCurrentCar() != null) {
+        if (currentCar != null) {
             Set<Car> carHistory = employee.getCarHistory();
-            carHistory.add(employee.getCurrentCar());
+            currentCar.setEndLeasing(LocalDate.now());
+            carHistory.add(currentCar);
         }
         employee.setCurrentCar(carRepository.findOne(carDTO.getId()));
         employeeRepository.save(employee);
         return carDTO;
     }
 
-    public void updateCar(Car car)  {
+    public void updatePoolCar(Car car)  {
         car.setInThePool(false);
+        car.setStartLeasing(LocalDate.now());
         carRepository.save(car);
     }
+
 
 
     public void updateEmployee(EmployeeDTO employeeDTO) {

@@ -1,4 +1,4 @@
-package com.realdolmen.rdfleet.config;
+package com.realdolmen.rdfleet.repositories.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

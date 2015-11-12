@@ -16,6 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @Configuration
 @Profile("test")
-public class ServicesConfig {
+public class ServicesConfigTest {
 
 }

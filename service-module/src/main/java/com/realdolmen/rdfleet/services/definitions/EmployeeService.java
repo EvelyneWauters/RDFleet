@@ -1,8 +1,8 @@
 package com.realdolmen.rdfleet.services.definitions;
 
-import com.realdolmen.rdfleet.DTO.CarDTO;
-import com.realdolmen.rdfleet.DTO.EmployeeDTO;
-import com.realdolmen.rdfleet.DTO.OrderDTO;
+import com.realdolmen.rdfleet.services.DTO.CarDTO;
+import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
+import com.realdolmen.rdfleet.services.DTO.OrderDTO;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import org.springframework.transaction.annotation.Transactional;

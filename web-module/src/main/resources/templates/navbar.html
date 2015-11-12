@@ -47,6 +47,7 @@
                         <li><a th:href="@{/admin/employee/all}" th:text="#{users}"
                                sec:authorize="hasAuthority('FLEET_EMPLOYEE')"/></li>
                         <li role="separator" class="divider" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"></li>
+                        <li><a th:href="@{/admin/order/all}" th:text="#{vieworders}" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"/></li>
                     </ul>
                 </li>
             </ul>
