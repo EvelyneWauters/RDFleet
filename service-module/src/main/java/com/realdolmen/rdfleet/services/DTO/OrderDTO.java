@@ -50,5 +50,4 @@ public class OrderDTO extends AbstractDTO {
         this.carType = carType;
     }
 
-    
 }

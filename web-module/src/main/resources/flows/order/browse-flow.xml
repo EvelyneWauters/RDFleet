@@ -60,16 +60,20 @@
         <on-render>
             <evaluate expression="carOptionServiceImpl.findAllCarOptions()"
                       result="flowScope.allOptions"/>
+            <evaluate expression="orderServiceImpl.calculateFinalBenefitPerMonth(currentEmployee, chosenCarType)"
+                      result="flowScope.finalBenefitPerMonth"/>
         </on-render>
+
 
         <transition on="confirm" to="createorder" >
         </transition>
-        <!--<transition on="revise" to="webflow-choosecar" />-->
+        <transition on="revise" to="findcarbyfunctionallevel" />
         <!--<transition on="cancel" to="webflow-cancellation" />-->
     </view-state>
 
     <action-state id="createorder">
-        <evaluate expression="orderServiceImpl.createOrder(flowScope.chosenCarType, currentEmployee, optionList )"/>
+        <evaluate expression="orderServiceImpl.createOrder(flowScope.chosenCarType, currentEmployee, optionList )"
+                result="flowScope.confirmedOrder"/>
         <transition to="webflow-confirmation"/>
     </action-state>
 
@@ -82,13 +86,14 @@
     <view-state id="goToChosenPoolCar" view="webflow-choosepoolcar">
         <transition on="confirm" to="createorderPoolCar" >
         </transition>
-        <!--<transition on="revise" to="webflow-choosecar" />-->
+        <transition on="revise" to="findcarbyfunctionallevel" />
         <!--<transition on="cancel" to="webflow-cancellation" />-->
     </view-state>
 
     <action-state id="createorderPoolCar">
-        <evaluate expression="employeeServiceImpl.assignPoolCarToEmployee(currentEmployee, flowScope.chosenPoolCar)"/>
-        <transition to="webflow-confirmation"/>
+        <evaluate expression="employeeServiceImpl.assignPoolCarToEmployee(currentEmployee, flowScope.chosenPoolCar)"
+                />
+        <transition to="webflow-confirmation-poolcar"/>
     </action-state>
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
@@ -101,17 +106,13 @@
     </view-state>
 
 
-
-
-
-
-
-
-
-
+    <view-state id="webflow-confirmation-poolcar" view="webflow-confirmation-poolcar">
+        <transition on="gotoindex" to="index"/>
+    </view-state>
 
 
     <end-state id="index" />
+
 
     <!--<end-state id="webflow-cancellation" />-->
 
