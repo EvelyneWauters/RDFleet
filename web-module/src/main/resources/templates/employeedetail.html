@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>RealDolmen Fleet</title>
+    <link th:href="@{/css/bootstrap-3.0.3.min.css}" rel="stylesheet"/>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div th:replace="navbar :: navbar"/>
+<div class="container">
+    <div class="page-header text-center">
+        <h1><span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet</h1>
+
+        <p class="lead"><span th:text="#{msgcartypelist.title.part1}">Welcome to the </span> <span
+                class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet!</p>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 th:text="#{msgcars.fleetlist}">Fleet List</h4>
+
+            Employee <p th:text="${employee.firstName + ' ' + employee.lastName}"/> has this current car:
+            <p th:text="${employee.currentCar.carType.brand.name + ' ' + employee.currentCar.carType.carModel}"/>
+
+            <div th:if="!${#lists.isEmpty(employee.carHistory)}">
+                <table class="table table-striped table-hover">
+                    <thead>
+                    <tr>
+                        <th th:text="#{msgcartypelist.category}">category</th>
+                        <th th:text="#{msgcartypelist.brand}">Brand</th>
+                        <!--<th th:text="#{msgcartypelist.model}">Model</th>-->
+                        <!--<th th:text="#{msgcartypelist.co2}">co2</th>-->
+                        <!--<th th:text="#{msgcartypelist.price}">price</th>-->
+                        <!--<th th:text="#{msgcartypelist.isavailable}">is available</th>-->
+                        <!--<th class="text-right" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"-->
+                            <!--th:text="#{msg.button.update}">Update-->
+                        <!--</th>-->
+                        <!--<th class="text-right" th:text="#{msg.button.details}">Details</th>-->
+                        <!--<th class="text-right" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"-->
+                            <!--th:text="#{msg.button.remove}">Remove-->
+                        <!--</th>-->
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each="car : ${employee.carHistory}">
+                        <td th:text="${car.numberPlate}"></td>
+                        <td th:text="${car.carType.brand.name}"></td>
+                        <!--<td th:text="${carTypeDTO.carModelDTO.modelName}"></td>-->
+                        <!--<td th:text="${carTypeDTO.co2}"></td>-->
+                        <!--<td th:text="${carTypeDTO.listPriceInclRealVat}"></td>-->
+                        <!--<td th:text="${carTypeDTO.isAvailable}"></td>-->
+
+                        <!--<td class="text-right" sec:authorize="hasAuthority('FLEET_EMPLOYEE')">-->
+                            <!--<a class="btn btn-info btn-xs"-->
+                               <!--th:href="${#mvc.url('CTC#carTypeForm').arg(0, carTypeDTO.id).build()}"-->
+                               <!--th:text="#{msg.button.edit}">Edit</a>-->
+                        <!--</td>-->
+                        <!--<td class="text-right">-->
+                            <!--<a class="btn btn-info btn-xs"-->
+                               <!--th:href="${#mvc.url('CTC#carTypeById').arg(0, carTypeDTO.id).build()}"-->
+                               <!--th:text="#{msg.button.details}">Details</a>-->
+                        <!--</td>-->
+                        <!--<td class="text-right" sec:authorize="hasAuthority('FLEET_EMPLOYEE')">-->
+                            <!--<a class="btn btn-danger btn-xs"-->
+                               <!--th:href="${#mvc.url('CTC#removeCarType').arg(0, carTypeDTO.id).build()}"-->
+                               <!--th:text="#{msg.button.remove}">Remove</a>-->
+                        <!--</td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div th:if="${#lists.isEmpty(employee.carHistory)}">
+                <p th:text="#{msgcartypelist.nocarsfound}"/>
+            </div>
+
+        </div>
+    </div>
+
+    <hr/>
+</div>
+
+
+</body>
+</html>

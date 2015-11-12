@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<div th:include="navbar"/>
+<div th:replace="navbar :: navbar"/>
 <div class="container">
 
     <div class="page-header text-center">
@@ -25,13 +25,14 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
+                        <th th:text="#{msgemployeelist.functionalLevel}">functionalLevel</th>
                         <th th:text="#{msgemployeelist.firstName}">first name</th>
                         <th th:text="#{msgemployeelist.lastName}">last name</th>
                         <th th:text="#{msgemployeelist.email}">email</th>
-                        <th th:text="#{msgemployeelist.functionalLevel}">functionalLevel</th>
+                        <th th:text="#{msgemployeelist.currentCar}">email</th>
 
                         <th class="text-right" th:text="#{msgemployeelist.edit}">Edit</th>
-                        <!--<th class="text-right">Details</th>-->
+                        <th class="text-right">Details</th>
                     </tr>
                     </thead>
 
@@ -41,11 +42,13 @@
                         <td th:text="${employeeDTO.lastName}"></td>
                         <td th:text="${employeeDTO.email}"></td>
                         <td th:text="${employeeDTO.functionalLevel}"></td>
-
+                        <div th:if="${employeeDTO.currentCar != null}">
+                        <td th:text="${employeeDTO.currentCar.carType.brand.name + ' ' + employeeDTO.currentCar.carType.carModel}"></td>
+                        </div>
                         <td class="text-right"><a class="btn btn-info btn-xs"
                                                   th:href="${#mvc.url('EC#employeeForm').arg(0, employeeDTO.email).build()}" th:text="#{msgemployeelist.edit}">Edit</a>
                         </td>
-                        <!--<td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('CTC#carTypeById').arg(0, carType.id).build()}">Details</a></td>-->
+                        <td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('EC#employeeById').arg(0, employeeDTO.email).build()}">Details</a></td>
 
                     </tr>
                     </tbody>

@@ -1,5 +1,6 @@
 package com.realdolmen.rdfleet.services.definitions;
 
+import com.realdolmen.rdfleet.entities.Order;
 import com.realdolmen.rdfleet.services.DTO.CarDTO;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.services.DTO.OrderDTO;
@@ -33,7 +34,7 @@ public interface EmployeeService {
 
     String hashPassword(String password);
 
-    CarDTO assignCarToEmployee(EmployeeDTO employeeDTO, OrderDTO order, int leasingDurationInYears, String numberPlate , LocalDate startLeasingDate, String vinNumber);
+    CarDTO assignCarToEmployee(Order order, int leasingDurationInYears, String numberPlate , String vinNumber);
 
     CarDTO assignPoolCarToEmployee(EmployeeDTO employeeDTO, CarDTO car);
 

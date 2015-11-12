@@ -22,6 +22,8 @@ public class EmployeeMapper {
         dto.setRole(employee.getRole());
         dto.setFirstName(employee.getFirstName());
         dto.setLastName(employee.getLastName());
+        dto.setCurrentCar(employee.getCurrentCar());
+        dto.setCarHistory(employee.getCarHistory());
         return dto;
     }
 

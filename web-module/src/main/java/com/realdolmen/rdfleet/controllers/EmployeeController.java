@@ -1,11 +1,13 @@
 package com.realdolmen.rdfleet.controllers;
 
+import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.services.implementations.EmployeeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.fromMappingName;
 
 /**
@@ -59,6 +63,19 @@ public class EmployeeController {
         employeeService.updateEmployee(employee);
         return "redirect:" + fromMappingName("EC#employeeDTOList").build();
     }
+
+    //find employee by id and show details
+    @RequestMapping(value = "/id/{id}", method = GET)
+    public String employeeById(@RequestParam("id") String employeeEmail, Model model) {
+//        EmployeeDTO employee = employeeService.getEmployeeById(id);
+        Optional<Employee> optionalEmployeeByEmail = employeeService.getOptionalEmployeeByEmail(employeeEmail);
+        Employee employee = optionalEmployeeByEmail.get();
+        model.addAttribute("employee", employee);
+//        model.addAttribute("currentCar", employee.getCurrentCar());
+//        model.addAttribute("carHistoryList", employee.getCarHistory());
+        return "employeedetail";
+    }
+
 
 
 }

@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<div th:include="navbar"/>
+<div th:replace="navbar :: navbar"/>
 <div class="container">
 
     <div class="page-header text-center">
@@ -25,12 +25,12 @@
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th th:text="#{orderList.employee.firstName}">first name</th>
-                        <th th:text="#{orderList.employee.lasttName}">last name</th>
-                        <!--<th th:text="#{msgemployeelist.email}">email</th>-->
+                        <th th:text="#{msgemployeelist.firstName}">first name</th>
+                        <th th:text="#{msgemployeelist.lastName}">last name</th>
+                        <th th:text="#{msgemployeelist.email}">email</th>
                         <!--<th th:text="#{msgemployeelist.functionalLevel}">functionalLevel</th>-->
 
-                        <!--<th class="text-right" th:text="#{msgemployeelist.edit}">Edit</th>-->
+                        <th class="text-right" th:text="#{msgorderlist.assigncar}">Edit</th>
                         <!--<th class="text-right">Details</th>-->
                     </tr>
                     </thead>
@@ -39,12 +39,12 @@
                     <tr th:each="order : ${orderList}">
                         <td th:text="${order.employee.firstName}"></td>
                         <td th:text="${order.employee.lastName}"></td>
-                        <!--<td th:text="${employeeDTO.email}"></td>-->
+                        <td th:text="${order.carType.brand.name}"></td>
                         <!--<td th:text="${employeeDTO.functionalLevel}"></td>-->
 
-                        <!--<td class="text-right"><a class="btn btn-info btn-xs"-->
-                                                  <!--th:href="${#mvc.url('EC#employeeForm').arg(0, employeeDTO.email).build()}" th:text="#{msgemployeelist.edit}">Edit</a>-->
-                        <!--</td>-->
+                        <td class="text-right"><a class="btn btn-info btn-xs"
+                                                  th:href="${#mvc.url('OC#orderAssign').arg(0, order.id).build()}" th:text="#{msgorderlist.assigncar}">Edit</a>
+                        </td>
                         <!--<td class="text-right"><a class="btn btn-info btn-xs" th:href="${#mvc.url('CTC#carTypeById').arg(0, carType.id).build()}">Details</a></td>-->
 
                     </tr>

@@ -36,7 +36,7 @@ public class CarTypeServiceImpl implements CarTypeService {
 
     @Override
     public List<CarTypeDTO> findCarByFunctionalLevel(int i) {
-        List<CarType> allCarTypes = carTypeRepository.findCarTypeByCategory(i);
+        List<CarType> allCarTypes = carTypeRepository.findCarTypeByCategoryAndIsAvailableTrue(i);
         return mapEntityListToDTOList(allCarTypes);
     }
 

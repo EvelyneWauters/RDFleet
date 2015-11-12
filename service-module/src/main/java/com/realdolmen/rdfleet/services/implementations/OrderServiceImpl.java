@@ -1,7 +1,6 @@
 package com.realdolmen.rdfleet.services.implementations;
 
 import com.realdolmen.rdfleet.entities.Order;
-import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.car.options.OptionListObject;
@@ -10,8 +9,6 @@ import com.realdolmen.rdfleet.repositories.*;
 import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.services.definitions.OrderService;
-import com.realdolmen.rdfleet.services.mappers.CarTypeMapper;
-import com.realdolmen.rdfleet.services.mappers.EmployeeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,13 +53,13 @@ public class OrderServiceImpl implements OrderService{
         Employee employee = employeeRepository.findOneByEmail(employeeDTO.getEmail()).get();
         List<String> selectedOptions = optionListObject.getSelectedOptions();
         List<CarOption> carOptions = new ArrayList<>();
+        Order order = new Order(carType, employee);
         if(selectedOptions != null && selectedOptions.size() > 0) {
             for (String selectedOption : selectedOptions) {
                 carOptions.add(carOptionRepository.findOne(Long.parseLong(selectedOption)));
             }
+            order.setOptions(carOptions);
         }
-        Order order = new Order(carType, employee);
-        order.setOptions(carOptions);
         return orderRepository.save(order);
     }
 
@@ -71,6 +68,11 @@ public class OrderServiceImpl implements OrderService{
         return orderRepository.findAll();
     }
 
+
+    @Override
+    public Order findById(Long id)  {
+        return orderRepository.findOne(id);
+    }
 //    @Override
 //    public Order createOrderPoolCar(CarDTO carDTO, EmployeeDTO employeeDTO) {
 //        Car car = carRepository.findOne(carDTO.getId());
