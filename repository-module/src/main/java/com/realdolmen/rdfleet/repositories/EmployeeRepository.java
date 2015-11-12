@@ -26,4 +26,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<Employee> findAllCarsWhereLeasingHasRunToAnEnd(@Param("date")LocalDate date);
 
     List<Employee> findAllByActive(boolean isActive);
+
+    Optional<Employee> findByCurrentCar(Car car);
 }

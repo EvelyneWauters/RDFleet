@@ -22,6 +22,7 @@ public interface OrderService {
 
     Order findById(Long id);
 
+    Double calculateFinalBenefitPerMonth(EmployeeDTO employeeDTO, CarTypeDTO carTypeDTO);
 
 
     }

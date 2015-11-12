@@ -77,6 +77,14 @@ public class OrderServiceImpl implements OrderService{
         return orderRepository.findOne(id);
     }
 
+@Override
+    public Double calculateFinalBenefitPerMonth(EmployeeDTO employeeDTO, CarTypeDTO carTypeDTO) {
+    if(employeeDTO.getFunctionalLevel() == carTypeDTO.getCategory() || employeeDTO.getFunctionalLevel() > carTypeDTO.getCategory())    {
+        return carTypeDTO.getBenefitInKindPerMonth();
+    }   else    {
+        return carTypeDTO.getBenefitInKindPerMonth() + carTypeDTO.getAmountUpgradeInclVat();
+    }
+}
 
 //    @Override
 //    public Order createOrderPoolCar(CarDTO carDTO, EmployeeDTO employeeDTO) {
