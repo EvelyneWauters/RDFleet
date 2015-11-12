@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by EWTAX45 on 28/10/2015.
@@ -43,10 +44,10 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarDTO> findCarsInTheFreePool() {
         List<Car> allCarsByIsInThePoolTrue = carRepository.findAllCarsByInThePoolTrue();
-        List<CarDTO> carDTOList = new ArrayList<>();
-        for (Car car : allCarsByIsInThePoolTrue) {
-           carDTOList.add(CarMapper.mapCarObjectToCarDTO(car));
-        }
+        List<CarDTO> carDTOList = allCarsByIsInThePoolTrue.stream().map(CarMapper::mapCarObjectToCarDTO).collect(Collectors.toList());
+//        for (Car car : allCarsByIsInThePoolTrue) {
+//            carDTOList.add(CarMapper.mapCarObjectToCarDTO(car));
+//        }
         return carDTOList;
     }
 

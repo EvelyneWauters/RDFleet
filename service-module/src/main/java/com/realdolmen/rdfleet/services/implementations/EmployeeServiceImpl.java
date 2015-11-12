@@ -31,15 +31,14 @@ import static com.realdolmen.rdfleet.services.mappers.EmployeeMapper.mapEmployee
 public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final CarRepository carRepository;
+    private final OrderRepository orderRepository;
 
     @Autowired
-    private CarRepository carRepository;
-    @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository, OrderRepository orderRepository, CarRepository carRepository) {
         this.employeeRepository = employeeRepository;
+        this.carRepository = carRepository;
+        this.orderRepository = orderRepository;
     }
 
     @Override
@@ -110,7 +109,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return CarMapper.mapCarObjectToCarDTO(car);
     }
 
-    private Car createNewCarFromOrder(Order order, int leasingDurationInYears, String numberPlate, String vinNumber) {
+    public Car createNewCarFromOrder(Order order, int leasingDurationInYears, String numberPlate, String vinNumber) {
         Car car = new Car();
         car.setCarType(order.getCarType());
 

@@ -23,16 +23,19 @@ import java.util.Optional;
 public class OrderServiceImpl implements OrderService{
     private final OrderRepository orderRepository;
 
-    @Autowired
-    private CarTypeRepository carTypeRepository;
-    @Autowired
-    private EmployeeRepository employeeRepository;
-    @Autowired
-    private CarOptionRepository carOptionRepository;
+
+    private final CarTypeRepository carTypeRepository;
+
+    private final EmployeeRepository employeeRepository;
+
+    private final CarOptionRepository carOptionRepository;
 
     @Autowired
-    public OrderServiceImpl(OrderRepository orderRepository) {
+    public OrderServiceImpl(OrderRepository orderRepository, CarOptionRepository carOptionRepository, EmployeeRepository employeeRepository, CarTypeRepository carTypeRepository) {
         this.orderRepository = orderRepository;
+        this.carOptionRepository = carOptionRepository;
+        this.carTypeRepository = carTypeRepository;
+        this.employeeRepository = employeeRepository;
     }
 
 

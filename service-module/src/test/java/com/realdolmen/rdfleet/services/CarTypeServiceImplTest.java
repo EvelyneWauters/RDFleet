@@ -6,26 +6,31 @@ import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.embedabbles.Brand;
 import com.realdolmen.rdfleet.entities.car.embedabbles.CarModel;
 import com.realdolmen.rdfleet.repositories.CarTypeRepository;
+import com.realdolmen.rdfleet.services.definitions.CarTypeService;
 import com.realdolmen.rdfleet.services.implementations.CarTypeServiceImpl;
 import com.realdolmen.rdfleet.services.mappers.CarTypeMapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.data.domain.Sort;
-
-import javax.validation.ConstraintViolationException;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.anyLong;
+import static org.mockito.Mockito.*;
+import static org.powermock.api.mockito.PowerMockito.verifyStatic;
 
 /**
  * Created by JDOAX80 on 2/11/2015.
  */
-public class CarTypeServiceImplTest extends ServicesTest {
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(CarTypeMapper.class)
+public class CarTypeServiceImplTest {
 
     private CarTypeServiceImpl carTypeService;
     private CarTypeRepository carTypeRepository;
@@ -33,50 +38,84 @@ public class CarTypeServiceImplTest extends ServicesTest {
 
     @Before
     public void init() {
+        PowerMockito.mockStatic(CarTypeMapper.class);
         carTypeRepository = Mockito.mock(CarTypeRepository.class);
         carTypeService = new CarTypeServiceImpl(carTypeRepository);
         createNewCar();
     }
 
     @Test
-    public void createOrUpdateCarTypeCanBeCalledFromService() {
-        CarTypeDTO cartypeDTO = new CarTypeDTO();
-        when(CarTypeMapper.mapCarTypeDTOToCarTypeObject(cartypeDTO, car.getCarType())).thenReturn(car.getCarType());
-        carTypeService.createCarType(cartypeDTO);
-        verify(carTypeRepository).save(car.getCarType());
-    }
-
-
-    @Test
-    public void findAllAvailableCarTypesCanBeCalledFromService() {
-        List<CarType> types = new ArrayList<>();
-        types.add(car.getCarType());
-        when(carTypeRepository.findAllByIsAvailableTrue()).thenReturn(types);
-        when(CarTypeMapper.mapCarTypeObjectToCarTypeDTO(any(CarType.class))).thenReturn(null);
-        carTypeService.findAllAvailableCarTypes();
-        verify(carTypeRepository).findAllByIsAvailableTrue();
-        verify(CarTypeMapper.mapCarTypeObjectToCarTypeDTO(any(CarType.class)));
-    }
-
-    @Test
-    public void findByIdCanBeCalledFromService() {
-        carTypeService.findById(car.getId());
-        verify(carTypeRepository).findOne(car.getId());
-    }
-
-    @Test
-    public void findAllCarTypesCanBeCalledFromService() {
+    public void findAllCarTypesCanBeSuccessfullyCalledFromService() {
         carTypeService.findAllCarTypes();
         verify(carTypeRepository).findAll();
     }
 
     @Test
-    public void removeCarTypeFromListCanBeCalledFromService() {
+    public void findCarByFunctionalLevelCanBeSuccessfullyCalledFromService() {
+        List<CarType> types = new ArrayList<>();
+        types.add(car.getCarType());
+        when(carTypeRepository.findCarTypeByCategoryAndIsAvailableTrue(1)).thenReturn(types);
+        when(CarTypeMapper.mapCarTypeObjectToCarTypeDTO(new CarType())).thenReturn(null);
+        carTypeService.findCarByFunctionalLevel(1);
+        verify(carTypeRepository).findCarTypeByCategoryAndIsAvailableTrue(1);
+    }
+
+    @Test
+    public void findAllAvailableCarTypesCanBeSuccessfullyCalledFromService() {
+        List<CarType> types = new ArrayList<>();
+        types.add(car.getCarType());
+        CarTypeServiceImpl carTypeServiceSpy = spy(carTypeService);
+        when(carTypeRepository.findAllByIsAvailableTrue()).thenReturn(types);
+        when(CarTypeMapper.mapCarTypeObjectToCarTypeDTO(new CarType())).thenReturn(null);
+        when(carTypeServiceSpy.mapEntityListToDTOList(types)).thenReturn(null);
+        carTypeService.findAllAvailableCarTypes();
+        verify(carTypeRepository).findAllByIsAvailableTrue();
+        verifyStatic();
+        CarTypeMapper.mapCarTypeObjectToCarTypeDTO(any(CarType.class));
+    }
+
+    @Test
+    public void findByIdCanBeSuccessfullyCalledFromService() {
+        carTypeService.findById(car.getId());
+        verify(carTypeRepository).findOne(anyLong());
+    }
+
+    @Test
+    //TODO:fix test!
+    public void createCarTypeCanBeSuccessfullyCalledFromService() {
+        CarType carType = new CarType();
+        carType.setCategory(5);
+        CarTypeServiceImpl carTypeServiceSpy = spy(carTypeService);
+        when(CarTypeMapper.mapCarTypeDTOToCarTypeObject(new CarTypeDTO(), null)).thenReturn(carType);
+        CarTypeDTO cartypeDTO = new CarTypeDTO();
+        carTypeService.createCarType(cartypeDTO);
+        doReturn(true).when(carTypeServiceSpy).checkIfValidEntity(carType);
+//        when(carTypeServiceSpy.checkIfValidEntity(carType)).thenReturn(true);
+        verify(carTypeRepository).save(carType);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void ifInvalidEntityThrowIllegalArgumentException() {
+        CarType carType = new CarType();
+        carType.setCategory(8);
+        carTypeService.checkIfValidEntity(carType);
+    }
+
+    @Test
+    public void updateExistingCarTypeCanBeSuccessfullyCalledFromService() {
+        when(carTypeRepository.findOne(1L)).thenReturn(new CarType());
+        carTypeService.updateExistingCarType(1L, new CarTypeDTO());
+        verify(carTypeRepository).save(any(CarType.class));
+    }
+
+    @Test
+    public void removeCarTypeFromListCanBeSuccessfullyCalledFromService() {
         when(carTypeRepository.findOne(car.getId())).thenReturn(car.getCarType());
         carTypeService.removeCarTypeFromList(car.getId());
         verify(carTypeRepository).findOne(car.getId());
         verify(carTypeRepository).save(car.getCarType());
     }
+
 
 //    @Test(expected = ConstraintViolationException.class)
 //    public void carTypeCantBeCreatedWithoutCategoryLevel() {

@@ -21,8 +21,6 @@ public class CarOptionServiceImpl implements CarOptionsService {
         this.carOptionRepository = carOptionRepository;
     }
 
-
-
     @Override
     public List<CarOption> findAllCarOptions() {
 

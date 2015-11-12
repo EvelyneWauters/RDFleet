@@ -21,7 +21,7 @@
     <!--                AVAILABLE CARS IN THE DOWNGRADE CATEGORY                  -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
 
-    <a class="h2 toggle-vis-on-downgrade" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
+    <a class="h2" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
        aria-controls="collapseExample" th:text="#{msgorder.downgrade}">
 
     </a>
@@ -133,7 +133,7 @@
     <!--            AVAILABLE CARS IN THE UPGRADE CATEGORY                        -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <div>
-        <a class="h2 toggle-vis-on-upgrade" role="button" data-toggle="collapse" href="#collapseUpgrade" aria-expanded="false"
+        <a class="h2" role="button" data-toggle="collapse" href="#collapseUpgrade" aria-expanded="false"
            aria-controls="collapseExample" th:text="#{msgorder.upgrade}">
 
         </a>
@@ -144,7 +144,7 @@
                 <div th:if="!${#lists.isEmpty(cartypesupgrade)}">
                     <div class="table-responsive">
                         <p th:text="#{msgorder.upgradeinfo}"/>
-                        <table class="table table-striped table-hover">
+                        <table id = "table_upgrade" class="table table-striped table-hover">
                             <thead>
                             <tr>
                                 <th th:text="#{msgorder.category}">category</th>
@@ -192,7 +192,7 @@
     <!--                        AVAILABLE CARS IN THE FREE POOL                   -->
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <div>
-        <a class="h2 toggle-vis-on-free-pool" role="button" data-toggle="collapse" href="#collapsefreepool" aria-expanded="false"
+        <a class="h2" role="button" data-toggle="collapse" href="#collapsefreepool" aria-expanded="false"
            aria-controls="collapseExample" th:text="#{msgorder.freepool}">
 
         </a>
