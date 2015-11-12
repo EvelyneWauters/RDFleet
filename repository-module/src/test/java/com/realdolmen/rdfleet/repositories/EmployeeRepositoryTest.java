@@ -16,6 +16,7 @@ import javax.validation .ConstraintViolationException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
@@ -25,6 +26,9 @@ import java.util.Optional;
 public class EmployeeRepositoryTest extends RepositoryTest {
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private CarRepository carRepository;
+
     private Employee employee;
 
     @Before
@@ -47,6 +51,18 @@ public class EmployeeRepositoryTest extends RepositoryTest {
         employeeRepository.save(this.employee);
     }
 
+    @Test
+    public void findOneByEmailCanBeSuccessfullyCalled() {
+        employeeRepository.save(employee);
+        Employee fetchedEmployee = employeeRepository.findOneByEmail("Bla@Bla.com").get();
+        assertNotNull(fetchedEmployee.getId());
+    }
+
+    @Test(expected = NoSuchElementException.class)//throwt deze error wanneer je werkt met een optional die niets bevat
+    public void findOneByEmailReturnsNoEmployeesForNonExistingEmailAddress() {
+        employeeRepository.save(employee);
+        employeeRepository.findOneByEmail("Bli@Bla.com").get();
+    }
 
     @Test
     public void canFindAllEmployeesWhosCarLeaseIsAboutToExpire() {
@@ -75,4 +91,39 @@ public class EmployeeRepositoryTest extends RepositoryTest {
         assertEquals(0, employees.size());
     }
 
+    @Test
+    public void canFindAllCarsWhereLeasingHasRunToAnEnd() {
+        Car car = getCar();
+        LocalDate fourYearsAgo = LocalDate.now();
+        fourYearsAgo = fourYearsAgo.minusYears(4);
+        car.setStartLeasing(fourYearsAgo);
+        car.setLeasingDurationYears(4);//end leasing is thus set on today
+        carRepository.save(car);
+        List<Employee> employees = employeeRepository.findAllCarsWhereLeasingHasRunToAnEnd(LocalDate.now());
+        assertEquals(1, employees.size());
+    }
+
+    @Test
+    public void findAllCarsWhereLeasingHasRunToAnEndReturnsNoCarsWhenLeasingHasNotRunToAnEnd() {
+        Car car = getCar();
+        LocalDate fourYearsAgo = LocalDate.now();
+        fourYearsAgo = fourYearsAgo.minusYears(6);
+        car.setStartLeasing(fourYearsAgo);
+        car.setLeasingDurationYears(4);//end leasing is thus set on a year from now
+        carRepository.save(car);
+        List<Employee> employees = employeeRepository.findAllCarsWhereLeasingHasRunToAnEnd(LocalDate.now());
+        assertEquals(0, employees.size());
+    }
+
+    @Test
+    public void canFindAllByActive() {
+        List<Employee> employees = employeeRepository.findAllByActive(true);
+        assertEquals(1, employees.size());
+    }
+
+    @Test
+    public void canFindAllByActiveReturnsNoEmployeesWhenNoneAreActive() {
+        List<Employee> employees = employeeRepository.findAllByActive(false);
+        assertEquals(0, employees.size());
+    }
 }
