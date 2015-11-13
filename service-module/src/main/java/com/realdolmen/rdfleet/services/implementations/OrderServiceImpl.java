@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
             order.setOptions(carOptions);
         }
         employee.setReceivedMailForNewCar(false);
-        employee.setRole(Role.EMPLOYEE);
+        employeeRepository.save(employee);
         return orderRepository.save(order);
     }
 

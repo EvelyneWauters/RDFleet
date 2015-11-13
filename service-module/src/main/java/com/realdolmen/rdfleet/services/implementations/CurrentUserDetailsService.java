@@ -3,6 +3,7 @@ package com.realdolmen.rdfleet.services.implementations;
 import com.realdolmen.rdfleet.entities.employee.CurrentUser;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.entities.employee.User;
+import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import com.realdolmen.rdfleet.services.definitions.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -17,6 +18,9 @@ import org.springframework.stereotype.Service;
 public class CurrentUserDetailsService implements UserDetailsService {
 
     private final EmployeeService employeeService;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Autowired
     public CurrentUserDetailsService(EmployeeService employeeService) {
@@ -41,6 +45,8 @@ public class CurrentUserDetailsService implements UserDetailsService {
     }
 
     public boolean getEmployeeCanOrder() {
-        return getCurrentUser().getUser().getReceivedMailForNewCar();
+        Employee employee = getCurrentUser().getUser();
+        employee = employeeRepository.findOneByEmail(employee.getEmail()).get();
+        return  employee.getReceivedMailForNewCar();
     }
 }

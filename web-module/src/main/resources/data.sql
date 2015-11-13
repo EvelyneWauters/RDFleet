@@ -76,7 +76,7 @@ insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate,
 insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (8, '10', 1, '2015-11-06', '2018-11-06', '1-JNL-720', '145sgs', FALSE );
 insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (9, '300', 2, '2015-01-01', '2018-11-06','1-JNL-704', '1451sdds', FALSE );
 insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (10, '200', 2, '2015-01-01', '2018-11-06','1-JNL-703', '145sdfs2', FALSE );
-insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (15/, '150', 3, '2015-01-01', '2018-11-06','1-JNL-707', '145sfsd3e', FALSE );
+insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (15, '150', 3, '2015-01-01', '2018-11-06','1-JNL-707', '145sfsd3e', FALSE );
 insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (11, '110000', 4, '2015-01-01', '2018-11-06','1-JNL-706', '14sdfsdf59', FALSE );
 insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (12, '200', 2, '2015-01-01', '2018-11-06','1-JNL-733', '145sdfsrger2', FALSE );
 insert into car (id, mileage, carType_id, startLeasing, endleasing, numberPlate, vinNumber, inThePool) values (13, '150', 3, '2015-01-01', '2018-11-06','1-JNL-777', '145sfsdergegr3e', FALSE );

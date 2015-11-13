@@ -185,7 +185,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
     }
 
-
     public boolean checkIfValidEntity(Employee employee) {
         int functionalLevel = employee.getFunctionalLevel();
         if (functionalLevel < 1 || functionalLevel > 7)
