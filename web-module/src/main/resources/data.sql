@@ -78,7 +78,7 @@ insert into caroption(id, car_option, optionName, leatherType) values (2, 'li', 
 insert into caroption(id, car_option, optionName, leatherType) values (3, 'hs', 'Heated Seats', null);
 
 
-insert into employee(id, firstName, lastName, email, password_hash, role, functionalLevel, active, currentCar_id) values(5, 'Gek', 'kie', 'tmcmowner@gmail.com', '$2a$10$JXj2OAsht0aNszmIkFlnDuWXdcoWN7hXaw1JOg3tUpokeT5udbRVa', 'FLEET_EMPLOYEE', 1, true, 1);
+insert into employee(id, firstName, lastName, email, password_hash, role, functionalLevel, active, currentCar_id, receivedMailForNewCar) values(5, 'Gek', 'kie', 'tmcmowner@gmail.com', '$2a$10$JXj2OAsht0aNszmIkFlnDuWXdcoWN7hXaw1JOg3tUpokeT5udbRVa', 'FLEET_EMPLOYEE', 1, true, 1, 1);
 insert into employee(id, firstName, lastName, email, password_hash, role, functionalLevel, active, currentCar_id, receivedMailForNewCar) values(6, 'Floo', 'Bar', 'floo@bar.com', '$2a$10$JXj2OAsht0aNszmIkFlnDuWXdcoWN7hXaw1JOg3tUpokeT5udbRVa', 'FLEET_EMPLOYEE', 1, true, 2, 1);
 insert into employee(id, firstName, lastName, email, password_hash, role, functionalLevel, active, currentCar_id) values(7, 'Foo', 'Bar', 'foo@bar.com', '$2a$10$JXj2OAsht0aNszmIkFlnDuWXdcoWN7hXaw1JOg3tUpokeT5udbRVa', 'EMPLOYEE', 1, true, 3);
 
