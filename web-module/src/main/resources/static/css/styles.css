@@ -46,3 +46,8 @@
   font-weight: 400;
   font-size: 300%;
 }
+
+.carform-divider  {
+  background-color: lightgrey;
+  padding: -10px;
+}
