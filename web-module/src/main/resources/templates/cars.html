@@ -31,11 +31,16 @@
 <div th:replace="navbar :: navbar"/>
 
 <div class="thiscontainer">
-    <div class="page-header text-center">
-        <!--<h1><span class="rd-red">Real</span><span class="rd-blue">Dolmen</span> Fleet</h1>-->
-        <img th:src="@{/images/ban-carpark.png}" class="img-responsive"/>
 
+
+    <div th:if="__${#locale}__=='en'" class="page-header text-center">
+        <img th:src="@{/images/ban-carpark.png}" class="img-responsive"/>
     </div>
+
+    <div th:if="__${#locale}__=='nl_BE'" class="page-header text-center">
+        <img th:src="@{/images/ban-carpark-nl.png}" class="img-responsive"/>
+    </div>
+
     <!--<div class="row">-->
     <!--<div class="col-lg-12">-->
     <h4 class="josefientje-header" th:text="#{msgcars.fleetlist}">Fleet List</h4>

@@ -29,6 +29,18 @@
   border-color: #94b6b0
 }
 
+.btn-rd-orange  {
+  color: #fff;
+  background-color: #ec4c24;
+  border-color: #ec4c24
+}
+
+.btn-rd-orange:hover   {
+  color: #fff;
+  background-color: #94b6b0;
+  border-color: #94b6b0
+}
+
 .josefientje-header {
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 400;

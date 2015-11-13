@@ -12,8 +12,8 @@
 
 <div th:replace="navbar :: navbar"/>
 
-<div th:fragment="login">
 <div class="container">
+<div th:fragment="login">
     <form role="form" action="/login" method="post">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div class="form-group">
@@ -28,7 +28,7 @@
             <input class="checkbox-inline" type="checkbox" name="remember-me" id="remember-me"/>
             <label for="remember-me">Remember me</label>
         </div>
-        <button class="btn-block btn-primary btn-lg" type="submit">Sign in</button>
+        <button class="btn-block btn-primary btn-lg btn-rd" type="submit">Sign in</button>
     </form>
     <p th:if="${param.error}" th:text="#{login.error}" class="help-block"></p>
 </div>

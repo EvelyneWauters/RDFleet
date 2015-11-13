@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8"/>
@@ -14,14 +15,27 @@
 <div th:replace="navbar :: navbar"/>
 
 <div class="container">
-    <div class="page-header text-center">
-        <img th:src="@{/images/banner-welcometofleet.png}" class="img-responsive" />
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="page-header text-center">
+                <img th:src="@{/images/banner-welcometofleet.png}" class="img-responsive"/>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div th:replace="login :: login"/>
+            </div>
+
+
+            <div class="col-md-8">
+                Some Cool Index here:
+            </div>
+
+        </div>
     </div>
-
-   <div th:replace="login :: login"/>
-
-
-
 </div>
 </body>
 </html>
