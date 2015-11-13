@@ -5,6 +5,7 @@ import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.repositories.CarRepository;
 import com.realdolmen.rdfleet.repositories.OrderRepository;
+import com.realdolmen.rdfleet.services.DTO.CarDTO;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
 import com.realdolmen.rdfleet.entities.employee.Employee;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;
@@ -19,6 +20,9 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.data.domain.Sort;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
@@ -112,6 +116,44 @@ public class EmployeeServiceImplTest {
         verifyStatic();
         CarMapper.mapCarObjectToCarDTO(any(Car.class));
     }
+
+    @Test
+    public void getAllEmployeesByActiveCanBeSuccessfullyCalledFromService() {
+        List<Employee> employees = new ArrayList<>();
+        EmployeeServiceImpl employeeServiceSpy = spy(employeeService);
+        when(employeeRepository.findAllByActive(true)).thenReturn(employees);
+        when(employeeServiceSpy.mapEmployeeListToEmployeeDTOList(employees)).thenReturn(null);
+        employeeService.getAllEmployeesByActive(true);
+        verify(employeeRepository).findAllByActive(true);
+
+    }
+
+    @Test
+    public void updateEmployeeCanBeSuccessfullyCalledFromService() {
+        EmployeeDTO employeeDTO = new EmployeeDTO();
+        employeeDTO.setEmail(employee.getEmail());
+        EmployeeServiceImpl employeeServiceSpy = spy(employeeService);
+        when(employeeServiceSpy.checkIfValidEntity(employee)).thenReturn(true);
+        when(employeeRepository.findOneByEmail(employee.getEmail())).thenReturn(Optional.ofNullable(employee));
+        employeeService.updateEmployee(employeeDTO);
+        verify(employeeRepository).findOneByEmail(employee.getEmail());
+        verify(employeeRepository).save(any(Employee.class));
+    }
+
+    @Test
+    public void updatePoolCarCanBeSuccessfullyCalledFromService() {
+        employeeService.updatePoolCar(new Car());
+        verify(carRepository).save(any(Car.class));
+    }
+
+//    @Test
+//    public void assignPoolCarToEmployeeCarCanBeSuccessfullyCalledFromService() {
+//        EmployeeDTO employeeDTO = new EmployeeDTO();
+//        employeeDTO.setEmail(employee.getEmail());
+//        CarDTO carDTO = new CarDTO();
+//        EmployeeServiceImpl employeeServiceSpy = spy(employeeService);
+//        when(employeeRepository.findOneByEmail(employee.getEmail())).thenReturn(Optional.ofNullable(employee));
+//    }
 
     @Test
     public void createNewCarFromOrderSuccessfullyCreatesNewCar() {

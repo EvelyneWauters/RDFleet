@@ -161,7 +161,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         return mapEmployeeListToEmployeeDTOList(employeeRepository.findAllByActive(isActive));
     }
 
-    private List<EmployeeDTO> mapEmployeeListToEmployeeDTOList(List<Employee> employees) {
+    public List<EmployeeDTO> mapEmployeeListToEmployeeDTOList(List<Employee> employees) {
         List<EmployeeDTO> employeeDTOs = new ArrayList<>();
         employees.forEach(employee -> {
             employeeDTOs.add(EmployeeMapper.mapEmployeeToEmployeeDtoObject(employee));
