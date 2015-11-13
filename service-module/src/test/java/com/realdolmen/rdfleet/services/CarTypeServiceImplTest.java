@@ -1,5 +1,6 @@
 package com.realdolmen.rdfleet.services;
 
+import com.realdolmen.rdfleet.services.DTO.CarDTO;
 import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.entities.car.Car;
 import com.realdolmen.rdfleet.entities.car.CarType;
@@ -86,7 +87,7 @@ public class CarTypeServiceImplTest {
         CarType carType = new CarType();
         carType.setCategory(5);
         CarTypeServiceImpl carTypeServiceSpy = spy(carTypeService);
-        when(CarTypeMapper.mapCarTypeDTOToCarTypeObject(new CarTypeDTO(), null)).thenReturn(carType);
+        when(CarTypeMapper.mapCarTypeDTOToCarTypeObject(any(CarTypeDTO.class), any(CarType.class))).thenReturn(carType);
         CarTypeDTO cartypeDTO = new CarTypeDTO();
         carTypeService.createCarType(cartypeDTO);
         doReturn(true).when(carTypeServiceSpy).checkIfValidEntity(carType);

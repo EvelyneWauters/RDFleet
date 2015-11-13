@@ -24,7 +24,7 @@
 
 <body>
 <div th:replace="navbar :: navbar"/>
-<div class="container">
+<div th:if="${canOrder}" class="container">
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  -->
     <!--                AVAILABLE CARS IN THE DOWNGRADE CATEGORY                  -->
@@ -258,7 +258,10 @@
             </div>
         </div>
     </div>
+    <div th:replace="fragments-datable :: datatable"/>
 </div>
-<div th:replace="fragments-datable :: datatable"/>
+<div th:if="${!canOrder}" class="container">
+    <img class="centered" src="http://www.filmtotaal.nl/images/newscontent/1334543.jpg" />
+</div>
 </body>
 </html>

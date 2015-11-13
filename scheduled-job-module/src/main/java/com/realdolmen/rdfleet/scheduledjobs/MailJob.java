@@ -1,6 +1,7 @@
 package com.realdolmen.rdfleet.scheduledjobs;
 
 import com.realdolmen.rdfleet.entities.employee.Employee;
+import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import com.realdolmen.rdfleet.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

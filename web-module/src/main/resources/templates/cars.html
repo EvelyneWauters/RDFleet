@@ -59,7 +59,7 @@
                 <th th:text="#{msgcars.vinNumber}">vinNumber</th>
                 <th th:text="#{msgcars.numberPlate}">numberPlate</th>
                 <th th:text="#{msgcars.inthepool}">inthepool</th>
-                <th class="text-right" th:text="#{msgcars.remove}">Remove</th>
+                <th sec:authorize="hasAuthority('FLEET_EMPLOYEE')" class="text-right" th:text="#{msgcars.remove}">Remove</th>
             </tr>
             </thead>
 
@@ -81,7 +81,7 @@
                     <!--<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div>-->
                 </td>
 
-                <td class="text-right"><a class="btn btn-danger btn-xs"
+                <td sec:authorize="hasAuthority('FLEET_EMPLOYEE')" class="text-right"><a class="btn btn-danger btn-xs"
                                           th:href="${#mvc.url('CC#removeCar').arg(0, car.id).build()}"
                                           th:text="#{msgcars.remove}">Remove</a>
                 </td>
