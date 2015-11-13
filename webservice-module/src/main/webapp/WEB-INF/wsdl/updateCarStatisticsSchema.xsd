@@ -6,12 +6,12 @@
            targetNamespace="http://realdolmen.com/">
 
     <xs:element name="updateCarStatistics" type="tns:employees"/>
-    <xs:element name="updateCarStatisticsResponse" type="tns:success"/>
+    <xs:element name="updateCarStatisticsResponse" type="tns:responseMessages"/>
 
 
-    <xs:complexType name="success">
+    <xs:complexType name="responseMessages">
         <xs:sequence>
-            <xs:element name="responseMessage" type="xs:string" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="responseMessage" type="xs:string" maxOccurs="unbounded"/>
         </xs:sequence>
     </xs:complexType>
 
