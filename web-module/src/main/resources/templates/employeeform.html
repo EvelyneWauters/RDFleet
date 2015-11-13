@@ -14,25 +14,43 @@
 <div th:replace="navbar :: navbar"/>
 
 <div class="container">
-    <h2 th:text="#{msgemployeeform.editemployee}">Edit employee</h2>
 
-    <form role="form" method="post" th:object="${employeeDTO}">
-        <div class="form-group" th:class="${#fields.hasErrors('functionalLevel')}? 'has-error'">
-            <label th:for="${#ids.next('functionalLevel')}" th:text="#{msgemployeeform.category}">Functional level:</label>
-            <input type="number" min="2" max="7" th:field="*{functionalLevel}" class="form-control"/>
-            <span th:if="${#fields.hasErrors('functionalLevel')}" class="help-block"
-                  th:errors="*{functionalLevel}"></span>
-        </div>
+    <div class="row">
+        <h2 th:text="#{msgemployeeform.editemployee}" class="josefientje-header">Edit employee</h2>
 
-        <div class="form-group">
-            <div>
-                <label th:for="${#ids.next('active')}" th:text="#{msgemployeeform.active}">Active</label>
-                <input type="checkbox" th:field="*{active}"/>
+    </div>
+    <form class="form-horizontal" role="form" method="post" th:object="${employeeDTO}">
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="form-group" th:class="${#fields.hasErrors('functionalLevel')}? 'has-error'">
+                    <label th:for="${#ids.next('functionalLevel')}" th:text="#{msgemployeeform.category}">Functional
+                        level:</label>
+                    <input type="number" min="2" max="7" th:field="*{functionalLevel}" class="form-control"/>
+        <span th:if="${#fields.hasErrors('functionalLevel')}"
+              class="help-block"
+              th:errors="*{functionalLevel}">
+
+        </span>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div>
+                        <label th:for="${#ids.next('active')}" th:text="#{msgemployeeform.active}">Active</label>
+                        <input type="checkbox" th:field="*{active}"/>
+                    </div>
+                </div>
+            </div>
+            <br/>
+
+            <div class="row">
+                <br/>
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                <button type="submit" class="btn btn-rd btn-block" th:text="#{msgempform.confirm}">Add</button>
             </div>
         </div>
-
-        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <button type="submit" class="btn btn-primary">Add</button>
     </form>
 </div>
 </body>
