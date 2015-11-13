@@ -19,7 +19,7 @@ import static org.springframework.web.servlet.mvc.method.annotation.MvcUriCompon
 
 
 @Controller
-@RequestMapping("/public/cartype")
+@RequestMapping("/cartype")
 public class CarTypeController {
     @Autowired
     private CarTypeServiceImpl carTypeServiceImpl;

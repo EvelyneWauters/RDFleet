@@ -261,7 +261,7 @@
     <div th:replace="fragments-datable :: datatable"/>
 </div>
 <div th:if="${!canOrder}" class="container">
-    <img class="centered" src="http://www.filmtotaal.nl/images/newscontent/1334543.jpg" />
+    <img class="centered" th:src="@{/images/error-patience.jpg}" />
 </div>
 </body>
 </html>
