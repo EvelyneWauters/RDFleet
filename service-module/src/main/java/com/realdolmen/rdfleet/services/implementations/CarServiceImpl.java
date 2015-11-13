@@ -38,6 +38,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public List<Car> findAllNoLongerInUse() {
+        List<Car> all = carRepository.findAllCarsByNoLongerInUseTrue();
+        return all;
+    }
+
+    @Override
     public void createCar(Car car) {
         carRepository.save(car);
     }

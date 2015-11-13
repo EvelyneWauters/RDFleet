@@ -24,7 +24,8 @@
                 </button>
 
                 <a class="navbar-brand" href="http://www.realdolmen.com">
-                    <img id="brand-image" th:src="@{/images/logo-withtext.png}" alt="logo" style="max-width: 10%"/>
+                    <img id="brand-image" th:src="@{/images/logo-withtext.png}" alt="logo"
+                         style="width: 149px; height: 25px;"/>
                 </a>
             </div>
 
@@ -33,14 +34,14 @@
                 <ul class="nav navbar-nav">
 
 
+                    <!--<li>-->
+                        <!--<a class="btn btn-rd" href="/order" th:text="#{choosenewcar}"></a></li>-->
+
+
                     <li class="active"><a th:href="@{/}" th:text="#{home}"><span class="sr-only">(current)</span></a>
                     </li>
 
-                    <li>
-                        <a class="btn btn-info" href="/order" th:text="#{choosenewcar}"></a></li>
                     <li class="dropdown">
-
-
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false" th:text="#{menu}">Menu<span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -55,22 +56,43 @@
                                    sec:authorize="hasAuthority('FLEET_EMPLOYEE')"/></li>
                         </ul>
                     </li>
+
+                    <li th:if="__${#locale}__=='en'">
+                        <a style="padding:0" href="/order">
+                            <img th:src="@{/images/btn-ordercar.png}" alt="logo"
+                                 style="width: 344px; height: 50px;"/></a>
+                    </li>
+
+                    <li th:if="__${#locale}__=='nl_BE'">
+                        <a style="padding:0" href="/order">
+                            <img th:src="@{/images/btn-ordercar-nl.png}" alt="logo"
+                                 style="width: 344px; height: 50px;"/></a>
+                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li sec:authorize="isAuthenticated()"><span
-                            th:text="${#messages.msg('navbar.loggedInUser') + ' '}"></span><span
-                            sec:authentication="name"></span></li>
+
+                    <li sec:authorize="isAuthenticated()">
+                       <span class="navbar-brand">
+                        <span th:text="${#messages.msg('navbar.loggedInUser') + ' '}"></span>
+                        <span sec:authentication="name"></span>
+                       </span>
+                    </li>
+
                     <li class="active" sec:authorize="!isAuthenticated()">
                         <a class="btn" th:href="@{/login}" th:text="#{login}">
-                            <span class="sr-only">(current)</span></a>
+                            <span class="sr-only">(current)</span>
+                        </a>
                     </li>
+
                     <li class="active" sec:authorize="isAuthenticated()">
+                        <!--<a class="btn">-->
                         <form role="form" action="/logout" method="post">
                             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-                            <button class="btn" type="submit" th:text="#{logout}"><span class="sr-only">(current)</span>
+                            <button class="btn" style="height: 49px" type="submit" th:text="#{logout}"><span class="sr-only">(current)</span>
                             </button>
                         </form>
+                            <!--</a>-->
                         <!--<a th:href="@{/logout}" th:text="#{logout}">-->
                         <!--<span class="sr-only">(current)</span></a>-->
                     </li>

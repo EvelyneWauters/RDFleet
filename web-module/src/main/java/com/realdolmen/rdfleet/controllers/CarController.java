@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.validation.Valid;
 
+import java.util.List;
+
 import static org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder.fromMappingName;
 
 /**
@@ -26,6 +28,8 @@ public class CarController {
     @RequestMapping(value="/all", method = RequestMethod.GET)
     public String carList(Model model)  {
         model.addAttribute(carServiceImpl.findAll());
+        List<Car> oldCarList = carServiceImpl.findAllNoLongerInUse();
+        model.addAttribute("oldCarList", oldCarList);
         return "cars";
     }
 

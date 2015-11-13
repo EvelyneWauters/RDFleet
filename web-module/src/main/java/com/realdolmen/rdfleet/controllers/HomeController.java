@@ -17,11 +17,4 @@ public class HomeController {
     public String home()    {
         return "index";
     }
-
-
-
-    @RequestMapping(value="/public/test", method= RequestMethod.GET)
-    public String test()    {
-        return "navbartest";
-    }
 }

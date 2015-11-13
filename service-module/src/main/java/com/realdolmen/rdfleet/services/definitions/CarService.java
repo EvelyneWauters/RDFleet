@@ -13,6 +13,8 @@ import java.util.List;
 public interface CarService {
     List<Car> findAll();
 
+    List<Car> findAllNoLongerInUse();
+
     void createCar(Car car);
 
     void removeCar(Long id);

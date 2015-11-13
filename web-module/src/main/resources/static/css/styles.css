@@ -5,9 +5,32 @@
 
 .rd-blue {
   color: #89aca6;
-
 }
 
 .rd-red {
   color: #ec4c24;
+}
+
+.thiscontainer {
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+
+.btn-rd {
+  color: #fff;
+  background-color: #89aca6;
+  border-color: #89aca6
+}
+
+.btn-rd:hover   {
+  color: #fff;
+  background-color: #94b6b0;
+  border-color: #94b6b0
+}
+
+.josefientje-header {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: 400;
+  font-size: 300%;
 }
