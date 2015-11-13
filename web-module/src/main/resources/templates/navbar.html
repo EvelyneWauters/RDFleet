@@ -45,9 +45,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                            aria-expanded="false" th:text="#{menu}">Menu<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a th:href="@{/public/car/all}" th:text="#{realdolmencarpark}"/></li>
-                            <li><a th:href="@{/public/cartype/all}" th:text="#{catalog}"/></li>
-                            <li><a sec:authorize="hasAuthority('FLEET_EMPLOYEE')" th:href="@{/public/cartype/form}" th:text="#{addnewcartype}"/></li>
+                            <li><a th:href="@{/car/all}" th:text="#{realdolmencarpark}"/></li>
+                            <li><a th:href="@{/cartype/all}" th:text="#{catalog}"/></li>
+                            <li><a sec:authorize="hasAuthority('FLEET_EMPLOYEE')" th:href="@{/cartype/form}" th:text="#{addnewcartype}"/></li>
                             <li role="separator" class="divider" sec:authorize="hasAuthority('FLEET_EMPLOYEE')"></li>
                             <li><a th:href="@{/admin/employee/all}" th:text="#{users}"
                                    sec:authorize="hasAuthority('FLEET_EMPLOYEE')"/></li>

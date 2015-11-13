@@ -13,6 +13,16 @@
 <div th:replace="navbar :: navbar"/>
 <div class="thiscontainer">
 
+    <div th:if="__${#locale}__=='en'" class="page-header text-center">
+        <img th:src="@{/images/ban-employees.png}" class="img-responsive"/>
+    </div>
+
+    <div th:if="__${#locale}__=='nl_BE'" class="page-header text-center">
+        <img th:src="@{/images/ban-employees-nl.png}" class="img-responsive"/>
+    </div>
+
+
+
     <div class="row">
         <h2 th:text="#{msgemployeelist.employeelist}" class="josefientje-header">Edit employee</h2>
 
@@ -42,6 +52,9 @@
                         <td th:text="${employeeDTO.functionalLevel}"></td>
                         <div th:if="${employeeDTO.currentCar != null}">
                         <td th:text="${employeeDTO.currentCar.carType.brand.name + ' ' + employeeDTO.currentCar.carType.carModel}"></td>
+                        </div>
+                        <div th:if="${employeeDTO.currentCar == null}">
+                            <td></td>
                         </div>
                         <td class="text-right"><a class="btn btn-rd btn-xs"
                                                   th:href="${#mvc.url('EC#employeeForm').arg(0, employeeDTO.email).build()}">

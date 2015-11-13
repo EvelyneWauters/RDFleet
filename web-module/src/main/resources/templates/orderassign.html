@@ -13,8 +13,19 @@
 <body>
 <div th:replace="navbar :: navbar"/>
 
+
+<div class="thiscontainer">
+    <div th:if="__${#locale}__=='en'" class="page-header text-center">
+        <img th:src="@{/images/ban-orders.png}" class="img-responsive"/>
+    </div>
+
+    <div th:if="__${#locale}__=='nl_BE'" class="page-header text-center">
+        <img th:src="@{/images/ban-orders-nl.png}" class="img-responsive"/>
+    </div>
+</div>
+
 <div class="container">
-    <h2 th:text="${#messages.msg('msgorderassign.assigncar') + order.employee.firstName + ' ' + order.employee.lastName}"> </h2>
+    <h2 class="josefientje-header" th:text="${#messages.msg('msgorderassign.assigncar')+ ' ' + order.employee.firstName + ' ' + order.employee.lastName}"> </h2>
 
     <form role="form" method="post" th:object="${car}">
 
