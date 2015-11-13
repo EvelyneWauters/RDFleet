@@ -4,10 +4,7 @@ package com.realdolmen.rdfleet.entities.car.options;
 
 import com.realdolmen.rdfleet.entities.AbstractEntity;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.*;
 
 
 /**
@@ -18,7 +15,7 @@ import javax.persistence.InheritanceType;
 @DiscriminatorColumn(name = "car_option")
 public class CarOption extends AbstractEntity{
 
-
+    @Column(nullable = false)
     private String optionName;
     private double price;
 

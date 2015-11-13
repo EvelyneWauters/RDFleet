@@ -22,13 +22,12 @@ public class CarServiceImpl implements CarService {
 
     private final CarRepository carRepository;
 
+    public final EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeRepository employeeRepository;
-
-    @Autowired
-    public CarServiceImpl(CarRepository carRepository) {
+    public CarServiceImpl(CarRepository carRepository, EmployeeRepository employeeRepository) {
         this.carRepository = carRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     @Override

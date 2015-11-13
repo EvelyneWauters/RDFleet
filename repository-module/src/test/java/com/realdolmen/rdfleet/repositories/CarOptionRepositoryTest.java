@@ -4,6 +4,7 @@ import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.car.options.CruiseControl;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 
 import javax.validation.ConstraintViolationException;
 
@@ -14,7 +15,7 @@ public class CarOptionRepositoryTest extends RepositoryTest {
     @Autowired
     private CarOptionRepository carOptionRepository;
 
-    @Test(expected = ConstraintViolationException.class)
+    @Test(expected = DataIntegrityViolationException.class)
     public void carOptionCantBeCreatedWithoutOptionName() {
         CarOption carOption = new CarOption();
         carOptionRepository.save(carOption);
