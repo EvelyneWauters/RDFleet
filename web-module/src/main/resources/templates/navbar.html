@@ -57,13 +57,13 @@
                         </ul>
                     </li>
 
-                    <li th:if="__${#locale}__=='en'">
+                    <li sec:authorize="isAuthenticated()" th:if="__${#locale}__=='en'">
                         <a style="padding:0" href="/order">
                             <img th:src="@{/images/btn-ordercar.png}" alt="logo"
                                  style="width: 344px; height: 50px;"/></a>
                     </li>
 
-                    <li th:if="__${#locale}__=='nl_BE'">
+                    <li sec:authorize="isAuthenticated()" th:if="__${#locale}__=='nl_BE'">
                         <a style="padding:0" href="/order">
                             <img th:src="@{/images/btn-ordercar-nl.png}" alt="logo"
                                  style="width: 344px; height: 50px;"/></a>
