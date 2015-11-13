@@ -21,7 +21,7 @@ import java.util.Optional;
  * Created by JDOAX80 on 4/11/2015.
  */
 @Service
-public class OrderServiceImpl implements OrderService{
+public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
 
@@ -43,10 +43,9 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Order getOrderForEmployee(Employee employee) {
         Optional<Order> orderOptional = orderRepository.findOneByEmployee(employee);
-        if(orderOptional.isPresent()) {
+        if (orderOptional.isPresent()) {
             return orderOptional.get();
-        }
-        else {
+        } else {
             throw new IllegalArgumentException("There is no order present for this employee");
         }
     }
@@ -58,7 +57,7 @@ public class OrderServiceImpl implements OrderService{
         List<String> selectedOptions = optionListObject.getSelectedOptions();
         List<CarOption> carOptions = new ArrayList<>();
         Order order = new Order(carType, employee);
-        if(selectedOptions != null && selectedOptions.size() > 0) {
+        if (selectedOptions != null && selectedOptions.size() > 0) {
             for (String selectedOption : selectedOptions) {
                 carOptions.add(carOptionRepository.findOne(Long.parseLong(selectedOption)));
             }
@@ -76,18 +75,18 @@ public class OrderServiceImpl implements OrderService{
 
 
     @Override
-    public Order findById(Long id)  {
+    public Order findById(Long id) {
         return orderRepository.findOne(id);
     }
 
-@Override
+    @Override
     public Double calculateFinalBenefitPerMonth(EmployeeDTO employeeDTO, CarTypeDTO carTypeDTO) {
-    if(employeeDTO.getFunctionalLevel() == carTypeDTO.getCategory() || employeeDTO.getFunctionalLevel() > carTypeDTO.getCategory())    {
-        return carTypeDTO.getBenefitInKindPerMonth();
-    }   else    {
-        return carTypeDTO.getBenefitInKindPerMonth() + carTypeDTO.getAmountUpgradeInclVat();
+        if (employeeDTO.getFunctionalLevel() == carTypeDTO.getCategory() || employeeDTO.getFunctionalLevel() > carTypeDTO.getCategory()) {
+            return carTypeDTO.getBenefitInKindPerMonth();
+        } else {
+            return carTypeDTO.getBenefitInKindPerMonth() + carTypeDTO.getAmountUpgradeInclVat();
+        }
     }
-}
 
 //    @Override
 //    public Order createOrderPoolCar(CarDTO carDTO, EmployeeDTO employeeDTO) {

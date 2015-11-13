@@ -60,9 +60,16 @@ public class CarServiceImplTest {
 
     @Test
     public void findAllCanBeSuccessfullyCalledFromService() {
-       when(carRepository.findAll()).thenReturn(null);
+       when(carRepository.findAllCarsByNoLongerInUseFalse()).thenReturn(null);
        carService.findAll();
        verify(carRepository).findAllCarsByNoLongerInUseFalse();
+    }
+
+    @Test
+    public void findAllNoLongerInUseCanBeSuccessfullyCalledFromService() {
+        when(carRepository.findAllCarsByNoLongerInUseTrue()).thenReturn(null);
+        carService.findAllNoLongerInUse();
+        verify(carRepository).findAllCarsByNoLongerInUseTrue();
     }
 
     @Test

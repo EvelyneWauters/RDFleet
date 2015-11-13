@@ -139,4 +139,9 @@ public class OrderServiceImplTest {
         orderService.findById(1L);
         verify(orderRepository).findOne(1L);
     }
+
+    @Test
+    public void calculateFinalBenefitPerMonthCanBeSuccessfullyCalledFromService() {
+
+    }
 }

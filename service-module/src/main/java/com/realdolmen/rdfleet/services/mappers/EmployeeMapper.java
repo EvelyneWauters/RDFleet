@@ -15,7 +15,6 @@ public class EmployeeMapper {
 
     public static EmployeeDTO mapEmployeeToEmployeeDtoObject(Employee employee) {
         EmployeeDTO dto = new EmployeeDTO();
-
         dto.setEmail(employee.getEmail());
         dto.setActive(employee.getActive());
         dto.setFunctionalLevel(employee.getFunctionalLevel());
