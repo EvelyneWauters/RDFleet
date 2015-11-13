@@ -15,6 +15,16 @@
 <div th:replace="navbar :: navbar"/>
 <div class="thiscontainer">
 
+    <div th:if="__${#locale}__=='en'" class="page-header text-center">
+        <img th:src="@{/images/ban-employees.png}" class="img-responsive"/>
+    </div>
+
+    <div th:if="__${#locale}__=='nl_BE'" class="page-header text-center">
+        <img th:src="@{/images/ban-employees-nl.png}" class="img-responsive"/>
+    </div>
+
+
+
     <div class="row">
         <h2 th:text="#{msgemployeelist.employeelist}" class="josefientje-header">Edit employee</h2>
 

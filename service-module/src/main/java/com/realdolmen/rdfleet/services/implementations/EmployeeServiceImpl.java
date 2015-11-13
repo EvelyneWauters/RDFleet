@@ -152,6 +152,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             carHistory.add(currentCar);
         }
         employee.setCurrentCar(carRepository.findOne(carDTO.getId()));
+        employee.setReceivedMailForNewCar(false);
         employeeRepository.save(employee);
         return carDTO;
     }
@@ -181,6 +182,9 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (checkIfValidEntity(employee)) {
             employee.setFunctionalLevel(employeeDTO.getFunctionalLevel());
             employee.setActive(employeeDTO.getActive());
+            if(employeeDTO.getActive() == false && employee.getCurrentCar() != null)    {
+                moveCurrentCarToCarHistory(employee);
+            }
             employeeRepository.save(employee);
         }
     }
