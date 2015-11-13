@@ -220,7 +220,7 @@
         <button th:if="${carTypeDTO.id != null}" type="submit" class="btn btn-rd btn-block"
                 th:formaction="${#mvc.url('CTC#updateCarType').arg(0, carTypeDTO.id).build()}">Save
         </button>
-        <button th:if="${carTypeDTO.id == null}" type="submit" class="btn btn-primary">Save</button>
+        <button th:if="${carTypeDTO.id == null}" type="submit" class="btn btn-rd">Save</button>
         </div>
 
     </form>

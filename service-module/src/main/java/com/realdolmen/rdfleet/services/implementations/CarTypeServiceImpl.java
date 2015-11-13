@@ -57,7 +57,8 @@ public class CarTypeServiceImpl implements CarTypeService {
 
     @Override
     public void createCarType(CarTypeDTO carTypeDTO) {
-        CarType carType = CarTypeMapper.mapCarTypeDTOToCarTypeObject(carTypeDTO, new CarType());
+        CarType carType = new CarType();
+        carType = CarTypeMapper.mapCarTypeDTOToCarTypeObject(carTypeDTO, carType);
         if(carType != null) {
             if(checkIfValidEntity(carType)) {
                 carTypeRepository.save(carType);

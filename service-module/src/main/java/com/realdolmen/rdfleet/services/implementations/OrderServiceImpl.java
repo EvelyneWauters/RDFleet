@@ -5,6 +5,7 @@ import com.realdolmen.rdfleet.entities.car.CarType;
 import com.realdolmen.rdfleet.entities.car.options.CarOption;
 import com.realdolmen.rdfleet.entities.car.options.OptionListObject;
 import com.realdolmen.rdfleet.entities.employee.Employee;
+import com.realdolmen.rdfleet.entities.employee.enums.Role;
 import com.realdolmen.rdfleet.repositories.*;
 import com.realdolmen.rdfleet.services.DTO.CarTypeDTO;
 import com.realdolmen.rdfleet.services.DTO.EmployeeDTO;
@@ -63,6 +64,8 @@ public class OrderServiceImpl implements OrderService{
             }
             order.setOptions(carOptions);
         }
+        employee.setReceivedMailForNewCar(false);
+        employee.setRole(Role.EMPLOYEE);
         return orderRepository.save(order);
     }
 
